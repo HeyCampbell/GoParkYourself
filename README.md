@@ -3,11 +3,12 @@ Go Park Yourself will provide a user with readable, updated street parking infor
 
 Team Members
 ------
-* Jon Campbell
-* Amar Singh
-* Ashley Baldwin Hunter
-* Kevin Perumal
-* Ricky Thomas
+* **Team Lead/Git Master** Jon Campbell
+* **Front End Tech Lead** Amar Singh
+* **Front End Design Lead** Ricky Thomas
+* **Data Transfromations** Ashley Baldwin Hunter
+* **Database Designer** Kevin Perumal
+
 
 ------
 
