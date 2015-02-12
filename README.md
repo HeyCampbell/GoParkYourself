@@ -3,12 +3,11 @@ Go Park Yourself will provide a user with readable, updated street parking infor
 
 Team Members
 ------
-
-*Jon Campbell
-*Amar Singh
-*Ashley Baldwin Hunter
-*Kevin Perumal
-*Ricky Thomas
+* Jon Campbell
+* Amar Singh
+* Ashley Baldwin Hunter
+* Kevin Perumal
+* Ricky Thomas
 
 ------
 
