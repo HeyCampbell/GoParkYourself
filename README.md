@@ -6,7 +6,7 @@ Team Members
 * **Team Lead/Git Master** Jon Campbell
 * **Front End Tech Lead** Amar Singh
 * **Front End Design Lead** Ricky Thomas
-* **Data Transfromations** Ashley Baldwin Hunter
+* **Data Transformations** Ashley Baldwin Hunter
 * **Database Designer** Kevin Perumal
 
 
