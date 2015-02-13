@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'factory_girl_rails'
 
 describe "Spot" do
-  let(:spot) { Spot.new(lat: 40.705765, long: -74.007659, remind?: true }
+  let(:spot) { Spot.new(lat: 40.705765, long: -74.007659, remind?: true )}
   let(:street) { FactoryGirl.create(:street_section) }
 
   xit "should initialize with GPS coordinates" do
