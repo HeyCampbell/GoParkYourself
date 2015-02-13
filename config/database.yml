@@ -13,7 +13,9 @@
 #
 # Configure Using Gemfile
 # gem 'pg'
+
 #
+
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -24,6 +26,7 @@ default: &default
 development:
   <<: *default
   database: Go-Park-Yourself_development
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
