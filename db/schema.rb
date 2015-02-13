@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20150213011523) do
     t.datetime "parked_at"
     t.boolean  "remind?"
     t.datetime "expiration"
-    t.decimal  "latitude",   precision: 10, scale: 6
-    t.decimal  "longitude",  precision: 10, scale: 6
+    t.string   "full_address"
+    t.string   "main_street"
+    t.decimal  "latitude",     precision: 10, scale: 6
+    t.decimal  "longitude",    precision: 10, scale: 6
     t.datetime "created_at"
     t.datetime "updated_at"
   end

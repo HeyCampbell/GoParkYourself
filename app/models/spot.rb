@@ -9,7 +9,7 @@ class Spot < ActiveRecord::Base
 
   def get_street_name
     result = Geocoder.search("#{latitude}, #{longitude}")[0]
-    result.data["addres_components"][1]["long_name"]
+    result.data["address_components"][1]["long_name"]
   end
 
   def set_street_name

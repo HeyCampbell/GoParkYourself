@@ -1,8 +1,19 @@
 class SpotsController < ApplicationController
   def create
-    # raise params.inspect
-    # @response = params
-    # p params
-    render json: {lat: params['latitude'], lng: params['longitude']}
+    spot = Spot.create!(latitude: params['latitude'], longitude: params['longitude'])
+    p spot.latitude
+    p spot
+    # if @spot.save
+    #   # @signs = @spot.street_section.signs.all
+    render json: spot.to_json
+    # else
+    #   return "You've made a terrible mistake"
+    # end
   end
+
+
+  # def spot_params
+  #   params.require(:spot).permit(:latitude, :longitude)
+  # end
+
 end
