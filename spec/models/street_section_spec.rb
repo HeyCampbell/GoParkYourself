@@ -27,3 +27,7 @@ describe "Street Section" do
 
 
 end
+<<<<<<< HEAD
+=======
+
+>>>>>>> d450dca75b11c96b36a4a2283e63d0d0c3473429
