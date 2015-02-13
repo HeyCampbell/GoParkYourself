@@ -1,0 +1,38 @@
+ html, body, #map-canvas {
+}
+
+#main_row_ct {
+
+}
+
+#img_banner {
+  background-image: url("intersection.jpeg");
+  background-size: 100%;
+  background-repeat: none;
+  height:420px;
+}
+
+#logo_ct {
+  top: 3em;
+  text-align: center;
+}
+
+.auth_buttons {
+  text-align: center;
+}
+
+#logo {
+  margin: auto;
+}
+
+#login_with_google {
+  padding-top: 1em;
+}
+/*#logo img {
+  height:150%;
+  width:150%;
+}*/
+
+#button_ct {
+  background-color: black;
+}
