@@ -38,8 +38,8 @@ group :development, :test do
   gem 'byebug'
   gem 'faker', '~>1.4.3'
   gem "factory_girl_rails", "~> 4.4.1"
-  gem "capybara", "~> 2.4.3"
-  gem "rspec-rails", "~> 3.1.0"
+  gem "capybara", "~> 2.4.4"
+  gem "rspec-rails", "~> 3.2.0"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
