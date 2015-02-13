@@ -1,6 +1,10 @@
 require 'csv'
 require 'date'
 require 'pry'
+require 'openssl'
+require 'geokit'
+require 'rubygems'
+# include GeoKit::Geocoders
 
 class Block
 
@@ -30,17 +34,19 @@ class Sign
   end
 end
 
-# CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
+blocks = []
+signs = []
 
-#   if index > 30
-#     StreetSection.create(status_order: row[1], main_street: row[2], from_street: row[3], to_street: row[4], side_of_street: row[5])
-#   end
+CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
 
-# end
+  blocks << Block.new(row)
 
-# CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
+end
 
-#   binding.pry
-#   signs << Sign.new(row)
+CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
 
-# end
+  signs << Sign.new(row)
+
+end
+
+binding.pry
