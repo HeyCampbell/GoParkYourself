@@ -1,52 +1,35 @@
-require 'csv'
-require 'date'
-require 'pry'
-require 'openssl'
-require 'geokit'
-require 'rubygems'
-# include GeoKit::Geocoders
+# require 'csv'
+# require 'date'
+# require 'pry'
+# require 'openssl'
+# require 'geokit'
+# require 'rubygems'
+# # include GeoKit::Geocoders
 
-class Block
+# class Block
 
-  attr_accessor :borough_code, :status_order_number, :main_st, :from_st, :to_street, :side_of_street
+#   attr_accessor :borough_code, :status_order_number, :main_st, :from_st, :to_street, :side_of_street
 
-  def initialize(hash)
-    @borough_code = hash[:boroughcode]
-    @status_order = hash[:statusordernumber]
-    @main_street = hash[:mainstreet]
-    @from_street = hash[:fromstreet]
-    @to_street = hash[:tostreet]
-    @side_of_street = hash[:sideofstreet]
-  end
-end
+#   def initialize(hash)
+#     @borough_code = hash[:boroughcode]
+#     @status_order = hash[:statusordernumber]
+#     @main_street = hash[:mainstreet]
+#     @from_street = hash[:fromstreet]
+#     @to_street = hash[:tostreet]
+#     @side_of_street = hash[:sideofstreet]
+#   end
+# end
 
-class Sign
+# class Sign
 
-  attr_accessor :borough_code, :status_order_number, :sign_sequence, :distance, :arrow_points, :sign_discription
+#   attr_accessor :borough_code, :status_order_number, :sign_sequence, :distance, :arrow_points, :sign_discription
 
-  def initialize(hash)
-    @borough_code = hash[:boroughcode]
-    @status_order = hash[:statusordernumber]
-    @sign_sequence = hash[:signsequence]
-    @distance = hash[:distance]
-    @arrow = hash[:arrowpoints]
-    @sign_discription = hash[:signdiscription]
-  end
-end
-
-blocks = []
-signs = []
-
-CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
-
-  blocks << Block.new(row)
-
-end
-
-CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
-
-  signs << Sign.new(row)
-
-end
-
-binding.pry
+#   def initialize(hash)
+#     @borough_code = hash[:boroughcode]
+#     @status_order = hash[:statusordernumber]
+#     @sign_sequence = hash[:signsequence]
+#     @distance = hash[:distance]
+#     @arrow = hash[:arrowpoints]
+#     @sign_discription = hash[:signdiscription]
+#   end
+# end

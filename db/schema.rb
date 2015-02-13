@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150213011523) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,18 +33,20 @@ ActiveRecord::Schema.define(version: 20150213011523) do
     t.datetime "parked_at"
     t.boolean  "remind?"
     t.datetime "expiration"
+    t.decimal  "latitude",   precision: 10, scale: 6
+    t.decimal  "longitude",  precision: 10, scale: 6
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "street_sections", force: :cascade do |t|
+    t.string   "borough"
     t.string   "status_order"
     t.string   "main_street"
     t.string   "from_street"
     t.string   "to_street"
     t.string   "side_of_street"
     t.decimal  "latitude_from",  precision: 10, scale: 6
-    t.decimal  "decimal",        precision: 10, scale: 6
     t.decimal  "longitude_from", precision: 10, scale: 6
     t.decimal  "latitude_to",    precision: 10, scale: 6
     t.decimal  "longitude_to",   precision: 10, scale: 6
@@ -61,6 +61,5 @@ ActiveRecord::Schema.define(version: 20150213011523) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 
 end

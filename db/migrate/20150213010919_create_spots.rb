@@ -6,6 +6,8 @@ class CreateSpots < ActiveRecord::Migration
       t.datetime :parked_at
       t.boolean :remind?
       t.datetime :expiration
+      t.decimal :latitude, :precision => 10, :scale => 6
+      t.decimal :longitude, :precision => 10, :scale => 6
 
       t.timestamps
     end
