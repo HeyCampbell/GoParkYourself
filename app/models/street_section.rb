@@ -12,18 +12,23 @@ class StreetSection < ActiveRecord::Base
       return "Brooklyn"
     when "Q"
       return "Queens"
+    end
   end
 
   def geocode_from
     data = Geocoder.search("#{main_street} and #{from_street}, #{borough_name}, New York")[0]
-    self.latitude_from = data.data["geometry"]["location"]["lat"]
-    self.longitude_from = data.data["geometry"]["location"]["long"]
+    if data
+      self.latitude_from = data.data["geometry"]["location"]["lat"]
+      self.longitude_from = data.data["geometry"]["location"]["lng"]
+    end
   end
 
   def geocode_to
     data = Geocoder.search("#{main_street} and #{to_street}, #{borough_name}, New York")[0]
-    self.latitude_to = data.data["geometry"]["location"]["lat"]
-    self.longitude_to = data.data["geometry"]["location"]["long"]
+    if data
+      self.latitude_to = data.data["geometry"]["location"]["lat"]
+      self.longitude_to = data.data["geometry"]["location"]["lng"]
+    end
   end
 
   # def street_side(point) #point = [lat, long]
