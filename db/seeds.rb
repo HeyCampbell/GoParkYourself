@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
+
 index = 0
 
 CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol) do |row|
@@ -19,6 +20,7 @@ CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbo
   else
     break
   end
+
 
 end
 
