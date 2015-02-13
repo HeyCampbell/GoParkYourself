@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
-<<<<<<< HEAD
+
 
 
 index = 0
@@ -23,17 +23,6 @@ CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbo
   end
 
 
-=======
-require 'date'
-
-index = 0
-
-CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol) do |row|
-
-  break if index > 30
-    StreetSection.create(status_order: row[1], main_street: row[2], from_street: row[3], to_street: row[4], side_of_street: row[5])
-index += 1
->>>>>>> d450dca75b11c96b36a4a2283e63d0d0c3473429
 end
 
 CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol) do |row|
