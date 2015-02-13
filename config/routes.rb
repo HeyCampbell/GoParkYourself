@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get '/' => 'welcomes#index'
+
   post '/spots/create' => 'spots#create'
+
+  get '/map' => 'welcomes#map'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
