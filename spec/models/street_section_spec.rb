@@ -9,7 +9,7 @@ describe "Street Section" do
     expect(FactoryGirl.create(:street_section)).to be_valid
   end
 
-  it 'should be associated with a status order' do
+  xit 'should be associated with a status order' do
     expect(street.status_order).to_not
   end
 
@@ -27,7 +27,4 @@ describe "Street Section" do
 
 
 end
-<<<<<<< HEAD
-=======
 
->>>>>>> d450dca75b11c96b36a4a2283e63d0d0c3473429
