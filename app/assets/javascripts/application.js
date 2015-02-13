@@ -15,6 +15,7 @@
 //= require_tree .
 
 var map;
+var geoLocatedPosition;
 
 function initialize() {
   var mapOptions = {
@@ -28,6 +29,7 @@ function initialize() {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
+      geoLocatedPosition = pos;
 
       var infowindow = new google.maps.InfoWindow({
         map: map,
