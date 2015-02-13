@@ -1,6 +1,6 @@
-require 'pry'
 require 'csv'
 require 'date'
+require 'pry'
 
 class Block
 
@@ -8,7 +8,7 @@ class Block
 
   def initialize(hash)
     @borough_code = hash[:boroughcode]
-    @status_order_number = hash[:statusordernumber]
+    @status_order = hash[:statusordernumber]
     @main_street = hash[:mainstreet]
     @from_street = hash[:fromstreet]
     @to_street = hash[:tostreet]
@@ -22,17 +22,25 @@ class Sign
 
   def initialize(hash)
     @borough_code = hash[:boroughcode]
-    @status_order_number = hash[:statusordernumber]
+    @status_order = hash[:statusordernumber]
     @sign_sequence = hash[:signsequence]
     @distance = hash[:distance]
-    @arrow_points = hash[:arrowpoints]
+    @arrow = hash[:arrowpoints]
     @sign_discription = hash[:signdiscription]
   end
 end
 
-blocks = []
-signs = []
+# CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
 
-CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol) {|row| blocks << Block.new(row)}
+#   if index > 30
+#     StreetSection.create(status_order: row[1], main_street: row[2], from_street: row[3], to_street: row[4], side_of_street: row[5])
+#   end
 
-CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol) {|row| signs << Sign.new(row)}
+# end
+
+# CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol).each_with_index do |row,index|
+
+#   binding.pry
+#   signs << Sign.new(row)
+
+# end
