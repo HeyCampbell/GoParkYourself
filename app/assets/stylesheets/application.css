@@ -14,8 +14,19 @@
  *= require_self
  */
 
- html, body, #map-canvas {
+ html, body {
   height: 100%;
   margin: 0px;
   padding: 0px
+}
+
+#map-canvas {
+  height: 90%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#send-latlng {
+  margin: 0 auto;
 }

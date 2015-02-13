@@ -8,7 +8,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="map-canvas"></div>
+  <div id="map-canvas">
+  </div>
+  <form id="send-latlng" action='#' method="POST">
+    <input type="submit" value="I'm here">
+  </form>
 
 <%= yield %>
 
