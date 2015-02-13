@@ -1,5 +1,6 @@
 var map;
 var geoLocatedPosition;
+var marker;
 
 function initialize() {
   var mapOptions = {
@@ -15,13 +16,15 @@ function initialize() {
                                        position.coords.longitude);
       geoLocatedPosition = pos;
 
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'Location found using HTML5.'
+      map.setCenter(pos);
+
+      marker = new google.maps.Marker({
+      position: geoLocatedPosition,
+      map: map,
+      draggable: true,
+      title: "Go Park Yourself"
       });
 
-      map.setCenter(pos);
     }, function() {
       handleNoGeolocation(true);
     });
@@ -29,6 +32,7 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
+
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -49,3 +53,4 @@ function handleNoGeolocation(errorFlag) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
