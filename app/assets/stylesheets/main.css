@@ -1,7 +1,10 @@
  html, body {
   height: 100%;
   margin: 0px;
-  padding: 0px
+  padding: 0px;
+  background-image: url("floral_background.png");
+  background-size: 100%;
+  background-repeat: none;
  }
 
 #map-canvas {
@@ -38,7 +41,7 @@
   text-align: center;
 }
 
-.parked_buttons {
+#parked_button {
   padding-top:0.33rem;
   padding-bottom:0.33rem;
 }
@@ -58,3 +61,14 @@
 #button_ct {
   background-color: black;
 }
+
+#myModal {
+  background-color: rgba(0, 0, 0, 0.75);
+  color:white;
+  text-align: center;
+}
+
+#myModal h2 {
+  color:white;
+}
+
