@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/show'
+
   get 'sessions/create'
 
   get 'sessions/destroy'
@@ -20,6 +22,8 @@ Rails.application.routes.draw do
 end
 
 # GoogleAuthExample::Application.routes.draw do
+
+  get 'home/show'
 
 # end
 
