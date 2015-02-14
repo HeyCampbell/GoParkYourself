@@ -7,6 +7,8 @@ gem 'rails', '4.2.0'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use Foundation for building pages
+gem 'foundation-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -50,6 +52,8 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.4.1"
   gem "capybara", "~> 2.4.4"
   gem "rspec-rails", "~> 3.2.0"
+
+
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

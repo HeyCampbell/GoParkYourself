@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>GoParkYourself</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div id="map-canvas">
-  </div>
-  <form id="send-latlng" action='spots/create' method="POST">
-    <input type="submit" value="I'm here">
-  </form>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 
-<%= yield %>
 
-</body>
+    <title>GoParkYourself</title>
+
+    <%= stylesheet_link_tag    "application", media: 'all' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <%= yield %>
+
+  </body>
 </html>

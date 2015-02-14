@@ -1,0 +1,60 @@
+ html, body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+ }
+
+#map-canvas {
+  height: 90%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index:2;
+}
+
+#map_ct {
+  height: 100%;
+}
+
+#map_bar {
+  padding-top: -10px;
+  background-color: black;
+  color:white;
+}
+
+#img_banner {
+  background-image: url("intersection.jpeg");
+  background-size: 100%;
+  background-repeat: none;
+  height:420px;
+}
+
+#logo_ct {
+  top: 3em;
+  text-align: center;
+}
+
+.auth_buttons {
+  text-align: center;
+}
+
+.parked_buttons {
+  padding-top:0.33rem;
+  padding-bottom:0.33rem;
+}
+
+#logo {
+  margin: auto;
+}
+
+#login_with_google {
+  padding-top: 1em;
+}
+/*#logo img {
+  height:150%;
+  width:150%;
+}*/
+
+#button_ct {
+  background-color: black;
+}
