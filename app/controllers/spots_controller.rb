@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
     p spot
     # if @spot.save
     #   # @signs = @spot.street_section.signs.all
-    render json: spot.to_json
+    render json: spot.get_street_sections.first.signs.to_json
     # else
     #   return "You've made a terrible mistake"
     # end
