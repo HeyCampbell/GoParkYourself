@@ -2,7 +2,7 @@ class SpotsController < ApplicationController
   def create
     spot = Spot.create!(latitude: params['latitude'], longitude: params['longitude'])
 
-    spot_info = {spot: spot, sign: spot.get_street_sections[0]}
+    spot_info = {spot: spot, regs: spot.effective_sign.no_parking_times}
 
     # if @spot.save
     #   # @signs = @spot.street_section.signs.all
