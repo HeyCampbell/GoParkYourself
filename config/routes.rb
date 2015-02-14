@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   resource :home, only: [:show]
 
   root to: "home#show"
+  get 'home/show'
 end
 
 # GoogleAuthExample::Application.routes.draw do
 
-  get 'home/show'
 
 # end
 
