@@ -6,9 +6,12 @@
       <ul class="button-group radius">
         <li><button class="parked_buttons" data-reveal-id="myModal">Yes</button></li>
         <!-- <li><button class="parked_buttons">No</button></li> -->
-        <!-- <form id="send-latlng" action='spots/create' method="POST">
+        <form id="send-latlng" action='spots/create' method="POST">
           <input type="submit" value="I'm here">
-        </form> -->
+        </form>
+
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+
       </ul>
     </div>
   </div>
