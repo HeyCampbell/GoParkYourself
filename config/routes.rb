@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   get '/' => 'welcomes#index'
 
   post '/spots/create' => 'spots#create'
