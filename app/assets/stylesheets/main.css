@@ -41,7 +41,7 @@
   text-align: center;
 }
 
-.parked_buttons {
+#parked_button {
   padding-top:0.33rem;
   padding-bottom:0.33rem;
 }
