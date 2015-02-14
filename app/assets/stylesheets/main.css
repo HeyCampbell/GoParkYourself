@@ -1,7 +1,10 @@
  html, body {
   height: 100%;
   margin: 0px;
-  padding: 0px
+  padding: 0px;
+  background-image: url("floral_background.png");
+  background-size: 100%;
+  background-repeat: none;
  }
 
 #map-canvas {
