@@ -1,8 +1,25 @@
- html, body, #map-canvas {
+ html, body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+ }
+
+#map-canvas {
+  height: 90%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index:2;
 }
 
-#main_row_ct {
+#map_ct {
+  height: 100%;
+}
 
+#map_bar {
+  padding-top: -10px;
+  background-color: black;
+  color:white;
 }
 
 #img_banner {
@@ -19,6 +36,11 @@
 
 .auth_buttons {
   text-align: center;
+}
+
+.parked_buttons {
+  padding-top:0.33rem;
+  padding-bottom:0.33rem;
 }
 
 #logo {
