@@ -31,7 +31,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'geonames_api'
 
+
 gem 'omniauth-google-oauth2'
+
+
+gem 'puma'
 
 
 # Use Unicorn as the app server
