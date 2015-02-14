@@ -15,8 +15,8 @@ class StreetSection < ActiveRecord::Base
     end
   end
 
-  def geocode_from
-    data = Geocoder.search("#{main_street} and #{from_street}, #{borough_name}, New York")[0]
+  def geocode_from #hard code ny in for now
+    data = Geocoder.search("#{main_street} and #{from_street}, New York, New York")[0]
     if data
       self.latitude_from = data.data["geometry"]["location"]["lat"]
       self.longitude_from = data.data["geometry"]["location"]["lng"]
@@ -24,7 +24,7 @@ class StreetSection < ActiveRecord::Base
   end
 
   def geocode_to
-    data = Geocoder.search("#{main_street} and #{to_street}, #{borough_name}, New York")[0]
+    data = Geocoder.search("#{main_street} and #{to_street}, New York, New York")[0]
     if data
       self.latitude_to = data.data["geometry"]["location"]["lat"]
       self.longitude_to = data.data["geometry"]["location"]["lng"]
@@ -52,6 +52,12 @@ class StreetSection < ActiveRecord::Base
     results = []
 
     signs.each_with_index do |sign, index|
+
+      if signs[0].distance > distance_from
+        results << lower_result
+        return results
+      end
+
       if sign.distance >= distance_from
         upper_result = sign
         lower_result = signs[index-1]
