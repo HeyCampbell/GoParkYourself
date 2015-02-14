@@ -43,4 +43,26 @@ class StreetSection < ActiveRecord::Base
     [self.latitude_to, self.longitude_to]
   end
 
+  def self.signs_nearest_to(distance)
+    order("abs(streetsections.signs.distance - #{distance}")
+  end
+
+  def signs_near(distance_from)
+    signs = self.signs
+    results = []
+
+    signs.each_with_index do |sign, index|
+      if sign.distance >= distance_from
+        upper_result = sign
+        lower_result = signs[index-1]
+        results << lower_result
+        results << upper_result
+        return results
+      end
+    end
+    return results
+  end
+
 end
+
+
