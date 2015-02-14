@@ -3,7 +3,6 @@ class Spot < ActiveRecord::Base
   before_create :set_street_name
 
   def nearest_intersection
-    GeoNamesAPI.username = ENV['USERNAME']
     GeoNamesAPI::NearestIntersection.find(self.latitude, self.longitude)
   end
 
