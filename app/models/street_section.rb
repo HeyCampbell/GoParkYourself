@@ -31,18 +31,4 @@ class StreetSection < ActiveRecord::Base
     end
   end
 
-  # def street_side(point) #point = [lat, long]
-  #   start = [self.latitude_from, self.longitude_from]
-  #   lat_diff = point[0] - start[0]
-  #   long_diff = point[1] - point[1]
-  #   # lat_diff > 1 ? point.street_side = "north" : "south"
-  #   if lat_diff > 1
-  #     point.street_side = "north"
-  #   else if lat_diff < -1
-  #     point.street_side ="south"
-  #   else if long_diff > 1
-  #     point.street_side = ""
-  #   else
-  #     point.street_side = ""
-  # end
 end
