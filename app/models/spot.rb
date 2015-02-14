@@ -25,6 +25,8 @@ class Spot < ActiveRecord::Base
     StreetSection.where("(main_street LIKE '#{self.get_street_name.upcase}' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001}) OR (main_street LIKE '#{get_street_name.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_from BETWEEN #{loc.intersection['lon'].to_f - 0.0001} AND #{loc.intersection['lon'].to_f + 0.0001})")
 
   end
+
+
 end
 
 
