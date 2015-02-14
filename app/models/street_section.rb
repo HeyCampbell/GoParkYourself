@@ -31,4 +31,16 @@ class StreetSection < ActiveRecord::Base
     end
   end
 
+  def self.get_distance_in_feet(point1, point2) #( [lat2, lng2], [lat1, lng1] )
+    (Geocoder::Calculations.distance_between(point1, point2)*5280).to_i
+  end
+
+  def point_from
+    [self.latitude_from, self.longitude_from]
+  end
+
+  def point_to
+    [self.latitude_to, self.longitude_to]
+  end
+
 end
