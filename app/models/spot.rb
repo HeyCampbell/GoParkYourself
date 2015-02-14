@@ -20,4 +20,7 @@ class Spot < ActiveRecord::Base
     self.full_address = Geocoder.search("#{latitude}, #{longitude}")[0].data["formatted_address"]
   end
 
+  def get_street_sections #should return 2
+    StreetSection.where("(main_street LIKE '#{self.get_street_name}%' AND latitude_to BETWEEN #{self.nearest_intersection.latitude -.00001} AND #{self.nearest_intersection.latitude+1} AND longitude_to BETWEEN #{self.nearest_intersection.longitude -1} AND #{self.nearest_intersection.longitude+1}) OR (main_street LIKE '#{get_street_name}%' AND latitude_from BETWEEN #{self.nearest_intersection.latitude -1} AND #{self.nearest_intersection.latitude+1} AND longitude_from BETWEEN #{self.nearest_intersection.longitude -1} AND #{self.nearest_intersection.longitude+1})")
+  end
 end
