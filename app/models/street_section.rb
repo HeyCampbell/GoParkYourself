@@ -64,17 +64,22 @@ class StreetSection < ActiveRecord::Base
     #     return results
     #   end
 
-    signs.each_with_index do |sign, index|
 
-      if sign.distance >= distance_from
-        upper_result = sign
-        lower_result = signs[index-1]
-        results << lower_result
-        results << upper_result
-        return results
+      signs.each_with_index do |sign, index|
+
+        if sign.distance >= distance_from
+          upper_result = sign
+          lower_result = signs[index-1]
+
+          results << signs.find_all{|s| s.distance == lower_result.distance}
+          results << signs.find_all{|s| s.distance == upper_result.distance}
+
+          byebug
+          return results.flatten!
+        end
       end
-    end
-    return results
+
+      return results
   end
 end
 
