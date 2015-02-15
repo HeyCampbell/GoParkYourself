@@ -30,13 +30,9 @@ function loadNotSuccessful(response) {
 var View = {}
 
 View.drawParkingStatus = function(spot) {
-<<<<<<< HEAD
   var html = 'Side of Street: '
   html += spot.sideOne.Side
   return html
-=======
-  var html = ""
->>>>>>> now have javascript objects on front-end
 }
 
 var Spot = function(json) {
