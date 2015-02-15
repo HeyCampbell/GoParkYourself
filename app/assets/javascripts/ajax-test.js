@@ -15,17 +15,12 @@ $(document).ready(function() {
       data: $data
     });
     ajaxRequest.done(function(response) {
-      spot = new Spot(response)
+      var spot = new Spot(response)
+      View.drawParkingStatus(spot);
     });
-    // ajaxRequest.done(loadParkingStatus);
     // ajaxRequest.fail(loadNotSuccessful);
   });
 });
-
-function loadParkingStatus(response) {
-  //interstitialGif.hide()
-  //append the response to the page
-}
 
 function loadNotSuccessful(response) {
   //interstitialGif.hide()
@@ -34,8 +29,8 @@ function loadNotSuccessful(response) {
 
 var View = {}
 
-View.drawParkingStatus = function() {
-  //the HTML representation of the response from the server goes here
+View.drawParkingStatus = function(spot) {
+  var html = ""
 }
 
 var Spot = function(json) {
@@ -60,7 +55,3 @@ var Spot = function(json) {
      this.sideTwo.SundayRegs = json.regs[1].rules[6]['sun'];
 }
 
-
-Spot.prototype.returnSideOne = function() {
-  console.log(sideOne)
-}
