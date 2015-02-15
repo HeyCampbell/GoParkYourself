@@ -16,8 +16,6 @@ CSV.foreach("Manhattan_discreet_blocks.csv", headers: true, header_converters: :
   sleep(0.3)
 end
 
-end
-
 CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol) do |row|
 
   if StreetSection.exists?(status_order: row[1])
