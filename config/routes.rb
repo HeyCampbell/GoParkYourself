@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
-  get 'home/show'
 
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
+  root to: "welcomes#index"
   get '/' => 'welcomes#index'
 
   post '/spots/create' => 'spots#create'
@@ -16,10 +12,7 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-  resource :home, only: [:show]
 
-  root to: "home#show"
-  get 'home/show'
 end
 
 # GoogleAuthExample::Application.routes.draw do
