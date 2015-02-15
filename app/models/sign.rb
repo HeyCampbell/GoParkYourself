@@ -40,7 +40,7 @@ class Sign < ActiveRecord::Base
         end
       end
     elsif /Curb Line/.match(self.sign_description) || /Building Line/.match(self.sign_description) || /Property Line/.match(self.sign_description)
-      parking_regs =parking_regs.map {|k,v| {k => {:start => 0, :stop => 0}}}
+      parking_regs =parking_regs.map {|k,v| {k => {:start => "Curb", :stop => 0}}}
     else
       parking_regs =parking_regs.map {|k,v| {k => "I'm sorry Dave, I can't read that just yet. I'll try harder"}}
     end
