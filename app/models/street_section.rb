@@ -22,16 +22,17 @@ class StreetSection < ActiveRecord::Base
       self.latitude_from = result.data["point"]["coordinates"][0]
       self.longitude_from = result.data["point"]["coordinates"][1]
     end
+    sleep(0.2)
   end
 
   def get_point_to
     Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
     result = Geocoder.search("#{main_street} and #{to_street}, Manhattan, New York")[0]
-    result.data["point"]["coordinates"][0]
     if result
       self.latitude_to = result.data["point"]["coordinates"][0]
       self.longitude_to = result.data["point"]["coordinates"][1]
     end
+    sleep(0.2)
   end
 
   def self.get_distance_in_feet(point1, point2) #( [lat2, lng2], [lat1, lng1] )
