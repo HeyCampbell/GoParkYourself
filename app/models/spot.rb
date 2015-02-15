@@ -1,57 +1,37 @@
 class Spot < ActiveRecord::Base
-  before_create :format_address
-  before_create :set_street_name
+  before_create :set_address_info
 
   def nearest_intersection
-
     GeoNamesAPI.username = ENV['GEONAMES_USERNAME']
     GeoNamesAPI::NearestIntersection.find(self.latitude, self.longitude)
   end
 
-  def get_street_name
+  def set_address_info
     Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
     result = Geocoder.search("#{latitude}, #{longitude}")[0]
-    /\d*\s(.*)/.match(result.data["address"]["addressLine"])[1]
-  end
 
-  def set_street_name
-    self.main_street = self.get_street_name
-  end
-
-  def format_address
-    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
-    self.full_address = Geocoder.search("#{latitude}, #{longitude}")[0].data["address"]["formattedAddress"]
+    self.main_street = /\d*\s(.*)/.match(result.data["address"]["addressLine"])[1]
+    self.full_address = result.data["address"]["formattedAddress"]
   end
 
   def get_street_sections #should return 2
     loc = self.nearest_intersection
-    StreetSection.where("(main_street LIKE '#{self.get_street_name.upcase}' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001}) OR (main_street LIKE '#{get_street_name.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_from BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001})")
-
+    StreetSection.where("(main_street LIKE '#{self.main_street.upcase}%' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001}) OR (main_street LIKE '#{main_street.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_from BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001})")
   end
 
   def get_signs
-    all_signs = Hash.new
-    sections = get_street_sections
+    both_side_signs = Hash.new
 
-    sections.each do |section|
-      all_signs[section.side_of_street] = self.get_signs_for(section)
+    self.get_street_sections.each do |section|
+      both_side_signs[section.side_of_street] = self.get_signs_for(section)
     end
-
+    both_side_signs
   end
 
   def get_signs_for(section)
-
-    section_length = StreetSection.get_distance_in_feet(section.point_from, section.point_to)
-
-     buffer = (section_length - section.signs.last.distance) / 2
-
-     car_distance = StreetSection.get_distance_in_feet(section.point_from, [latitude, longitude]) + buffer
-
-     section.signs_near(car_distance)
-
+    adjusted_distance = StreetSection.get_distance_in_feet(section.point_from, [latitude, longitude]) + section.buffer
+     section.signs_near(adjusted_distance)
   end
-
 end
-
 
 
