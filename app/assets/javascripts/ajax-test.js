@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
     ajaxRequest.done(function(response) {
       var spot = new Spot(response)
-      View.drawParkingStatus(spot);
+      $('#time_to_move').html(View.drawParkingStatus(spot));
     });
     // ajaxRequest.fail(loadNotSuccessful);
   });
