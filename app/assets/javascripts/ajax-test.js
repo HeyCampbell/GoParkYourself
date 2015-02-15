@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $('#send-latlng').click(function(event) {
     event.preventDefault();
-    $('#time_to_move').html("");
+    $('#table_ct').html("");
     //interstitialGif.show();
     var $form = $(event.currentTarget);
     var $url = $form.attr("action");
@@ -18,7 +18,7 @@ $(document).ready(function() {
     ajaxRequest.done(function(response) {
       console.log(response)
       var spot = new Spot(response)
-      $('#time_to_move').html(View.drawParkingStatus(spot));
+      $('#table_ct').html(View.drawParkingStatus(spot));
     });
     ajaxRequest.fail(loadNotSuccessful());
   });
@@ -26,18 +26,54 @@ $(document).ready(function() {
 
 function loadNotSuccessful() {
   //interstitialGif.hide()
-  $('#time_to_move').html("Sorry this spot has not yet been indexed")
+  $('#table_ct').html("Sorry this spot has not yet been indexed")
 }
 
 var View = {}
 
 View.drawParkingStatus = function(spot) {
-  var html = 'Side of Street: '
-  html += spot.sideOne.Side + '<br>'
-  html += 'Monday Start: '
-  html += spot.sideOne.MondayStart + '<br>'
-  html += 'Monday Stop: '
-  html += spot.sideOne.MondayStop
+  var html = "<table id='regs_table'>"
+  html += "<tr>"
+  html += "<td>Day</td>"
+  html += "<td>" + sideOne.side + "</td>"
+  html += "<td>" + sideTwo.side + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Mon</td>"
+  html += "<td>" + sideOne.MondayStart + " to " + sideOne.MondayStop + "</td>"
+  html += "<td>" + sideTwo.MondayStart + " to " + sideTwo.MondayStop + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Tue</td>"
+  html += "<td>" + sideOne.TuesdayStart + " to " + sideOne.TuesdayStop + "</td>"
+  html += "<td>" + sideTwo.TuesdayStart + " to " + sideTwo.TuesdayStop + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Wed</td>"
+  html += "<td>" + sideOne.WednesdayStart + " to " + sideOne.WednesdayStop + "</td>"
+  html += "<td>" + sideTwo.WednesdayStart + " to " + sideTwo.WednesdayStop + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Thu</td>"
+  html += "<td>" + sideOne.ThursdayStart + " to " + sideOne.ThursdayStop + "</td>"
+  html += "<td>" + sideTwo.ThursdayStart + " to " + sideTwo.ThursdayStop + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Fri</td>"
+  html += "<td>" + sideOne.FridayStart + " to " + sideOne.FridayStop + "</td>"
+  html += "<td>" + sideTwo.FridayStart + " to " + sideTwo.FridayStop + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Sat</td>"
+  html += "<td>" + sideOne.SaturdayStart + " to " + sideOne.SaturdayStop + "</td>"
+  html += "<td>" + sideTwo.SaturdayStart + " to " + sideTwo.SaturdayStop + "</td>"
+  html += "</tr>"
+  html += "<tr>"
+  html += "<td>Sun</td>"
+  html += "<td>" + sideOne.SundayStart + " to " + sideOne.SundayStop + "</td>"
+  html += "<td>" + sideTwo.SundayStart + " to " + sideTwo.SundayStop + "</td>"
+  html += "</tr>"
+  html += "</table>"
   return html
 }
 

@@ -19,9 +19,8 @@
   <h2>Incredible Job!</h2>
   <p class="lead">You just managed to find a parking spot in New York City</p>
   <br>
-  <p>Move your car by</p>
-  <h2 id="time_to_move">8:30pm</h2>
-  <p>Sunday, Feb 14th</p>
+  <div id="table_ct">
+  </div>
   <br>
   <p>Would you like us to remind you?</p>
   <p><a href="#" data-reveal-id="remindMeModal" class="secondary button">Yes</a></p>
@@ -38,8 +37,8 @@
 
 <div id="thanksModal" class="reveal-modal" data-reveal>
   <h2>Thanks for using GPY!</h2>
-  <p>"Don't it always seem to go<br>That you don't know what you got 'til it's gone<br>
-They paved paradise and put up a parking lot"<br>- Counting Crows</p>
+  <p>Don't forget to move!</p><br>
+
    <p><%= link_to "Sign out", signout_path, id: "sign_out" %></p>
   <a class="close-reveal-modal">&#215;</a>
 </div>
