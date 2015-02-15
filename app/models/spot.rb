@@ -26,7 +26,29 @@ class Spot < ActiveRecord::Base
 
   end
 
+  def get_signs
+    all_signs = Hash.new
+    sections = self.get_street_sections
 
+    sections.each do |section|
+      all_signs[section.side_of_street] = get_signs_for(section)
+    end
+
+  end
+
+  def get_signs_for(section)
+
+    section_length = StreetSection.get_distance_in_feet([section.latitude_from, section.longitude_from], [section.latitude_to, section.longitude_to])
+
+     buffer = (section_length - section.signs.last.distance) / 2
+
+     car_distance = StreetSection.get_distance_in_feet([section.latitude_from, section.longitude_from], [latitude, longitude]) + buffer
+
+     section.signs_near(car_distance)
+
+  end
+
+end
 end
 
 
