@@ -71,12 +71,26 @@ describe "Spot" do
   end
 
   describe "#get_signs_for(section)" do
-    it "should return relevant signs for a street section" do
+    let(:section) {sections[0]}
+    let(:signs) {created_spot.get_signs_for(section)}
+
+    it "should return sign objects for a street section" do
+      expect(signs[0].class).to eq(Sign)
     end
+
+    it "should return signs that belong to that street section" do
+      expect(signs[1].street_section).to eq(section)
+    end
+
+    it "should return signs near the spot" do
+      distance = StreetSection.get_distance_in_feet([created_spot.latitude, created_spot.longitude], section.point_from) - section.buffer
+      expect((distance - signs[0].distance).abs < 10).to eq(true)
+    end
+
   end
 
   describe "#get_signs" do
-    it "should return relevant signs for a spot from both sides of street" do
+    xit "should return relevant signs for a spot from both sides of street" do
 
     end
   end
