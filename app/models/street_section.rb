@@ -47,6 +47,14 @@ class StreetSection < ActiveRecord::Base
     [latitude_to, longitude_to]
   end
 
+  def length
+    StreetSection.get_distance_in_feet(point_from, point_to)
+  end
+
+  def buffer
+    (self.length - self.signs.last.distance) / 2
+  end
+
   def signs_near(distance_from)
     signs = self.signs
     results = []
@@ -64,11 +72,9 @@ class StreetSection < ActiveRecord::Base
         results << upper_result
         return results
       end
-
     return results
+    end
   end
-  end
-
 end
 
 
