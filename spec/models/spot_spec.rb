@@ -4,9 +4,9 @@ require 'byebug'
 
 describe "Spot" do
    let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
-   let(:pearl_cedar_spot) {Spot.create(latitude: 40.706270, longitude: -74.007170)}
-   # let(:sections) {pearl_cedar_spot.get_street_sections}
-   let(:intersection) {pearl_cedar_spot.nearest_intersection}
+   # let(:pearl_cedar_spot) {Spot.create(latitude: 40.706270, longitude: -74.007170)}
+   let(:sections) {created_spot.get_street_sections}
+   let(:intersection) {created_spot.nearest_intersection}
 
   before :each do
     @spot = Spot.new(latitude: 40.705765, longitude: -74.007659, remind?: true )
@@ -27,7 +27,6 @@ describe "Spot" do
     end
 
     it "should save with an accurate address pulled from Geocoder" do
-      # address = Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
       @spot.save
       expect(@spot.full_address).to eq("162 Pearl St, New York, NY 10005")
     end
@@ -50,34 +49,49 @@ describe "Spot" do
     it "should return an intersection in New York county (manhattan)" do
       expect(intersection.intersection["adminName2"]).to eq("New York")
     end
-
   end
 
   describe "#get_street_sections" do
 
     it "should return two street sections" do
-      sections = pearl_cedar_spot.get_street_sections
       expect(sections.count).to eq(2)
     end
 
     it "should return street section with same mainstreet as spot" do
-      sections = pearl_cedar_spot.get_street_sections
-      expect(pearl_cedar_spot.main_street.upcase).to eq(sections[0].main_street.upcase)
+      spot_street_name = created_spot.main_street.upcase
+      section_street_name = sections[0].main_street.upcase
+      expect(section_street_name.include?(spot_street_name) || spot_street_name.include?(section_street_name)).to eq(true)
     end
 
     it "should return street section with same mainstreet as spot" do
-      sections = pearl_cedar_spot.get_street_sections
-      expect(pearl_cedar_spot.main_street.upcase).to eq(sections[1].main_street.upcase)
+      spot_street_name = created_spot.main_street.upcase
+      section_street_name = sections[1].main_street.upcase
+      expect(section_street_name.include?(spot_street_name) || spot_street_name.include?(section_street_name)).to eq(true)
     end
   end
 
   describe "#get_signs_for(section)" do
-    xit "should return relevant signs for a street section" do
+    let(:section) {sections[0]}
+    let(:signs) {created_spot.get_signs_for(section)}
+
+    it "should return sign objects for a street section" do
+      expect(signs[0].class).to eq(Sign)
     end
+
+    it "should return signs that belong to that street section" do
+      expect(signs[1].street_section).to eq(section)
+    end
+
+    it "should return signs near the spot" do
+      distance = StreetSection.get_distance_in_feet([created_spot.latitude, created_spot.longitude], section.point_from) - section.buffer
+      expect((distance - signs[0].distance).abs < 10).to eq(true)
+    end
+
   end
 
   describe "#get_signs" do
     xit "should return relevant signs for a spot from both sides of street" do
+
     end
   end
 

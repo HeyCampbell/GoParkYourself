@@ -16,7 +16,7 @@ class Spot < ActiveRecord::Base
 
   def get_street_sections #should return 2
     loc = self.nearest_intersection
-    StreetSection.where("(main_street LIKE '#{self.main_street.upcase}%' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001}) OR (main_street LIKE '#{main_street.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.0001} AND #{loc.intersection['lat'].to_f + 0.0001} AND longitude_from BETWEEN #{loc.intersection['lng'].to_f - 0.0001} AND #{loc.intersection['lng'].to_f + 0.0001})")
+    StreetSection.where("(main_street LIKE '#{self.main_street.upcase}%' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.00005} AND #{loc.intersection['lat'].to_f + 0.00005} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.00005} AND #{loc.intersection['lng'].to_f + 0.00005}) OR (main_street LIKE '#{main_street.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.00005} AND #{loc.intersection['lat'].to_f + 0.00005} AND longitude_from BETWEEN #{loc.intersection['lng'].to_f - 0.00005} AND #{loc.intersection['lng'].to_f + 0.00005})")
   end
 
   def get_signs

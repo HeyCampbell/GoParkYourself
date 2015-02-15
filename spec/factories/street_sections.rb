@@ -5,7 +5,6 @@ FactoryGirl.define do
     from_street 'PINE STREET'
     to_street 'WALL STREET'
     side_of_street 'E'
-
   end
 end
 
