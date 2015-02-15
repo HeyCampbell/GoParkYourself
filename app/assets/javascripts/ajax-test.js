@@ -15,8 +15,7 @@ $(document).ready(function() {
       data: $data
     });
     ajaxRequest.done(function(response) {
-      // debugger
-      console.log(response)
+      spot = new Spot(response)
     });
     // ajaxRequest.done(loadParkingStatus);
     // ajaxRequest.fail(loadNotSuccessful);
@@ -37,4 +36,31 @@ var View = {}
 
 View.drawParkingStatus = function() {
   //the HTML representation of the response from the server goes here
+}
+
+var Spot = function(json) {
+   this.sideOne = {}
+     this.sideOne.Side = json.regs[0].side;
+     this.sideOne.MondayRegs = json.regs[0].rules[0]['mon'];
+     this.sideOne.TuesdayRegs = json.regs[0].rules[1]['tue'];
+     this.sideOne.WednesdayRegs = json.regs[0].rules[2]['wed'];
+     this.sideOne.ThursdayRegs = json.regs[0].rules[3]['thu'];
+     this.sideOne.FridayRegs = json.regs[0].rules[4]['fri'];
+     this.sideOne.SaturdayRegs = json.regs[0].rules[5]['sat'];
+     this.sideOne.SundayRegs = json.regs[0].rules[6]['sun'];
+
+   this.sideTwo = {}
+     this.sideTwo.Side = json.regs[1].side;
+     this.sideTwo.MondayRegs = json.regs[1].rules[0]['mon'];
+     this.sideTwo.TuesdayRegs = json.regs[1].rules[1]['tue'];
+     this.sideTwo.WednesdayRegs = json.regs[1].rules[2]['wed'];
+     this.sideTwo.ThursdayRegs = json.regs[1].rules[3]['thu'];
+     this.sideTwo.FridayRegs = json.regs[1].rules[4]['fri'];
+     this.sideTwo.SaturdayRegs = json.regs[1].rules[5]['sat'];
+     this.sideTwo.SundayRegs = json.regs[1].rules[6]['sun'];
+}
+
+
+Spot.prototype.returnSideOne = function() {
+  console.log(sideOne)
 }
