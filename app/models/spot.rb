@@ -30,7 +30,7 @@ class Spot < ActiveRecord::Base
 
   def get_signs_for(section)
     adjusted_distance = StreetSection.get_distance_in_feet(section.point_from, [latitude, longitude]) + section.buffer
-     section.signs_near(adjusted_distance)
+    section.signs_near(adjusted_distance)
   end
 end
 
