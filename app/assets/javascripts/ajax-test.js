@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   $('#send-latlng').click(function(event) {
     event.preventDefault();
+    $('#time_to_move').html("");
     //interstitialGif.show();
     var $form = $(event.currentTarget);
     var $url = $form.attr("action");
