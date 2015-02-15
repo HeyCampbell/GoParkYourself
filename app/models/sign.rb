@@ -4,13 +4,13 @@ class Sign < ActiveRecord::Base
 
   def no_parking_times
     # parktag = "Never Park here "
-    parking_regs = {mon: 'No Regulation',
-        tue: 'No Regulation',
-        wed: 'No Regulation',
-        thu: 'No Regulation',
-        fri: 'No Regulation',
-        sat: 'No Regulation',
-        sun: 'No Regulation'}
+    parking_regs = {mon: self.sign_description,
+        tue: self.sign_description,
+        wed: self.sign_description,
+        thu: self.sign_description,
+        fri: self.sign_description,
+        sat: self.sign_description,
+        sun: self.sign_description}
     if /NO PARKING/.match(self.sign_description)
       if /SANITATION BROOM SYMBOL/.match(self.sign_description)
         if /EXCEPT/.match(self.sign_description)
