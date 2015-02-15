@@ -1,11 +1,11 @@
 class StreetSection < ActiveRecord::Base
   has_many :signs, :foreign_key => 'status_order', :primary_key => 'status_order'
-  before_save :geocode_from, :geocode_to
+  before_save :get_point_from, :get_point_to
 
   def borough_name
     case borough
     when "M"
-      return "New York"
+      return "Manhattan"
     when "B"
       return "Bronx"
     when "K"
@@ -15,36 +15,36 @@ class StreetSection < ActiveRecord::Base
     end
   end
 
-  def geocode_from #hard code ny in for now
-    data = Geocoder.search("#{main_street} and #{from_street}, New York, New York")[0]
-    if data
-      self.latitude_from = data.data["geometry"]["location"]["lat"]
-      self.longitude_from = data.data["geometry"]["location"]["lng"]
+  def get_point_from
+    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
+    result = Geocoder.search("#{main_street} and #{to_street}, Manhattan, New York")[0]
+    if result
+      self.latitude_from = result.data["point"]["coordinates"][0]
+      self.longitude_from = result.data["point"]["coordinates"][1]
     end
   end
 
-  def geocode_to
-    data = Geocoder.search("#{main_street} and #{to_street}, New York, New York")[0]
-    if data
-      self.latitude_to = data.data["geometry"]["location"]["lat"]
-      self.longitude_to = data.data["geometry"]["location"]["lng"]
+  def get_point_to
+    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
+    result = Geocoder.search("#{main_street} and #{to_street}, Manhattan, New York")[0]
+    result.data["point"]["coordinates"][0]
+    if result
+      self.latitude_to = result.data["point"]["coordinates"][0]
+      self.longitude_to = result.data["point"]["coordinates"][1]
     end
   end
 
   def self.get_distance_in_feet(point1, point2) #( [lat2, lng2], [lat1, lng1] )
+    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
     (Geocoder::Calculations.distance_between(point1, point2)*5280).to_i
   end
 
   def point_from
-    [self.latitude_from, self.longitude_from]
+    [latitude_from, longitude_from]
   end
 
   def point_to
-    [self.latitude_to, self.longitude_to]
-  end
-
-  def self.signs_nearest_to(distance)
-    order("abs(streetsections.signs.distance - #{distance}")
+    [latitude_to, longitude_to]
   end
 
   def signs_near(distance_from)
@@ -52,9 +52,8 @@ class StreetSection < ActiveRecord::Base
     results = []
 
     signs.each_with_index do |sign, index|
-
       if signs[0].distance > distance_from
-        results << lower_result
+        results << signs[0]
         return results
       end
 
