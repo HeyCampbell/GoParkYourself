@@ -74,7 +74,6 @@ class StreetSection < ActiveRecord::Base
           results << signs.find_all{|s| s.distance == lower_result.distance}
           results << signs.find_all{|s| s.distance == upper_result.distance}
 
-          byebug
           return results.flatten!
         end
       end
@@ -82,5 +81,6 @@ class StreetSection < ActiveRecord::Base
       return results
   end
 end
+
 
 
