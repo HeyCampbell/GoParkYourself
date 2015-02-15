@@ -12,16 +12,9 @@ require 'csv'
 # index = 0
 
 CSV.foreach("Manhattan_discreet_blocks.csv", headers: true, header_converters: :symbol) do |row|
-
-  # if index < 400
     StreetSection.find_or_create_by(borough: row[0], status_order: row[1], main_street: row[2], from_street: row[3], to_street: row[4], side_of_street: row[5])
-  # index += 1
   sleep(0.3)
-
-  else
-    break
-  end
-
+end
 
 end
 
