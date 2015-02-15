@@ -36,7 +36,7 @@ class Sign < ActiveRecord::Base
         unless unaffected_day.include?(k.to_s.upcase)
           parking_regs[k] = {:start => times[0], :stop => times[1]}
         else
-          parking_regs[k] = {:start => 0, :stop => 0}
+          parking_regs[k] = {:start => "line 39", :stop => 0}
         end
       end
     elsif /Curb Line/.match(self.sign_description) || /Building Line/.match(self.sign_description) || /Property Line/.match(self.sign_description)
