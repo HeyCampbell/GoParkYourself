@@ -3,7 +3,7 @@ class CreateTweets < ActiveRecord::Migration
     create_table :tweets do |t|
       t.string :content
       t.boolean :suspended?
-      t.timedate :created
+      t.datetime :created
 
     end
   end
