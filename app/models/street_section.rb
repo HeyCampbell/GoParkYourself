@@ -72,8 +72,8 @@ class StreetSection < ActiveRecord::Base
         results << upper_result
         return results
       end
-    return results
     end
+    return results
   end
 end
 
