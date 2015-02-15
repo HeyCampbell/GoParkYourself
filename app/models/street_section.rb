@@ -50,12 +50,12 @@ class StreetSection < ActiveRecord::Base
   def signs_near(distance_from)
     signs = self.signs
     results = []
+    #   if signs[0].distance > distance_from
+    #     results << signs[0]
+    #     return results
+    #   end
 
     signs.each_with_index do |sign, index|
-      if signs[0].distance > distance_from
-        results << signs[0]
-        return results
-      end
 
       if sign.distance >= distance_from
         upper_result = sign
@@ -64,8 +64,9 @@ class StreetSection < ActiveRecord::Base
         results << upper_result
         return results
       end
-    end
+
     return results
+  end
   end
 
 end
