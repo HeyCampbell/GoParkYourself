@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+describe "User" do
   it "expects true to equal true" do
     expect(true).to eq true
   end
