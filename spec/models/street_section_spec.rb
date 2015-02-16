@@ -4,9 +4,10 @@ require 'factory_girl_rails'
 describe "Street Section" do
 
   let(:street) { FactoryGirl.create(:street_section) }
+  let(:new_street) { FactoryGirl.build(:street_section) }
   let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
-   let(:sections) {created_spot.get_street_sections}
-   let(:intersection) {created_spot.nearest_intersection}
+  let(:sections) {created_spot.get_street_sections}
+  let(:intersection) {created_spot.nearest_intersection}
 
   it "is valid with a mainstreet, to_street, and from_street" do
     expect(FactoryGirl.create(:street_section)).to be_valid
@@ -21,8 +22,18 @@ describe "Street Section" do
   end
 
   describe "#get_point_to" do
-    it "" do
-      expect(street.to_latitude).to eq(40.7060419)
+    before :each do
+      @new_street = FactoryGirl.build(:street_section)
+    end
+
+    it "should set the latitude of to_street intersection" do
+      @new_street.save
+      expect(@new_street.to_latitude.to_f).to eq(40.7060419)
+    end
+
+    xit "should set the longitude of to_street intersection" do
+      @new_street.save
+      #expect(@new_street.to_longitude.to_f).to eq()
     end
   end
 
@@ -51,6 +62,7 @@ describe "Street Section" do
   end
 
   describe "#length" do
+
 
   end
 
