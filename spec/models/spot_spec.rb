@@ -4,7 +4,6 @@ require 'factory_girl_rails'
 
 describe "Spot" do
    let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
-   # let(:pearl_cedar_spot) {Spot.create(latitude: 40.706270, longitude: -74.007170)}
    let(:sections) {created_spot.get_street_sections}
    let(:intersection) {created_spot.nearest_intersection}
 
@@ -92,7 +91,8 @@ describe "Spot" do
     let(:section) {sections[0]}
     let(:signs) {created_spot.get_signs}
 
-    it "should return sign objects" do
+    xit "should return sign objects" do
+      byebug
       expect(created_spot.get_signs[1].class).to eq(Sign)
     end
 
