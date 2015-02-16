@@ -16,7 +16,7 @@ class StreetSection < ActiveRecord::Base
   end
 
   def get_point_from
-    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
+    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing, timeout: 15)
     result = Geocoder.search("#{main_street} and #{from_street}, Manhattan, New York")[0]
     if result
       self.latitude_from = result.data["point"]["coordinates"][0]
@@ -26,7 +26,7 @@ class StreetSection < ActiveRecord::Base
   end
 
   def get_point_to
-    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
+    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing, timeout: 15)
     result = Geocoder.search("#{main_street} and #{to_street}, Manhattan, New York")[0]
     if result
       self.latitude_to = result.data["point"]["coordinates"][0]
@@ -36,7 +36,7 @@ class StreetSection < ActiveRecord::Base
   end
 
   def self.get_distance_in_feet(point1, point2) #( [lat2, lng2], [lat1, lng1] )
-    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
+    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing, timeout: 15)
     (Geocoder::Calculations.distance_between(point1, point2)*5280).to_i
   end
 

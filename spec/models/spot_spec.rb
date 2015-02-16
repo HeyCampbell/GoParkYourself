@@ -4,7 +4,6 @@ require 'factory_girl_rails'
 
 describe "Spot" do
    let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
-   # let(:pearl_cedar_spot) {Spot.create(latitude: 40.706270, longitude: -74.007170)}
    let(:sections) {created_spot.get_street_sections}
    let(:intersection) {created_spot.nearest_intersection}
 
@@ -86,17 +85,24 @@ describe "Spot" do
       distance = StreetSection.get_distance_in_feet([created_spot.latitude, created_spot.longitude], section.point_from) - section.buffer
       expect((distance - signs[0].distance).abs < 10).to eq(true)
     end
-
   end
 
   describe "#get_signs" do
-    xit "should return relevant signs for a spot from both sides of street" do
+    let(:section) {sections[0]}
+    let(:signs) {created_spot.get_signs}
+
+    xit "should return sign objects" do
+      byebug
+      expect(created_spot.get_signs[1].class).to eq(Sign)
+    end
+
+    it "should return relevant signs for a spot from both sides of street" do
 
     end
-  end
 
-    xit 'should identify correct signs' do
+     xit 'should identify correct signs' do
       expect(@spot.sign_description).to eq()
     end
+  end
 
 end
