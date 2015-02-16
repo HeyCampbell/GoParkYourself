@@ -58,6 +58,31 @@ class Spot < ActiveRecord::Base
     both_side_signs
   end
 
+  def sign_picker
+    signs = get_signs
+    signs.each do |direction, side|
+      side.reject! do |sign|
+        /#{SIGNS_TO_REJECT.join('|')}/.match(sign.sign_description)
+      end
+    end
+
+    signs
+  end
+
+
+  def regs
+    self.sign_picker.map do |k,v|
+      if v[0]
+        rules = v[0].no_parking_times
+      elsif v.empty?
+        rules = "error parsing rules"
+      else
+        rules = v
+      end
+      {side: k , rules: rules}
+    end
+  end
+
   def get_signs_for(section)
     adjusted_distance = StreetSection.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
     section.signs_near(adjusted_distance)
