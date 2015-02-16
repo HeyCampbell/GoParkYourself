@@ -30,7 +30,6 @@ function loadChecker(response) {
     var spot = new Spot(response)
     console.log(spot)
     $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
-    // $('#table_ct').html(View.drawParkingStatus(spot));
   }
 }
 

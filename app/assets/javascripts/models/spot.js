@@ -12,18 +12,18 @@ var Spot = function(json) {
            Sunday : [json.regs[0].rules['sun'].start, json.regs[0].rules['sun'].stop]
      }
 
-    // this.sideTwo = {}
-    //  this.sideTwo.Side = json.regs[1].side;
-    //  this.sideTwo.Suspended = json.suspended;
-    //  this.sideTwo.Regulations = {
-    //        Monday : [json.regs[1].rules['mon'].start, json.regs[1].rules['mon'].stop],
-    //        Tuesday : [json.regs[1].rules['tue'].start, json.regs[1].rules['tue'].stop],
-    //        Wednesday : [json.regs[1].rules['wed'].start, json.regs[1].rules['wed'].stop],
-    //        Thursday : [json.regs[1].rules['thu'].start, json.regs[1].rules['thu'].stop],
-    //        Friday : [json.regs[1].rules['fri'].start, json.regs[1].rules['fri'].stop],
-    //        Saturday : [json.regs[1].rules['sat'].start, json.regs[1].rules['sat'].stop],
-    //        Sunday : [json.regs[1].rules['sun'].start, json.regs[1].rules['sun'].stop]
-    //  }
+  this.sideTwo = {}
+     this.sideTwo.Side = json.regs[1].side;
+     this.sideTwo.Suspended = json.suspended;
+     this.sideTwo.Regulations = {
+           Monday : [json.regs[1].rules['mon'].start, json.regs[1].rules['mon'].stop],
+           Tuesday : [json.regs[1].rules['tue'].start, json.regs[1].rules['tue'].stop],
+           Wednesday : [json.regs[1].rules['wed'].start, json.regs[1].rules['wed'].stop],
+           Thursday : [json.regs[1].rules['thu'].start, json.regs[1].rules['thu'].stop],
+           Friday : [json.regs[1].rules['fri'].start, json.regs[1].rules['fri'].stop],
+           Saturday : [json.regs[1].rules['sat'].start, json.regs[1].rules['sat'].stop],
+           Sunday : [json.regs[1].rules['sun'].start, json.regs[1].rules['sun'].stop]
+     }
 }
 
 Date.prototype.getDayName = function() {
