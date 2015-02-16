@@ -2,6 +2,10 @@ class StreetSection < ActiveRecord::Base
   has_many :signs, :foreign_key => 'status_order', :primary_key => 'status_order'
   before_save :get_point_from, :get_point_to
 
+  def self.two_nearest_street_sections
+    where("(main_street LIKE '#{self.main_street.upcase}%' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.00005} AND #{loc.intersection['lat'].to_f + 0.00005} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.00005} AND #{loc.intersection['lng'].to_f + 0.00005}) OR (main_street LIKE '#{main_street.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.00005} AND #{loc.intersection['lat'].to_f + 0.00005} AND longitude_from BETWEEN #{loc.intersection['lng'].to_f - 0.00005} AND #{loc.intersection['lng'].to_f + 0.00005})")
+  end
+
   def borough_name
     case borough
     when "M"

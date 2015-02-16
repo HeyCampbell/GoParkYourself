@@ -1,15 +1,20 @@
 require 'rails_helper'
 require 'factory_girl_rails'
-# require 'byebug'
+require 'ostruct'
+
+LATITUDE_FOR_SMITTYS_BAR = 40.705765
+LONGITUDE_FOR_SMITTYS_BAR = -74.007659
 
 describe "Spot" do
-   let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
+   #let(:smittys_bar) {Spot.create...}
+
+   let(:created_spot) { Spot.create(latitude: LATITUDE_FOR_SMITTYS_BAR, longitude: LONGITUDE_FOR_SMITTYS_BAR, remind?: true )}
    # let(:pearl_cedar_spot) {Spot.create(latitude: 40.706270, longitude: -74.007170)}
    let(:sections) {created_spot.get_street_sections}
    let(:intersection) {created_spot.nearest_intersection}
 
   before :each do
-    @spot = Spot.new(latitude: 40.705765, longitude: -74.007659, remind?: true )
+    #@spot = Spot.new(latitude: 40.705765, longitude: -74.007659, remind?: true )
   end
 
   it "should initialize with latitude coordinate" do
@@ -21,8 +26,23 @@ describe "Spot" do
   end
 
   describe "#set_address_info" do
-    it "should save with an address string pulled from Geocoder bing maps api" do
-      @spot.save
+    let(:bing_response) do
+      OpenStruct.new(:data => [{
+        address: {
+          addressLine: "Stubson Bubson",
+          formattedAddress: "18 Stubson Street, New York, 10101"
+        }
+      }])
+    end
+
+    before(:each) do
+      allow(Geocoder).to receive(:configure).and_return(true)
+      allow(Geocoder).to receive(:search).and_return(bing_response)
+    end
+
+    it "should save with an address string stubbed from Geocoder bing maps api" do
+      byebug
+      myspot = Spot.create
       expect(@spot.full_address.class).to eq(String)
     end
 
