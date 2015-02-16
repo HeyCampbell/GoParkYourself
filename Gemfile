@@ -37,6 +37,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'puma'
 
+gem 'twitter'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
