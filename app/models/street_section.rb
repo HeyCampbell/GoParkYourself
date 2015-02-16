@@ -77,6 +77,8 @@ class StreetSection < ActiveRecord::Base
       return results
   end
 
+
+
   def self.rephresh_gps
     StreetSection.all.each do |sect|
       sect.get_point_from
