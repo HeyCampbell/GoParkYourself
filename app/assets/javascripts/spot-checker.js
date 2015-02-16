@@ -28,7 +28,9 @@ function loadChecker(response) {
   }
   else {
     var spot = new Spot(response)
-    $('#table_ct').html(View.drawParkingStatus(spot));
+    console.log(spot)
+    $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
+    // $('#table_ct').html(View.drawParkingStatus(spot));
   }
 }
 
