@@ -1,6 +1,6 @@
 require 'rails_helper'
 require 'factory_girl_rails'
-require 'byebug'
+# require 'byebug'
 
 describe "Spot" do
    let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
