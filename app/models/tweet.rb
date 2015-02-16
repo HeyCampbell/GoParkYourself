@@ -1,6 +1,7 @@
 class Tweet < ActiveRecord::Base
 
   def self.pull_and_save
+
       client = Twitter::REST::Client.new do |config|
        config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
        config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
@@ -20,6 +21,9 @@ class Tweet < ActiveRecord::Base
           tweet.update(suspended?: false)
 
       end
+
+      self.last.suspended?
+
      end
     end
   end
