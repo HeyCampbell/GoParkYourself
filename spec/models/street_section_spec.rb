@@ -1,15 +1,16 @@
 require 'rails_helper'
 require 'factory_girl_rails'
+require 'byebug'
 
 describe "Street Section" do
 
-  let(:street) { FactoryGirl.create(:street_section) }
+  let(:street) { StreetSection.find_by(status_order: 'P-255161') }
   let(:new_street) { FactoryGirl.build(:street_section) }
   let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
   let(:sections) {created_spot.get_street_sections}
   let(:intersection) {created_spot.nearest_intersection}
 
-  it "is valid with a mainstreet, to_street, and from_street" do
+  it "is valid with a mainstreet, to_street, from_street, and status order" do
     expect(FactoryGirl.create(:street_section)).to be_valid
   end
 
@@ -28,30 +29,31 @@ describe "Street Section" do
 
     it "should set the latitude of to_street intersection" do
       @new_street.save
-      expect(@new_street.to_latitude.to_f).to eq(40.7060419)
+      expect(@new_street.latitude_to.to_f).to eq(40.7060419)
     end
 
     xit "should set the longitude of to_street intersection" do
       @new_street.save
-      expect(@new_street.to_longitude.to_f).to eq()
+      expect(@new_street.longitude_to.to_f).to eq()
     end
   end
 
   describe "#get_point_from" do
     xit "should set the latitude of from_street intersection" do
     @new_street.save
-    expect(@new_street.from_latitude.to_f).to eq(40.7060419)
+    expect(@new_street.latitude_from.to_f).to eq(40.7060419)
     end
 
     xit "should set the longitude of from_street intersection" do
       @new_street.save
-      expect(@new_street.from_longitude.to_f).to eq(40.7060419)
+      expect(@new_street.longitude_from.to_f).to eq(40.7060419)
     end
   end
 
   describe "self.get_distance_in_feet(p1, p2)" do
-    it "" do
-      expect(street.from_latitude.to_f).to eq(40.7060419)
+    xit "should calculate the positive distance between two points in feet" do
+      dist = StreetSection.get_distance_in_feet(street.point_from, point_to)
+      expect(dist > 0).to eq(true)
     end
   end
 
@@ -67,7 +69,7 @@ describe "Street Section" do
     end
 
     it "should return the point's latitude as first element in array" do
-      expect(street.point_to[0]).to eq(street.to_latitude.to_f)
+      expect(street.point_to[0]).to eq(street.latitude_to.to_f)
     end
   end
 
