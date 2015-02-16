@@ -17,7 +17,7 @@ class StreetSection < ActiveRecord::Base
 
   def get_point_from
     Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
-    result = Geocoder.search("#{main_street} and #{to_street}, Manhattan, New York")[0]
+    result = Geocoder.search("#{main_street} and #{from_street}, Manhattan, New York")[0]
     if result
       self.latitude_from = result.data["point"]["coordinates"][0]
       self.longitude_from = result.data["point"]["coordinates"][1]
@@ -59,10 +59,6 @@ class StreetSection < ActiveRecord::Base
   def signs_near(distance_from)
     signs = self.signs
     results = []
-    #   if signs[0].distance > distance_from
-    #     results << signs[0]
-    #     return results
-    #   end
 
 
       signs.each_with_index do |sign, index|
@@ -79,6 +75,15 @@ class StreetSection < ActiveRecord::Base
       end
 
       return results
+  end
+
+  def self.rephresh_gps
+    StreetSection.all.each do |sect|
+      sect.get_point_from
+      sect.save
+      sect.get_point_to
+      sect.save
+    end
   end
 end
 
