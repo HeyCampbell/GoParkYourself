@@ -1,6 +1,5 @@
 var View = {}
 
-
 View.drawParkingStatus = function(spot) {
   var html = "<table id='regs_table'>"
   html += "<tr>"
@@ -45,4 +44,14 @@ View.drawParkingStatus = function(spot) {
   html += "</tr>"
   html += "</table>"
   return html
+}
+
+View.ParseRegulations = function(todaysRegulations) { //today's regulations is an array
+  if (todaysRegulations[0] === 0) {
+    //render table with 'All Day Parking'
+  } else if (todaysRegulations[0] === '12am') {
+    //render table with 'No Parking in this Spot'
+  } else {
+    //render table with Default values
+  }
 }
