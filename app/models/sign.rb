@@ -12,7 +12,7 @@ class Sign < ActiveRecord::Base
     unaffected_day = []
     if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description)
       if /ANYTIME/.match(self.sign_description)
-        times = ["12:00am", "11:59pm"]
+        times = ["12am", "12am"]
       else
         times = self.parse_times_from_description(self.sign_description)
         if /EXCEPT/.match(self.sign_description)
@@ -36,13 +36,15 @@ class Sign < ActiveRecord::Base
         unless unaffected_day.include?(k.to_s.upcase)
           parking_regs[k] = {:start => times[0], :stop => times[1]}
         else
-          parking_regs[k] = {:start => 0, :stop => 0}
+          parking_regs[k] = {:start => "0", :stop => "0"}
         end
       end
     elsif /Curb Line/.match(self.sign_description) || /Building Line/.match(self.sign_description) || /Property Line/.match(self.sign_description)
-      parking_regs =parking_regs.map {|k,v| {k => {:start => 0, :stop => 0}}}
+      parking_regs.each do |k,v|
+        parking_regs[k] = {:start => "0", :stop => "0"}
+      end
     else
-      parking_regs =parking_regs.map {|k,v| {k => "I'm sorry Dave, I can't read that just yet. I'll try harder"}}
+      parking_regs = parking_regs.map {|k,v| {k => "I'm sorry Dave, I can't read that just yet. I'll try harder"}}
     end
     # parsed_regs = parking_regs.map{|k,v| "#{k}=#{v}"}.join(' & ')
     parking_regs

@@ -16,7 +16,7 @@ $(document).ready(function() {
       data: $data
     });
     ajaxRequest.done(function(response) {
-      console.log(response)
+      console.log(response);
       loadChecker(response);
     });
   });
@@ -28,6 +28,7 @@ function loadChecker(response) {
   }
   else {
     var spot = new Spot(response)
+
     $('#table_ct').html(View.drawParkingStatus(spot));
   }
 }
@@ -88,36 +89,36 @@ View.drawParkingStatus = function(spot) {
 var Spot = function(json) {
    this.sideOne = {}
      this.sideOne.Side = json.regs[0].side;
-     this.sideOne.MondayStart = json.regs[0].rules[0]['mon'].start;
-     this.sideOne.MondayStop = json.regs[0].rules[0]['mon'].stop;
-     this.sideOne.TuesdayStart = json.regs[0].rules[1]['tue'].start;
-     this.sideOne.TuesdayStop = json.regs[0].rules[1]['tue'].stop;
-     this.sideOne.WednesdayStart = json.regs[0].rules[2]['wed'].start;
-     this.sideOne.WednesdayStop = json.regs[0].rules[2]['wed'].stop;
-     this.sideOne.ThursdayStart = json.regs[0].rules[3]['thu'].start;
-     this.sideOne.ThursdayStop = json.regs[0].rules[3]['thu'].stop;
-     this.sideOne.FridayStart = json.regs[0].rules[4]['fri'].start;
-     this.sideOne.FridayStop = json.regs[0].rules[4]['fri'].stop;
-     this.sideOne.SaturdayStart = json.regs[0].rules[5]['sat'].start;
-     this.sideOne.SaturdayStop = json.regs[0].rules[5]['sat'].stop;
-     this.sideOne.SundayStart = json.regs[0].rules[6]['sun'].start;
-     this.sideOne.SundayStop = json.regs[0].rules[6]['sun'].stop;
+     this.sideOne.MondayStart = json.regs[0].rules['mon'].start;
+     this.sideOne.MondayStop = json.regs[0].rules['mon'].stop;
+     this.sideOne.TuesdayStart = json.regs[0].rules['tue'].start;
+     this.sideOne.TuesdayStop = json.regs[0].rules['tue'].stop;
+     this.sideOne.WednesdayStart = json.regs[0].rules['wed'].start;
+     this.sideOne.WednesdayStop = json.regs[0].rules['wed'].stop;
+     this.sideOne.ThursdayStart = json.regs[0].rules['thu'].start;
+     this.sideOne.ThursdayStop = json.regs[0].rules['thu'].stop;
+     this.sideOne.FridayStart = json.regs[0].rules['fri'].start;
+     this.sideOne.FridayStop = json.regs[0].rules['fri'].stop;
+     this.sideOne.SaturdayStart = json.regs[0].rules['sat'].start;
+     this.sideOne.SaturdayStop = json.regs[0].rules['sat'].stop;
+     this.sideOne.SundayStart = json.regs[0].rules['sun'].start;
+     this.sideOne.SundayStop = json.regs[0].rules['sun'].stop;
 
    this.sideTwo = {}
-     this.sideTwo.Side = json.regs[0].side;
-     this.sideTwo.MondayStart = json.regs[1].rules[0]['mon'].start;
-     this.sideTwo.MondayStop = json.regs[1].rules[0]['mon'].stop;
-     this.sideTwo.TuesdayStart = json.regs[1].rules[1]['tue'].start;
-     this.sideTwo.TuesdayStop = json.regs[1].rules[1]['tue'].stop;
-     this.sideTwo.WednesdayStart = json.regs[1].rules[2]['wed'].start;
-     this.sideTwo.WednesdayStop = json.regs[1].rules[2]['wed'].stop;
-     this.sideTwo.ThursdayStart = json.regs[1].rules[3]['thu'].start;
-     this.sideTwo.ThursdayStop = json.regs[1].rules[3]['thu'].stop;
-     this.sideTwo.FridayStart = json.regs[1].rules[4]['fri'].start;
-     this.sideTwo.FridayStop = json.regs[1].rules[4]['fri'].stop;
-     this.sideTwo.SaturdayStart = json.regs[1].rules[5]['sat'].start;
-     this.sideTwo.SaturdayStop = json.regs[1].rules[5]['sat'].stop;
-     this.sideTwo.SundayStart = json.regs[1].rules[6]['sun'].start;
-     this.sideTwo.SundayStop = json.regs[1].rules[6]['sun'].stop;
+     this.sideTwo.Side = json.regs[1].side;
+     this.sideTwo.MondayStart = json.regs[1].rules['mon'].start;
+     this.sideTwo.MondayStop = json.regs[1].rules['mon'].stop;
+     this.sideTwo.TuesdayStart = json.regs[1].rules['tue'].start;
+     this.sideTwo.TuesdayStop = json.regs[1].rules['tue'].stop;
+     this.sideTwo.WednesdayStart = json.regs[1].rules['wed'].start;
+     this.sideTwo.WednesdayStop = json.regs[1].rules['wed'].stop;
+     this.sideTwo.ThursdayStart = json.regs[1].rules['thu'].start;
+     this.sideTwo.ThursdayStop = json.regs[1].rules['thu'].stop;
+     this.sideTwo.FridayStart = json.regs[1].rules['fri'].start;
+     this.sideTwo.FridayStop = json.regs[1].rules['fri'].stop;
+     this.sideTwo.SaturdayStart = json.regs[1].rules['sat'].start;
+     this.sideTwo.SaturdayStop = json.regs[1].rules['sat'].stop;
+     this.sideTwo.SundayStart = json.regs[1].rules['sun'].start;
+     this.sideTwo.SundayStop = json.regs[1].rules['sun'].stop;
 }
 
