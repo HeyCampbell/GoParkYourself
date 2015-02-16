@@ -23,7 +23,8 @@ function initialize() {
       position: geoLocatedPosition,
       map: map,
       draggable: true,
-      title: "Go Park Yourself"
+      title: "Go Park Yourself",
+      icon: '/assets/car-icon.png'
       });
 
     }, function() {
