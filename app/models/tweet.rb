@@ -22,8 +22,8 @@ class Tweet < ActiveRecord::Base
 
       end
 
-      self.last.suspended?
-
      end
+      self.last.suspended?
     end
+
   end
