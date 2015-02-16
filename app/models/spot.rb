@@ -1,4 +1,6 @@
 class Spot < ActiveRecord::Base
+  SIGNS_TO_REJECT = ["Building Line", "Curb Line", "Property Line"]
+
   belongs_to :user
   before_create :set_address_info
 
