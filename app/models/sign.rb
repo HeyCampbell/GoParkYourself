@@ -1,5 +1,10 @@
 class Sign < ActiveRecord::Base
   belongs_to :street_section, :foreign_key => 'status_order', :primary_key => 'status_order'
+  attr_reader  :times
+  def initialize
+    @times = []
+
+  end
 
   def no_parking_times
     parking_regs = {mon: self.sign_description,
@@ -12,10 +17,13 @@ class Sign < ActiveRecord::Base
     unaffected_day = []
     if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description)
       if /ANYTIME/.match(self.sign_description)
-        times = ["12am", "12am"]
+        @times = ["12AM", "12AM"]
       else
         if /((\d*|\d:\d*)[APM]*)/.match(self.sign_description)
-          times = self.parse_times_from_description(self.sign_description)
+
+          @times = self.parse_times_from_description(self.sign_description)
+          times_48 = self.get_48_times(@times)
+
         end
         if /EXCEPT/.match(self.sign_description)
           unaffected_day << /\bEXCEPT\s+\K\S+/.match(self.sign_description).to_s[0..2]
@@ -36,9 +44,10 @@ class Sign < ActiveRecord::Base
       end
       parking_regs.each do |k,v|
         unless unaffected_day.include?(k.to_s.upcase)
-          parking_regs[k] = {:start => times[0], :stop => times[1]}
+          # byebug
+          parking_regs[k] = {:start => @times[0], :stop => @times[1], :boolean_time => set_48_times(@times)}
         else
-          parking_regs[k] = {:start => "0", :stop => "0"}
+          parking_regs[k] = {:start => "0", :stop => "0", :boolean_time => set_48_times(@times)}
         end
       end
     elsif /Curb Line/.match(self.sign_description) || /Building Line/.match(self.sign_description) || /Property Line/.match(self.sign_description)
@@ -48,7 +57,7 @@ class Sign < ActiveRecord::Base
     else
       parking_regs = parking_regs.map {|k,v| {k => self.sign_description}}
     end
-    # parsed_regs = parking_regs.map{|k,v| "#{k}=#{v}"}.join(' & ')
+
     parking_regs
   end
 
@@ -63,6 +72,34 @@ class Sign < ActiveRecord::Base
     times
   end
 
+
+  def get_48_times(times)
+    times = times.map do |t|
+      if /12:*\d*P*/.match(t) || /AM*/.match(t)
+        buffer = 0
+      elsif /12:*\d*[PM]/.match(t)
+        buffer = -12
+      elsif /PM/.match(t)
+        buffer = 12
+      end
+      base = t.gsub(':','.').to_f
+      base += buffer
+      base *= 2
+    end
+    times
+  end
+
+  def set_48_times(times)
+    time_index = get_48_times(times)
+    can_i_park = Array.new(48, true)
+    can_i_park.each_with_index.map do |increment, i|
+      if i >= time_index[0] && i <= time_index[1]
+        increment = false
+      else
+        increment = true
+      end
+    end
+  end
 end
 
 
