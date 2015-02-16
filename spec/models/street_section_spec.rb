@@ -24,7 +24,5 @@ describe "Street Section" do
   xit "should calculate length of street section rounded to nearest feet" do
     expect(street.length).to eq(229)
   end
-
-
 end
 
