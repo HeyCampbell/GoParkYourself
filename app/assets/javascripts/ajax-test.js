@@ -16,18 +16,25 @@ $(document).ready(function() {
       data: $data
     });
     ajaxRequest.done(function(response) {
-
       console.log(response)
-      var spot = new Spot(response)
-      $('#table_ct').html(View.drawParkingStatus(spot));
+      loadChecker(response);
     });
-    ajaxRequest.fail(loadNotSuccessful());
   });
 });
 
+function loadChecker(response) {
+  if (response.regs[0] === undefined) {
+    loadNotSuccessful();
+  }
+  else {
+    var spot = new Spot(response)
+    $('#table_ct').html(View.drawParkingStatus(spot));
+  }
+}
+
 function loadNotSuccessful() {
   //interstitialGif.hide()
-  $('#table_ct').html("Sorry this spot has not yet been indexed")
+  $('#table_ct').html("<h2>Sorry this spot has not yet been indexed</h2>")
 }
 
 var View = {}
@@ -36,8 +43,8 @@ View.drawParkingStatus = function(spot) {
   var html = "<table id='regs_table'>"
   html += "<tr>"
   html += "<td>Day</td>"
-  html += "<td>" + spot.sideOne.side + "</td>"
-  html += "<td>" + spot.sideTwo.side + "</td>"
+  html += "<td>" + spot.sideOne.Side + "</td>"
+  html += "<td>" + spot.sideTwo.Side + "</td>"
   html += "</tr>"
   html += "<tr>"
   html += "<td>Mon</td>"
