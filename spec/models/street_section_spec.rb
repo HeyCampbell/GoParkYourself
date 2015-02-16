@@ -33,53 +33,62 @@ describe "Street Section" do
 
     xit "should set the longitude of to_street intersection" do
       @new_street.save
-      #expect(@new_street.to_longitude.to_f).to eq()
+      expect(@new_street.to_longitude.to_f).to eq()
     end
   end
 
   describe "#get_point_from" do
-    it "" do
-      expect(street.from_lat).to eq(40.7060419)
+    xit "should set the latitude of from_street intersection" do
+    @new_street.save
+    expect(@new_street.from_latitude.to_f).to eq(40.7060419)
+    end
+
+    xit "should set the longitude of from_street intersection" do
+      @new_street.save
+      expect(@new_street.from_longitude.to_f).to eq(40.7060419)
     end
   end
 
   describe "self.get_distance_in_feet(p1, p2)" do
     it "" do
-      expect(street.from_lat).to eq(40.7060419)
+      expect(street.from_latitude.to_f).to eq(40.7060419)
     end
   end
 
   describe "#point_from" do
-    it "should return a " do
-      [latitude_from, longitude_from]
+    it "should return an array of two points" do
+      expect(street.point_from.length).to eq(2)
     end
   end
 
   describe "#point_to" do
-    it "should return a " do
-      [latitude_to, longitude_to]
+    it "should return an array of two points" do
+      expect(street.point_to.length).to eq(2)
+    end
+
+    it "should return the point's latitude as first element in array" do
+      expect(street.point_to[0]).to eq(street.to_latitude.to_f)
     end
   end
 
   describe "#length" do
+    it "should return a postive integer" do
+      expect(street.length).to be_instance_of(Fixnum)
+    end
 
-
+    it "should return a number greater than the distance of last sign of street section from the starting curb" do
+      expect(street.length > street.signs.last.distance).to eq(true)
+    end
   end
 
-  def length
-    StreetSection.get_distance_in_feet(point_from, point_to)
-  end
+  describe "#buffer" do
+    it "should return a positive number (of feet)" do
+      expect(street.buffer > 1).to be(true)
+    end
 
-  def buffer
-    (self.length - self.signs.last.distance) / 2
-  end
-
-  it "" do
-    expect(street.from_lat).to eq(40.7060419)
-  end
-
-  xit "should calculate length of street section rounded to nearest feet" do
-    expect(street.length).to eq(229)
+    it "should be less than the length of the street" do
+      expect(street.buffer < street.length).to be(true)
+    end
   end
 end
 
