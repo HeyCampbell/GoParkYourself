@@ -53,17 +53,17 @@ describe "Spot" do
 
   describe "#get_street_sections" do
 
-    it "should return two street sections" do
+    xit "should return two street sections" do
       expect(sections.count).to eq(2)
     end
 
-    it "should return street section with same mainstreet as spot" do
+    xit "should return street section with same mainstreet as spot" do
       spot_street_name = created_spot.main_street.upcase
       section_street_name = sections[0].main_street.upcase
       expect(section_street_name.include?(spot_street_name) || spot_street_name.include?(section_street_name)).to eq(true)
     end
 
-    it "should return street section with same mainstreet as spot" do
+    xit "should return street section with same mainstreet as spot" do
       spot_street_name = created_spot.main_street.upcase
       section_street_name = sections[1].main_street.upcase
       expect(section_street_name.include?(spot_street_name) || spot_street_name.include?(section_street_name)).to eq(true)
@@ -74,15 +74,15 @@ describe "Spot" do
     let(:section) {sections[0]}
     let(:signs) {created_spot.get_signs_for(section)}
 
-    it "should return sign objects for a street section" do
+    xit "should return sign objects for a street section" do
       expect(signs[0].class).to eq(Sign)
     end
 
-    it "should return signs that belong to that street section" do
+    xit "should return signs that belong to that street section" do
       expect(signs[1].street_section).to eq(section)
     end
 
-    it "should return signs near the spot" do
+    xit "should return signs near the spot" do
       distance = StreetSection.get_distance_in_feet([created_spot.latitude, created_spot.longitude], section.point_from) - section.buffer
       expect((distance - signs[0].distance).abs < 10).to eq(true)
     end
