@@ -1,24 +1,41 @@
 var View = {}
 
-View.ParseRegulations = function(todaysRegulations) { //today's regulations is an array
+View.ParseRegulations = function(todayRegs) {
+  var html = "<table id='regs_table'>"
+  html += "<tr>"
+  html += "<td>" + todayRegs.sideOneName + " Side" + "</td>"
+  html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
+  html += "</tr>"
+  html += "<tr>"
 
-  if (todaysRegulations[0] === 0) {
-    return "<h2> All day parking </h2>"
-  } else if (todaysRegulations[0] === '12am') {
-    return "<h2> No Parking Dawg! </h2>"
+  if (todayRegs.sideOneStart.toUpperCase() === '12AM') {
+    html += "<td> No Parking All Day </td>"
+  } else if (todayRegs.sideOneStart === '0') {
+    html += "<td> Parking All Day! </td>"
   } else {
-    var html = "<table id='regs_table'>"
-    html += "<thead>"
-    html += "Restricted Parking Times"
-    html += "</thead>"
-    html += "<tr>"
-    html += "<td>Day</td>"
-    html += "<td>" + todaysRegulations[0] + " to " + todaysRegulations[1] + "</td>"
-    html += "</tr>"
-    return html
+    html += "<td>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
   }
+
+  if (todayRegs.sideTwoStart.toUpperCase() === '12AM') {
+    html += "<td> No Parking All Day </td>"
+  } else if (todayRegs.sideTwoStart === '0') {
+    html += "<td> Parking All Day! </td>"
+  } else {
+    html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+  }
+
+  html += "</tr>"
+  html += "</table>"
+  return html
 }
 
+//data
+// sideOneEnd: "4PM"
+// sideOneName: "N"
+// sideOneStart: "7AM"
+// sideTwoEnd: "12am"
+// sideTwoName: "S"
+// sideTwoStart: "12am"
 
 // View.drawParkingStatus = function(spot) {
 //   var html = "<table id='regs_table'>"

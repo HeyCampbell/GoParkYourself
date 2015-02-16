@@ -13,6 +13,7 @@ var Spot = function(json) {
      }
 
   this.sideTwo = {}
+     if (json.regs[1].side !== undefined) {
      this.sideTwo.Side = json.regs[1].side;
      this.sideTwo.Suspended = json.suspended;
      this.sideTwo.Regulations = {
@@ -23,6 +24,7 @@ var Spot = function(json) {
            Friday : [json.regs[1].rules['fri'].start, json.regs[1].rules['fri'].stop],
            Saturday : [json.regs[1].rules['sat'].start, json.regs[1].rules['sat'].stop],
            Sunday : [json.regs[1].rules['sun'].start, json.regs[1].rules['sun'].stop]
+          }
      }
 }
 
@@ -35,14 +37,24 @@ Date.prototype.getDayName = function() {
 Spot.prototype.getCurrentDayRegs = function() {
   var today = new Date();
   var todayName = today.getDayName();
+  var bothSides = {}
 
   for (var dayReg in this.sideOne.Regulations) {
     if (dayReg === todayName) {
-      return this.sideOne.Regulations[todayName];
-      //expecting to return 9am or 8pm type data
+      bothSides.sideOneName = this.sideOne.Side
+      bothSides.sideOneStart = this.sideOne.Regulations[todayName][0];
+      bothSides.sideOneEnd = this.sideOne.Regulations[todayName][1];
     }
   }
 
+  for (var dayReg in this.sideTwo.Regulations) {
+    if (dayReg === todayName) {
+      bothSides.sideTwoName = this.sideTwo.Side
+      bothSides.sideTwoStart = this.sideTwo.Regulations[todayName][0];
+      bothSides.sideTwoEnd = this.sideTwo.Regulations[todayName][1];
+    }
+  }
+  return bothSides;
 }
 
 // Spot.timeUntilRegulationOver = function() {
