@@ -1,10 +1,10 @@
 require 'rails_helper'
 require 'factory_girl_rails'
-require 'byebug'
 
 describe "Street Section" do
 
-  let(:street) { StreetSection.find_by(status_order: 'P-255161') }
+  # let(:street) { StreetSection.find_by(status_order: 'P-255161') }
+  let(:street) { StreetSection.create():street_section) }
   let(:new_street) { FactoryGirl.build(:street_section) }
   let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
   let(:sections) {created_spot.get_street_sections}
@@ -40,8 +40,8 @@ describe "Street Section" do
 
   describe "#get_point_from" do
     xit "should set the latitude of from_street intersection" do
-    @new_street.save
-    expect(@new_street.latitude_from.to_f).to eq(40.7060419)
+      @new_street.save
+      expect(@new_street.latitude_from.to_f).to eq(40.7060419)
     end
 
     xit "should set the longitude of from_street intersection" do
