@@ -14,7 +14,9 @@ class Sign < ActiveRecord::Base
       if /ANYTIME/.match(self.sign_description)
         times = ["12am", "12am"]
       else
-        times = self.parse_times_from_description(self.sign_description)
+        if /((\d*|\d:\d*)[APM]*)/.match(self.sign_description)
+          times = self.parse_times_from_description(self.sign_description)
+        end
         if /EXCEPT/.match(self.sign_description)
           unaffected_day << /\bEXCEPT\s+\K\S+/.match(self.sign_description).to_s[0..2]
         elsif /THRU/.match(self.sign_description)
@@ -44,7 +46,7 @@ class Sign < ActiveRecord::Base
         parking_regs[k] = {:start => "0", :stop => "0"}
       end
     else
-      parking_regs = parking_regs.map {|k,v| {k => "I'm sorry Dave, I can't read that just yet. I'll try harder"}}
+      parking_regs = parking_regs.map {|k,v| {k => self.sign_description}}
     end
     # parsed_regs = parking_regs.map{|k,v| "#{k}=#{v}"}.join(' & ')
     parking_regs
