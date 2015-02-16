@@ -48,10 +48,10 @@ View.drawParkingStatus = function(spot) {
 
 View.ParseRegulations = function(todaysRegulations) { //today's regulations is an array
   if (todaysRegulations[0] === 0) {
-    //render table with 'All Day Parking'
+    return "<h2> All day parking </h2>"
   } else if (todaysRegulations[0] === '12am') {
-    //render table with 'No Parking in this Spot'
+    return "<h2> No Parking Dawg! </h2>"
   } else {
-    //render table with Default values
+    return "<h2> abide by the rules yo </h2>"
   }
 }
