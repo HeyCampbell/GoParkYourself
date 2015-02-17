@@ -11,7 +11,7 @@ class GeographicEncoder
   end
 
   def self.get_distance_in_feet(point1, point2)
-    (@geocoder::Calculations.distance_between(point1, point2)*5280).to_i
+    (Geocoder::Calculations.distance_between(point1, point2)*5280).to_i
   end
 
 end
