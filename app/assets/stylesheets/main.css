@@ -86,3 +86,39 @@
   margin: 0 auto;
 }
 
+table {
+  background-color: rgba(11, 10, 10, 0.5);
+  border:none;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+.table_head {
+  background-color: black;
+  color: white;
+}
+
+tr {
+  background-color: rgba(11, 10, 10, 0.5);
+}
+
+table tr td {
+  padding: 0.1rem 1.25rem;
+  font-size: 0.875rem;
+  color: #222222;
+  text-align: center;
+}
+
+.table_time {
+  background-color: black;
+  color: white;
+  border:none;
+}
+
+.table_side_one {
+  background-color: rgb(216, 34, 34);
+}
+
+.table_side_two {
+  background-color: rgb(25, 103, 25);
+}
