@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/spots/create' => 'spots#create'
 
   get '/map' => 'welcomes#map'
+  get 'spots/current.json' => 'welcomes#user_current_spot'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

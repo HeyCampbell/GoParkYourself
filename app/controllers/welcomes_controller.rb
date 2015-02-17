@@ -11,6 +11,14 @@ class WelcomesController < ApplicationController
     end
   end
 
+  def user_current_spot
+    if current_user.spots.last
+      spot = current_user.spots.last
+      spot_info = {spot: spot, suspended: Tweet.suspended?, regs: spot.regs}
+      render json: spot_info.to_json
+    end
+  end
+
   def map
 
   end
