@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def create
+    # byebug
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     redirect_to root_path

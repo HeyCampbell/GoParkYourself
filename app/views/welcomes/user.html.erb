@@ -1,0 +1,26 @@
+<div class="row bump">
+   <div class="small-12 large-6 columns">
+      <div class="row">
+         <div class="profile-card">
+            <div class="small-12 large-4 columns">
+               <%= image_tag("#{current_user.image}") %>
+            </div>
+            <div class="small-12 large-8 columns">
+               <h4><%= current_user.name.capitalize %> </h4>
+               <p><i class="fi-mail"></i><span> <%= current_user.email %></span></p>
+            </div>
+            <div class="last_spot">
+                Display Current User.spot.last.active here
+            </div>
+            <div class="row collapse">
+               <ul class="button-group even-3">
+                  <li><a href="#" class="button"> Where did I park? <span>432 </span></a></li>
+                  <li><a href="#" class="button"> Following <span>432 </span></a></li>
+                  <li><a href="#" class="button"> Views <span>432 </span></a></li>
+               </ul>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
