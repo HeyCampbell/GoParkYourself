@@ -50,11 +50,11 @@ describe "GeographicEncoder" do
   end
 
   describe "#cross_streets_lookup(mainstreet, sidestreet)" do
+    it "should set latitude and longitude" do
 
-    xit "should" do
     end
 
-    xit "" do
+    it "" do
     end
 
   end
@@ -62,11 +62,8 @@ describe "GeographicEncoder" do
 #class methods
 
   describe "#self.get_distance_in_feet(point1, point2)" do
+    xit "should return a positive integer" do
 
-    xit "should " do
-    end
-
-    xit "should" do
     end
   end
 
