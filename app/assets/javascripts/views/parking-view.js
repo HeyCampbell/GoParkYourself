@@ -12,7 +12,11 @@ View.ParseRegulations = function(todayRegs) {
   html += "<table id='regs_table'>"
   html += "<tr>"
   html += "<td>" + todayRegs.sideOneName + " Side" + "</td>"
-  html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
+
+  if (todayRegs.sideTwoName !== undefined) {
+     html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
+  }
+
   html += "</tr>"
   html += "<tr>"
 
@@ -24,12 +28,14 @@ View.ParseRegulations = function(todayRegs) {
     html += "<td>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
   }
 
-  if (todayRegs.sideTwoStart.toUpperCase() === '12AM') {
-    html += "<td> No Parking All Day </td>"
-  } else if (todayRegs.sideTwoStart === '0') {
-    html += "<td> Parking All Day! </td>"
-  } else {
-    html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+  if (todayRegs.sideTwoStart !== undefined) {
+    if (todayRegs.sideTwoStart.toUpperCase() === '12AM') {
+      html += "<td> No Parking All Day </td>"
+    } else if (todayRegs.sideTwoStart === '0') {
+      html += "<td> Parking All Day! </td>"
+    } else {
+      html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+    }
   }
 
   html += "</tr>"
