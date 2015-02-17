@@ -3,20 +3,13 @@ var Spot = function(json) {
      this.sideOne.Side = json.regs[0].side;
      this.sideOne.Suspended = json.suspended;
      this.sideOne.Regulations = {
-         Monday : [json.regs[0].rules['mon'].start, json.regs[0].rules['mon'].stop],
-         MondayCanIPark: json.regs[0].rules['mon'].can_i_park,
-         Tuesday : [json.regs[0].rules['tue'].start, json.regs[0].rules['tue'].stop],
-         TuesdayCanIPark: json.regs[0].rules['tue'].can_i_park,
-         Wednesday : [json.regs[0].rules['wed'].start, json.regs[0].rules['wed'].stop],
-         WednesdayCanIPark: json.regs[0].rules['wed'].can_i_park,
-         Thursday : [json.regs[0].rules['thu'].start, json.regs[0].rules['thu'].stop],
-         ThursdayCanIPark: json.regs[0].rules['thu'].can_i_park,
-         Friday : [json.regs[0].rules['fri'].start, json.regs[0].rules['fri'].stop],
-         FridayCanIPark: json.regs[0].rules['fri'].can_i_park,
-         Saturday : [json.regs[0].rules['sat'].start, json.regs[0].rules['sat'].stop],
-         SaturdayCanIPark: json.regs[0].rules['sat'].can_i_park,
-         Sunday : [json.regs[0].rules['sun'].start, json.regs[0].rules['sun'].stop],
-         SundayCanIPark: json.regs[0].rules['sun'].can_i_park
+         Monday : [json.regs[0].rules['mon'].start, json.regs[0].rules['mon'].stop, json.regs[0].rules['mon'].can_i_park],
+         Tuesday : [json.regs[0].rules['tue'].start, json.regs[0].rules['tue'].stop, json.regs[0].rules['tue'].can_i_park],
+         Wednesday : [json.regs[0].rules['wed'].start, json.regs[0].rules['wed'].stop, json.regs[0].rules['wed'].can_i_park],
+         Thursday : [json.regs[0].rules['thu'].start, json.regs[0].rules['thu'].stop, json.regs[0].rules['thu'].can_i_park],
+         Friday : [json.regs[0].rules['fri'].start, json.regs[0].rules['fri'].stop, json.regs[0].rules['fri'].can_i_park],
+         Saturday : [json.regs[0].rules['sat'].start, json.regs[0].rules['sat'].stop, json.regs[0].rules['sat'].can_i_park],
+         Sunday : [json.regs[0].rules['sun'].start, json.regs[0].rules['sun'].stop, json.regs[0].rules['sun'].can_i_park]
      };
 
 
@@ -25,20 +18,13 @@ var Spot = function(json) {
      this.sideTwo.Side = json.regs[1].side;
      this.sideTwo.Suspended = json.suspended;
      this.sideTwo.Regulations = {
-         Monday : [json.regs[1].rules['mon'].start, json.regs[1].rules['mon'].stop],
-         MondayCanIPark: json.regs[1].rules['mon'].can_i_park,
-         Tuesday : [json.regs[1].rules['tue'].start, json.regs[1].rules['tue'].stop],
-         TuesdayCanIPark: json.regs[1].rules['tue'].can_i_park,
-         Wednesday : [json.regs[1].rules['wed'].start, json.regs[1].rules['wed'].stop],
-         WednesdayCanIPark: json.regs[1].rules['wed'].can_i_park,
-         Thursday : [json.regs[1].rules['thu'].start, json.regs[1].rules['thu'].stop],
-         ThursdayCanIPark: json.regs[1].rules['thu'].can_i_park,
-         Friday : [json.regs[1].rules['fri'].start, json.regs[1].rules['fri'].stop],
-         FridayCanIPark: json.regs[1].rules['fri'].can_i_park,
-         Saturday : [json.regs[1].rules['sat'].start, json.regs[1].rules['sat'].stop],
-         SaturdayCanIPark: json.regs[1].rules['sat'].can_i_park,
-         Sunday : [json.regs[1].rules['sun'].start, json.regs[1].rules['sun'].stop],
-         SundayCanIPark: json.regs[1].rules['sun'].can_i_park
+         Monday : [json.regs[1].rules['mon'].start, json.regs[1].rules['mon'].stop, json.regs[1].rules['mon'].can_i_park],
+         Tuesday : [json.regs[1].rules['tue'].start, json.regs[1].rules['tue'].stop, json.regs[1].rules['tue'].can_i_park],
+         Wednesday : [json.regs[1].rules['wed'].start, json.regs[1].rules['wed'].stop, json.regs[1].rules['wed'].can_i_park],
+         Thursday : [json.regs[1].rules['thu'].start, json.regs[1].rules['thu'].stop, json.regs[1].rules['thu'].can_i_park],
+         Friday : [json.regs[1].rules['fri'].start, json.regs[1].rules['fri'].stop, json.regs[1].rules['fri'].can_i_park],
+         Saturday : [json.regs[1].rules['sat'].start, json.regs[1].rules['sat'].stop, json.regs[1].rules['sat'].can_i_park],
+         Sunday : [json.regs[1].rules['sun'].start, json.regs[1].rules['sun'].stop, json.regs[1].rules['sun'].can_i_park]
           };
      };
 };
@@ -59,6 +45,7 @@ Spot.prototype.getCurrentDayRegs = function() {
       bothSides.sideOneName = this.sideOne.Side;
       bothSides.sideOneStart = this.sideOne.Regulations[todayName][0];
       bothSides.sideOneEnd = this.sideOne.Regulations[todayName][1];
+      bothSides.sideOneCanPark = this.sideOne.Regulations[todayName][2];
     }
   }
 
@@ -67,6 +54,7 @@ Spot.prototype.getCurrentDayRegs = function() {
       bothSides.sideTwoName = this.sideTwo.Side;
       bothSides.sideTwoStart = this.sideTwo.Regulations[todayName][0];
       bothSides.sideTwoEnd = this.sideTwo.Regulations[todayName][1];
+      bothSides.sideTwoCanPark = this.sideTwo.Regulations[todayName][2];
     }
   }
   bothSides.Suspended = this.sideOne.Suspended;
