@@ -150,3 +150,30 @@ table tr td {
 .cant_park {
   background-color: rgb(255, 0, 0);
 }
+
+.user-img {
+border-radius: 30px;
+}
+
+.profile-card {
+  background-color: gray;
+  background-color: gray;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+
+}
+
+.last_spot {
+  margin-left: 2%;
+}
+.last_spot span {
+display: inline-flex;
+
+}
+
+.small-12.large-6.columns.profile-image {
+margin-top: 2%;
+}
+
