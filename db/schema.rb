@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215220900) do
+ActiveRecord::Schema.define(version: 20150217152048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150215220900) do
     t.decimal  "longitude",    precision: 10, scale: 6
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                                default: true
   end
 
   create_table "street_sections", force: :cascade do |t|
