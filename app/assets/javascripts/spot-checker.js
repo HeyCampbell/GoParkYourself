@@ -20,6 +20,8 @@ $(document).ready(function() {
       loadChecker(response);
     });
   });
+
+  //"show map?"
 });
 
 function loadChecker(response) {

@@ -5,7 +5,7 @@ View.ParseRegulations = function(todayRegs) {
   if (todayRegs.Suspended === false ) {
     html += "<h2> Alternative Side Parking in effect </h2>"
   }else {
-    html += "<h2> Alternative Side Parking not effect</h2>"
+    html += "<h2> Alternative Side Parking not in effect</h2>"
   }
 
   html += "</h2>"
