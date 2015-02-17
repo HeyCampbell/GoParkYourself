@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :geographic_encoder do
-    @encodable = #stubbed object
+    # @encodable = stubbed object
   end
 end

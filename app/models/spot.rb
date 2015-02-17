@@ -2,7 +2,12 @@ class Spot < ActiveRecord::Base
   SIGNS_TO_REJECT = ["Building Line", "Curb Line", "Property Line"]
 
   belongs_to :user
-  before_create :set_encoder_class, :set_encoder, :set_address_info
+
+  def initialize(attributes = nil, options = {})
+    @encoder_class = options[:encoder_class] || SpotEncoder
+    super
+    set_address_info
+  end
 
   def user_point
     [self.latitude, self.longitude]
@@ -13,17 +18,8 @@ class Spot < ActiveRecord::Base
     GeoNamesAPI::NearestIntersection.find(self.latitude, self.longitude)
   end
 
-  def set_encoder_class(args = {})
-    @encoder_class = args[:encoder_class] || SpotEncoder
-  end
-
-  def set_encoder
-    @encoder = @encoder_class.new(self)
-  end
-
   def set_address_info
-    byebug
-    @encoder.encode!
+    @encoder_class.new(self).encode!
   end
 
   def get_4_street_segments
