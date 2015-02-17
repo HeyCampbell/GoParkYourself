@@ -4,7 +4,7 @@ require 'factory_girl_rails'
 describe "Street Section" do
 
   # let(:street) { StreetSection.find_by(status_order: 'P-255161') }
-  let(:street) { StreetSection.create(:street_section) }
+  let(:street) { FactoryGirl.create(:street_section) }
   let(:new_street) { FactoryGirl.build(:street_section) }
   let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
   let(:sections) {created_spot.get_street_sections}

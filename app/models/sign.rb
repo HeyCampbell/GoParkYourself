@@ -15,7 +15,7 @@ class Sign < ActiveRecord::Base
         sat: self.sign_description,
         sun: self.sign_description}
     unaffected_day = []
-    if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description)
+    if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description) || /NO STOPPING/.match(self.sign_description)
       if /ANYTIME/.match(self.sign_description)
         @times = ["12AM", "12AM"]
       else
@@ -45,14 +45,14 @@ class Sign < ActiveRecord::Base
       parking_regs.each do |k,v|
         unless unaffected_day.include?(k.to_s.upcase)
           # byebug
-          parking_regs[k] = {:start => @times[0], :stop => @times[1], :boolean_time => set_48_times(@times)}
+          parking_regs[k] = {:start => @times[0], :stop => @times[1], :can_i_park => set_48_times(@times)}
         else
-          parking_regs[k] = {:start => "0", :stop => "0", :boolean_time => set_48_times(@times)}
+          parking_regs[k] = {:start => "0", :stop => "0", :can_i_park => set_48_times(@times)}
         end
       end
     elsif /Curb Line/.match(self.sign_description) || /Building Line/.match(self.sign_description) || /Property Line/.match(self.sign_description)
       parking_regs.each do |k,v|
-        parking_regs[k] = {:start => "0", :stop => "0"}
+        parking_regs[k] = {:start => "0", :stop => "0", :can_i_park => set_48_times(@times)}
       end
     else
       parking_regs = parking_regs.map {|k,v| {k => self.sign_description}}
@@ -91,8 +91,8 @@ class Sign < ActiveRecord::Base
 
   def set_48_times(times)
     time_index = get_48_times(times)
-    can_i_park = Array.new(48, true)
-    can_i_park.each_with_index.map do |increment, i|
+    parking_times = Array.new(48, true)
+    parking_times.each_with_index.map do |increment, i|
       if i >= time_index[0] && i <= time_index[1]
         increment = false
       else

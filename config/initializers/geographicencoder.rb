@@ -16,13 +16,16 @@ class GeographicEncoder
     Geocoder.search("#{mainstreet} and #{sidestreet}, Manhattan, New York")[0]
   end
 
-  def get_distance_in_feet(point1, point2)
+  def self.get_distance_in_feet(point1, point2)
     (Geocoder::Calculations.distance_between(point1, point2)*5280).to_i
   end
 
 end
 
 class SpotEncoder < GeographicEncoder
+  def initialize(encodable)
+    super(encodable)
+  end
 
   def encode!
     result = reverse_lookup(@encodable.latitude, @encodable.longitude)

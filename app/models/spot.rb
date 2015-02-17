@@ -9,6 +9,7 @@ class Spot < ActiveRecord::Base
   end
 
   def nearest_intersection
+    GeoNamesAPI.username = ENV['GEONAMES_USERNAME']
     GeoNamesAPI::NearestIntersection.find(self.latitude, self.longitude)
   end
 
@@ -24,22 +25,14 @@ class Spot < ActiveRecord::Base
     @encoder.encode!
   end
 
-  # def get_street_sections #should return 2
-  #   loc = self.nearest_intersection
-
-  #   StreetSection.where("(main_street LIKE '#{self.main_street.upcase}%' AND latitude_to BETWEEN #{loc.intersection['lat'].to_f - 0.00005} AND #{loc.intersection['lat'].to_f + 0.00005} AND longitude_to BETWEEN #{loc.intersection['lng'].to_f - 0.00005} AND #{loc.intersection['lng'].to_f + 0.00005}) OR (main_street LIKE '#{main_street.upcase}%' AND latitude_from BETWEEN #{loc.intersection['lat'].to_f - 0.00005} AND #{loc.intersection['lat'].to_f + 0.00005} AND longitude_from BETWEEN #{loc.intersection['lng'].to_f - 0.00005} AND #{loc.intersection['lng'].to_f + 0.00005})")
-  # end
-
   def get_4_street_segments
     loc = self.nearest_intersection
     main = self.main_street.split(' ')[0].upcase
-    # byebug
     if loc.intersection['street1'].split(' ')[0].upcase == self.main_street.split(' ')[0].upcase
       alt_street = loc.intersection['street2'].split(' ')[0].upcase
     else
       alt_street = loc.intersection['street1'].split(' ')[0].upcase
     end
-
     main_block = StreetSection.where("main_street LIKE '#{main}%'")
     main_block.where("to_street LIKE '#{alt_street}%' OR from_street LIKE '#{alt_street}%'")
   end
@@ -48,7 +41,7 @@ class Spot < ActiveRecord::Base
     users_block = []
     segments = get_4_street_segments
     segments.each do |seg|
-      if StreetSection.get_distance_in_feet(seg.point_to, user_point) <= seg.length && StreetSection.get_distance_in_feet(seg.point_from, user_point) <= seg.length
+      if GeographicEncoder.get_distance_in_feet(seg.point_to, user_point) <= seg.length && GeographicEncoder.get_distance_in_feet(seg.point_from, user_point) <= seg.length
         users_block << seg
       end
     end
@@ -89,7 +82,7 @@ class Spot < ActiveRecord::Base
   end
 
   def get_signs_for(section)
-    adjusted_distance = encoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
+    adjusted_distance = GeographicEncoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
     section.signs_near(adjusted_distance)
   end
 end

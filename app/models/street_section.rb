@@ -3,7 +3,7 @@ class StreetSection < ActiveRecord::Base
   SYMBOLS_TO_BOROUGHS = {"M" => "Manhattan", "B" => "Bronx", "K" => "Brooklyn", "Q" => "Queens"}
 
   has_many :signs, :foreign_key => 'status_order', :primary_key => 'status_order'
-  before_save :set_encoder_class, :set_encoder, :encode_cross_streets
+  before_create :set_encoder_class, :set_encoder, :encode_cross_streets
 
   def borough_name
     SYMBOLS_TO_BOROUGHS(borough)
@@ -30,7 +30,7 @@ class StreetSection < ActiveRecord::Base
   end
 
   def length
-    @encoder.get_distance_in_feet(point_from, point_to)
+    GeographicEncoder.get_distance_in_feet(point_from, point_to)
   end
 
   def buffer
