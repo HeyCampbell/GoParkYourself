@@ -20,10 +20,12 @@ $(document).ready(function() {
       loadChecker(response);
     });
   });
+
+  //"show map?"
 });
 
 function loadChecker(response) {
-  if (response.regs[0] === undefined) {
+  if (response.regs[0] === undefined || response.regs[0].rules === "error parsing rules" ) {
     loadNotSuccessful();
   }
   else {
