@@ -54,6 +54,7 @@ Spot.prototype.getCurrentDayRegs = function() {
       bothSides.sideTwoEnd = this.sideTwo.Regulations[todayName][1];
     }
   }
+  bothSides.Suspended = this.sideOne.Suspended
   return bothSides;
 }
 
