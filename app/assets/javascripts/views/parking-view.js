@@ -6,14 +6,13 @@ View.ParseRegulations = function(todayRegs) {
   var html = "<table id='regs_table'>"
   html += "<thead>"
   html += "<tr>"
-  // html += "<td class='table_head'>Time</td>"
+  html += "<td class='table_head'>Time</td>"
   html += "<td class='table_head'>" + todayRegs.sideOneName + " Side</td>"
   html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side</td>"
   html += "</tr>"
   html += "</thead>"
 
-  html += View.Colorize(sideOneArray, sideTwoArray);
-
+  html += View.ColorizeWithTime(sideOneArray, sideTwoArray);
 
   html += "</tr>"
   html += "</table>"
@@ -44,101 +43,69 @@ View.Colorize = function(sideOneArray, sideTwoArray) {
     } else {
       html+= "<td class='cant_park'></td>"
     }
-
     html += "<tr>"
   };
 
   return html;
+}
 
+View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
+  var html = '<tr>'
+  var timeArray = ["11pm", "10pm", "9pm", "8pm", "7pm", "6pm", "5pm", "4pm", "3pm", "2pm", "1pm", "12pm", "11am", "10am", "9am", "8am", "7am", "6am", "5am", "4am", "3am", "2am", "1am", "12am"]
+  var canParkCounter = 0
+
+  for (var i = timeArray.length - 1; i >= 0; i--) {
+    html += "<td class='table_time' rowspan='3'>" + timeArray[i]+ "</td>"
+    html += "<tr>"
+    for (var j = 0; j < 2; j++) {
+
+      if (sideOneArray[canParkCounter] === true) {
+        html += "<td class='can_park'></td>"
+      } else {
+        html += "<td class='cant_park'></td>"
+      }
+
+      if (sideTwoArray[canParkCounter] === true) {
+        html += "<td class='can_park'></td>"
+      } else {
+        html += "<td class='cant_park'></td>"
+      }
+
+      html += "</tr>"
+      canParkCounter++
+    }
+  };
+  return html;
 
 }
 
-//data
-// sideOneEnd: "4PM"
-// sideOneName: "N"
-// sideOneStart: "7AM"
-// sideTwoEnd: "12am"
-// sideTwoName: "S"
-// sideTwoStart: "12am"
+//THIS WORKS, JUST REVERSED
+// View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
+//   var html = '<tr>'
+//   var timeArray = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"]
+//   var canParkCounter = 0
 
-// View.drawParkingStatus = function(spot) {
-//   var html = "<table id='regs_table'>"
-//   html += "<tr>"
-//   html += "<td>Day</td>"
-//   html += "<td>" + spot.sideOne.Side + "</td>"
-//   html += "<td>" + spot.sideTwo.Side + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Mon</td>"
-//   html += "<td>" + spot.sideOne.MondayStart + " to " + spot.sideOne.MondayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.MondayStart + " to " + spot.sideTwo.MondayStop + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Tue</td>"
-//   html += "<td>" + spot.sideOne.TuesdayStart + " to " + spot.sideOne.TuesdayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.TuesdayStart + " to " + spot.sideTwo.TuesdayStop + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Wed</td>"
-//   html += "<td>" + spot.sideOne.WednesdayStart + " to " + spot.sideOne.WednesdayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.WednesdayStart + " to " + spot.sideTwo.WednesdayStop + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Thu</td>"
-//   html += "<td>" + spot.sideOne.ThursdayStart + " to " + spot.sideOne.ThursdayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.ThursdayStart + " to " + spot.sideTwo.ThursdayStop + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Fri</td>"
-//   html += "<td>" + spot.sideOne.FridayStart + " to " + spot.sideOne.FridayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.FridayStart + " to " + spot.sideTwo.FridayStop + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Sat</td>"
-//   html += "<td>" + spot.sideOne.SaturdayStart + " to " + spot.sideOne.SaturdayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.SaturdayStart + " to " + spot.sideTwo.SaturdayStop + "</td>"
-//   html += "</tr>"
-//   html += "<tr>"
-//   html += "<td>Sun</td>"
-//   html += "<td>" + spot.sideOne.SundayStart + " to " + spot.sideOne.SundayStop + "</td>"
-//   html += "<td>" + spot.sideTwo.SundayStart + " to " + spot.sideTwo.SundayStop + "</td>"
-//   html += "</tr>"
-//   html += "</table>"
-//   return html
-// }
+//   for (var i = timeArray.length - 1; i >= 0; i--) {
+//     html += "<td class='table_time' rowspan='3'>" + timeArray[i]+ "</td>"
+//     html += "<tr>"
+//     for (var j = 0; j < 2; j++) {
 
-// if (todayRegs.Suspended === false ) {
-//     html += "<h2> Alternative Side Parking in effect </h2>"
-//   } else {
-//     html += "<h2> Alternative Side Parking not in effect</h2>"
-//   }
+//       if (sideOneArray[canParkCounter] === true) {
+//         html += "<td class='can_park'></td>"
+//       } else {
+//         html += "<td class='cant_park'></td>"
+//       }
 
-//   html += "</h2>"
-//   html += "<table id='regs_table'>"
-//   html += "<tr>"
-//   html += "<td>" + todayRegs.sideOneName + " Side" + "</td>"
+//       if (sideTwoArray[canParkCounter] === true) {
+//         html += "<td class='can_park'></td>"
+//       } else {
+//         html += "<td class='cant_park'></td>"
+//       }
 
-//   if (todayRegs.sideTwoName !== undefined) {
-//      html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
-//   }
-
-//   html += "</tr>"
-//   html += "<tr>"
-
-//   if (todayRegs.sideOneStart.toUpperCase() === '12AM') {
-//     html += "<td> No Parking All Day </td>"
-//   } else if (todayRegs.sideOneStart === '0') {
-//     html += "<td> Parking All Day! </td>"
-//   } else {
-//     html += "<td>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
-//   }
-
-//   if (todayRegs.sideTwoStart !== undefined) {
-//     if (todayRegs.sideTwoStart.toUpperCase() === '12AM') {
-//       html += "<td> No Parking All Day </td>"
-//     } else if (todayRegs.sideTwoStart === '0') {
-//       html += "<td> Parking All Day! </td>"
-//     } else {
-//       html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+//       html += "</tr>"
+//       canParkCounter++
 //     }
-//   }
+//   };
+//   return html;
+
+// }
