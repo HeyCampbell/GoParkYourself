@@ -21,16 +21,35 @@ View.ParseRegulations = function(todayRegs) {
 }
 
 
-View.Colorize = function(dayArray) {
+View.Colorize = function(sideOneArray, sideTwoArray) {
   var html = ""
 
-  for (var i = dayArray.length - 1; i >= 0; i--) {
-    if (dayArray[i] === true) {
-      //color green
+  // for (var i = sideOneArray)
+  // var html += "<tr>"
+  // html += "<td class='table_time' rowspan='3'>12</td>"
+  // html += "<tr>"
+
+  for (var i = sideOneArray.length - 1; i >= 0; i--) {
+    html += "<tr>"
+    //this is the first column
+    if (sideOneArray[i] === true) {
+      html+= "<td class='can_park'></td>"
     } else {
-      //color red
+      html+= "<td class='cant_park'></td>"
     }
+
+    //this is the second column
+    if (sideTwoArray[i] === true) {
+      html+= "<td class='can_park'></td>"
+    } else {
+      html+= "<td class='cant_park'></td>"
+    }
+
+    html += "<tr>"
   };
+
+  return html;
+
 
 }
 
