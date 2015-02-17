@@ -3,10 +3,14 @@ class Spot < ActiveRecord::Base
 
   belongs_to :user
 
+
+  attr_reader :regs
+
   def initialize(attributes = nil, options = {})
     @encoder_class = options[:encoder_class] || SpotEncoder
     super
     set_address_info
+    @regs = set_regs
   end
 
   def user_point
