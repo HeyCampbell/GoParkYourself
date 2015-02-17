@@ -24,9 +24,11 @@ EIGHT_AM = 8
   end
 
   def self.suspended?
-    if (Tweet.last.created.day < Time.now.day && Time.now.hour > EIGHT_AM)
+
+    if (!Tweet.any? || Tweet.last.created.day < Time.now.day && Time.now.hour > EIGHT_AM)
       Tweet.pull_and_save
     end
     Tweet.last.suspended?
   end
+
 end
