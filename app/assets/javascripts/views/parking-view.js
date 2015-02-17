@@ -54,32 +54,6 @@ View.ReturnSpotHtml = function() {
   return $spot;
 }
 
-// View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
-//   var html = '<tr>'
-//   var timeArray = ["11pm", "10pm", "9pm", "8pm", "7pm", "6pm", "5pm", "4pm", "3pm", "2pm", "1pm", "12pm", "11am", "10am", "9am", "8am", "7am", "6am", "5am", "4am", "3am", "2am", "1am", "12am"]
-//   var canParkCounter = 0
-
-//   for (var i = timeArray.length - 1; i >= 0; i--) {
-//     html += "<td class='table_time' rowspan='3'>" + timeArray[i]+ "</td>"
-//     html += "<tr>"
-//     for (var j = 0; j < 2; j++) {
-
-//       if (sideOneArray[canParkCounter] === true) {
-//         html += "<td class='can_park'></td>"
-//       } else {
-//         html += "<td class='cant_park'></td>"
-//       }
-
-//       if (sideTwoArray[canParkCounter] === true) {
-//         html += "<td class='can_park'></td>"
-//       } else {
-//         html += "<td class='cant_park'></td>"
-//       }
-
-//       html += "</tr>"
-//       canParkCounter++
-//     }
-//   };
-//   return html;
-
-// }
+//TO IMPLEMENT
+// <h3>Alternative Side Parking in Effect!</h3>
+// <h4>You need to move by <span id="move_by_time">6:00 pm</span></h4>
