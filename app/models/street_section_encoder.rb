@@ -19,4 +19,12 @@ class StreetSectionEncoder < GeographicEncoder
     sleep(0.2)
   end
 
+  def cross_streets_lookup(mainstreet, sidestreet)
+    if mainstreet && sidestreet
+      @geocoder.search("#{mainstreet} and #{sidestreet}, Manhattan, New York")[0]
+    else
+      nil
+    end
+  end
+
 end

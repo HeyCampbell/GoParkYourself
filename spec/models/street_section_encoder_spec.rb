@@ -3,35 +3,30 @@ require 'rails_helper'
 describe "StreetSectionEncoder" do
 
   describe "when a street section has a main street and side street" do
-    let(:encodable){ OpenStruct.new(main_street: "WALL STREET", to_street: "WILLIAM STREET", from_street: "PINE STREE")}
+    let(:street_section_encodable){ OpenStruct.new(main_street: "WALL STREET", to_street: "WILLIAM STREET", from_street: "PINE STREE")}
 
     it "it gets a from point set on it" do
-      SpotEncoder.new(encodable).encode!
-      expect(encodable.point_to.class).to be(Array)
+      StreetSectionEncoder.new(street_section_encodable).encode!
+      expect(street_section_encodable.longitude_to.class).to be(Float)
     end
 
     it "it gets a from point set on it" do
-      SpotEncoder.new(encodable).encode!
-      expect(encodable.point_to.length).to eq(2)
-    end
-
-    it "it gets a from point set on it" do
-      SpotEncoder.new(encodable).encode!
-      expect(encodable.point_from[0]).to be(Fixnum)
-    end
-
-    it "it gets a to point set on it" do
-      SpotEncoder.new(encodable).encode!
-      expect(encodable.point_to[1]).to be(Fixnum)
+      StreetSectionEncoder.new(street_section_encodable).encode!
+      expect(street_section_encodable.latitude_to.class).to eq(Float)
     end
   end
 
-  describe "when spot does not have a lat or long" do
-    let(:not_encodable){ OpenStruct.new(:latitude => nil, :longitude => 500)}
+  describe "when a street section does not have a main street" do
+    let(:not_encodable){ OpenStruct.new(to_street: "WILLIAM STREET", from_street: "PINE STREET")}
 
-    it "attempt to encode will raise an error" do
-      expect{SpotEncoder.new(not_encodable).encode!}.to raise_error(NoMethodError)
+    it "will not have its to_street intersection encoded with a latitude" do
+      StreetSectionEncoder.new(not_encodable).encode!
+      expect(not_encodable.latitude_to).to be(nil)
     end
 
+    it "will not have its to_street intersection encoded with a longitude" do
+      StreetSectionEncoder.new(not_encodable).encode!
+      expect(not_encodable.longitude_to).to be(nil)
+    end
   end
 end
