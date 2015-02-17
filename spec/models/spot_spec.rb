@@ -1,8 +1,7 @@
 require 'rails_helper'
-require 'factory_girl_rails'
 # require 'byebug'
 
-describe "Spot" do
+describe Spot do
    let(:created_spot) { Spot.create(latitude: 40.705765, longitude: -74.007659, remind?: true )}
    let(:sections) {created_spot.get_street_sections}
    let(:intersection) {created_spot.nearest_intersection}

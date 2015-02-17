@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :spot do
-    lat 40.705765
-    long -74.007659
+    latitude 40.705765
+    longitude -74.007659
     sign_id
     user_id 1
     parked_at
