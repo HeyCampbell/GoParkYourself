@@ -10,10 +10,12 @@
                <p><i class="fi-mail"></i><span> <%= current_user.email %></span></p>
             </div>
             <% if @spot %>
+               <div id='last_spot_info'>
                <div class="small-12 large-8 columns last_spot">
                <h4>You're parked at: <span><%= @spot.full_address %>.</span></h4>
 
                   Display Current User.spot.last.active here
+               </div>
                </div>
             <% end %>
             <div class="row collapse">
