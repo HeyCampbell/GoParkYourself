@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
-CSV.foreach("Manhattan_discreet_blocks.csv", headers: true, header_converters: :symbol) do |row|
+CSV.foreach("manhattan_blocks_csv.csv", headers: true, header_converters: :symbol) do |row|
     StreetSection.find_or_create_by(borough: row[0], status_order: row[1], main_street: row[2], from_street: row[3], to_street: row[4], side_of_street: row[5])
 end
 
