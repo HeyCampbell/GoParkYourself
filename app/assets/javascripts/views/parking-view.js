@@ -4,7 +4,7 @@ View.ParseRegulations = function(todayRegs) {
   var html = " "
   if (todayRegs.Suspended === false ) {
     html += "<h2> Alternative Side Parking in effect </h2>"
-  }else {
+  } else {
     html += "<h2> Alternative Side Parking not in effect</h2>"
   }
 
@@ -37,6 +37,10 @@ View.ParseRegulations = function(todayRegs) {
       html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
     }
   }
+
+  // VALUES TO CREATE GRAPHS
+  // html += todayRegs.sideOneCanPark
+  // html += todayRegs.sideTwoCanPark
 
   html += "</tr>"
   html += "</table>"
