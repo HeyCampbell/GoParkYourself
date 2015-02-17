@@ -2,23 +2,26 @@ class Spot < ActiveRecord::Base
   SIGNS_TO_REJECT = ["Building Line", "Curb Line", "Property Line"]
 
   belongs_to :user
-  before_create :set_address_info
+  before_create :set_encoder_class, :set_encoder, :set_address_info
 
   def user_point
     [self.latitude, self.longitude]
   end
 
   def nearest_intersection
-    GeoNamesAPI.username = ENV['GEONAMES_USERNAME']
     GeoNamesAPI::NearestIntersection.find(self.latitude, self.longitude)
   end
 
-  def set_address_info
-    Geocoder.configure(api_key: ENV['BING_KEY'], lookup: :bing)
-    result = Geocoder.search("#{latitude}, #{longitude}")[0]
+  def set_encoder_class(args = {})
+    @encoder_class = args[:encoder_class] || SpotEncoder
+  end
 
-    self.main_street = /\d*\s(.*)/.match(result.data["address"]["addressLine"])[1]
-    self.full_address = result.data["address"]["formattedAddress"]
+  def set_encoder
+    @encoder = @encoder_class.new(self)
+  end
+
+  def set_address_info
+    @encoder.encode!
   end
 
   # def get_street_sections #should return 2
@@ -86,7 +89,7 @@ class Spot < ActiveRecord::Base
   end
 
   def get_signs_for(section)
-    adjusted_distance = StreetSection.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
+    adjusted_distance = encoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
     section.signs_near(adjusted_distance)
   end
 end
