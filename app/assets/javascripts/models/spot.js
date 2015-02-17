@@ -4,6 +4,7 @@ var Spot = function(json) {
      this.sideOne.Suspended = json.suspended;
      this.sideOne.Regulations = {
            Monday : [json.regs[0].rules['mon'].start, json.regs[0].rules['mon'].stop],
+           MondayBooleanTime: json.regs[0].rules['mon'].boolean_time,
            Tuesday : [json.regs[0].rules['tue'].start, json.regs[0].rules['tue'].stop],
            Wednesday : [json.regs[0].rules['wed'].start, json.regs[0].rules['wed'].stop],
            Thursday : [json.regs[0].rules['thu'].start, json.regs[0].rules['thu'].stop],
@@ -11,6 +12,7 @@ var Spot = function(json) {
            Saturday : [json.regs[0].rules['sat'].start, json.regs[0].rules['sat'].stop],
            Sunday : [json.regs[0].rules['sun'].start, json.regs[0].rules['sun'].stop]
      };
+     debugger
 
   this.sideTwo = {}
      if (json.regs[1] !== undefined) {
