@@ -65,7 +65,7 @@ class Spot < ActiveRecord::Base
   end
 
 
-  def regs
+  def set_regs
     self.sign_picker.map do |k,v|
       if v[0]
         rules = v[0].no_parking_times
@@ -81,6 +81,57 @@ class Spot < ActiveRecord::Base
   def get_signs_for(section)
     adjusted_distance = GeographicEncoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
     section.signs_near(adjusted_distance)
+  end
+
+  def park_now?
+    current_day = Time.now.strftime('%a')
+    current_index = Time.now.strftime('%H.%M').to_f * 2
+    current_index = current_index.ceil
+    regs.map do |reg|
+      # byebug
+      {reg[:side] => reg[:rules][current_day.to_sym.downcase][:can_i_park][current_index]}
+    end
+  end
+
+  def park_till
+    check_day = Time.now.strftime('%a')
+    park_till_day = nil
+    park_till_time = nil
+    day_offset = 0
+    current_index = Time.now.strftime('%H.%M').to_f * 2
+    current_index = current_index.ceil
+    regs.map do |reg|
+      until park_till_day
+        if reg[:rules][check_day.to_sym.downcase][:can_i_park][current_index..-1].any? {|sign| sign==false}
+          park_till_day = check_day
+        end
+        day_offset =+ 1
+        check_day = Time.now.advance(:day => 1).strftime('%a')
+      end
+      park_time_index = reg[:rules][check_day.to_sym.downcase][:can_i_park].find_index
+
+      {reg[:side] => [park_till_day, park_till_time]}
+      end
+    end
+  end
+
+  def time_index_to_english(time_index)
+    time = time_index.to_f / 2
+    hour = time.to_s.split('.')[0].to_i
+    minute = time.to_s.split('.')[1].to_i * 6
+    if hour == 0
+      hour = 12
+      am_pm = 'AM'
+    elsif hour > 12
+      am_pm = 'PM'
+      hour = hour / 2
+    elsif hour < 12
+      am_pm = 'AM'
+    elsif hour == 12
+
+
+
+
   end
 end
 

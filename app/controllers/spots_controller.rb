@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   def create
     spot = Spot.create(latitude: params['latitude'], longitude: params['longitude'], user: current_user )
-    spot_info = {spot: spot, suspended: Tweet.suspended?, regs: spot.regs}
+    spot_info = {spot: spot, suspended: Tweet.suspended?, regs: spot.regs, park_right_now: spot.park_now }
     render json: spot_info.to_json
   end
 
