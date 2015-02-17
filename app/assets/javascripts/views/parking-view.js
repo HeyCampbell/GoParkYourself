@@ -23,11 +23,6 @@ View.ParseRegulations = function(todayRegs) {
 View.Colorize = function(sideOneArray, sideTwoArray) {
   var html = ""
 
-  // for (var i = sideOneArray)
-  // var html += "<tr>"
-  // html += "<td class='table_time' rowspan='3'>12</td>"
-  // html += "<tr>"
-
   for (var i = sideOneArray.length - 1; i >= 0; i--) {
     html += "<tr>"
     //this is the first column
