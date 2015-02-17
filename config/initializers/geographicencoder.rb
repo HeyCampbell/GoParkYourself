@@ -41,12 +41,18 @@ class StreetSectionEncoder < GeographicEncoder
 
   def encode!
     to_result = self.cross_streets_lookup(@encodable.main_street, @encodable.to_street)
-    @encodable.latitude_to = to_result.data["point"]["coordinates"][0]
-    @encodable.longitude_to = to_result.data["point"]["coordinates"][1]
+    if to_result.data
+      @encodable.latitude_to = to_result.data["point"]["coordinates"][0]
+      @encodable.longitude_to = to_result.data["point"]["coordinates"][1]
+    end
+    sleep(0.3)
 
     from_result = self.cross_streets_lookup(@encodable.main_street, @encodable.from_street)
-    @encodable.latitude_from = from_result.data["point"]["coordinates"][0]
-    @encodable.longitude_from = from_result.data["point"]["coordinates"][1]
+    if from_result.data
+      @encodable.latitude_from = from_result.data["point"]["coordinates"][0]
+      @encodable.longitude_from = from_result.data["point"]["coordinates"][1]
+    end
+    sleep(0.2)
   end
 
 end
