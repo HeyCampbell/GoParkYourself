@@ -25,11 +25,10 @@ class Spot < ActiveRecord::Base
   def get_4_street_segments
     loc = self.nearest_intersection
     main = self.main_street.split(' ')[0].upcase
-
-    if loc.intersection['street1'][0..5].upcase == self.main_street[0..5].upcase
-      alt_street = loc.intersection['street2'][0..-4].upcase
+    if loc.intersection['street1'].split(' ')[0].upcase == self.main_street.split(' ')[0].upcase
+      alt_street = loc.intersection['street2'].split(' ')[0].upcase
     else
-      alt_street = loc.intersection['street1'][0..-4].upcase
+      alt_street = loc.intersection['street1'].split(' ')[0].upcase
     end
     main_block = StreetSection.where("main_street LIKE '#{main}%'")
     main_block.where("to_street LIKE '#{alt_street}%' OR from_street LIKE '#{alt_street}%'")

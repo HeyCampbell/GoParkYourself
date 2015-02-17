@@ -9,12 +9,15 @@
                <h4><%= current_user.name.capitalize %> </h4>
                <p><i class="fi-mail"></i><span> <%= current_user.email %></span></p>
             </div>
-            <div class="last_spot">
-                Display Current User.spot.last.active here
-            </div>
+            <% if @spot %>
+               <h4>You're parked at <%= @spot.full_address %>.</h4>
+               <div class="last_spot">
+                  Display Current User.spot.last.active here
+               </div>
+            <% end %>
             <div class="row collapse">
                <ul class="button-group even-3">
-                  <li><a href="#" class="button"> Where did I park? <span>432 </span></a></li>
+                  <li><a href="#" class="button"> Already Moved <span>432 </span></a></li>
                   <li><a href="#" class="button"> Following <span>432 </span></a></li>
                   <li><a href="#" class="button"> Views <span>432 </span></a></li>
                </ul>
