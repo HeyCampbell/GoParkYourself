@@ -9,6 +9,7 @@ class Spot < ActiveRecord::Base
   end
 
   def nearest_intersection
+    GeoNamesAPI.username = ENV['GEONAMES_USERNAME']
     GeoNamesAPI::NearestIntersection.find(self.latitude, self.longitude)
   end
 
@@ -48,7 +49,7 @@ class Spot < ActiveRecord::Base
     users_block = []
     segments = get_4_street_segments
     segments.each do |seg|
-      if StreetSection.get_distance_in_feet(seg.point_to, user_point) <= seg.length && StreetSection.get_distance_in_feet(seg.point_from, user_point) <= seg.length
+      if GeographicEncoder.get_distance_in_feet(seg.point_to, user_point) <= seg.length && GeographicEncoder.get_distance_in_feet(seg.point_from, user_point) <= seg.length
         users_block << seg
       end
     end
@@ -89,7 +90,7 @@ class Spot < ActiveRecord::Base
   end
 
   def get_signs_for(section)
-    adjusted_distance = encoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
+    adjusted_distance = GeographicEncoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
     section.signs_near(adjusted_distance)
   end
 end

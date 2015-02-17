@@ -30,7 +30,7 @@ class StreetSection < ActiveRecord::Base
   end
 
   def length
-    @encoder.get_distance_in_feet(point_from, point_to)
+    GeographicEncoder.get_distance_in_feet(point_from, point_to)
   end
 
   def buffer

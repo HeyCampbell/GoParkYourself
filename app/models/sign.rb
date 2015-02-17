@@ -15,7 +15,7 @@ class Sign < ActiveRecord::Base
         sat: self.sign_description,
         sun: self.sign_description}
     unaffected_day = []
-    if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description)
+    if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description) || /NO STOPPING/.match(self.sign_description)
       if /ANYTIME/.match(self.sign_description)
         @times = ["12AM", "12AM"]
       else
