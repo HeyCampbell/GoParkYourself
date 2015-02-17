@@ -48,9 +48,37 @@
   text-align: center;
 }
 
+.auth_buttons button {
+  background-color: transparent;
+  border:2px solid white;
+  border-radius: 10px;
+}
+
+.auth_buttons button:hover {
+  background-color: rgb(138, 88, 157);
+}
+
+
+#sign_in {
+  background-color: transparent;
+  border:2px solid white;
+  border-radius: 10px;
+}
+
+#sign_in:hover {
+  background-color: rgb(138, 88, 157);
+}
+
 #parked_button {
   padding-top:0.33rem;
   padding-bottom:0.33rem;
+  background-color: transparent;
+  border:2px solid white;
+  border-radius: 10px;
+}
+
+#parked_button:hover {
+  background-color: rgb(138, 88, 157);
 }
 
 #logo {
