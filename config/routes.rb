@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/user' => 'welcomes#user'
   get '/user/spot/:id' => 'spot#show'
 
+  put '/user/spot/:id/update' => 'spot#update'
+
   post '/spots/create' => 'spots#create'
 
   get '/map' => 'welcomes#map'
