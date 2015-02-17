@@ -90,6 +90,9 @@ class Sign < ActiveRecord::Base
   end
 
   def set_48_times(times)
+    if times == ["12AM", "12AM"]
+      return Array.new(48, false)
+    end
     time_index = get_48_times(times)
     parking_times = Array.new(48, true)
     parking_times.each_with_index.map do |increment, i|
