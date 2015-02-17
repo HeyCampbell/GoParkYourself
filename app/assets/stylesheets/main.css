@@ -8,7 +8,7 @@
  }
 
 #map-canvas {
-  height: 75vh;
+  height: 80vh;
   width: 100%;
   margin: 0px;
   padding: 0px;
@@ -35,7 +35,7 @@
   background-image: url("intersection.jpeg");
   background-size: 100%;
   background-repeat: none;
-  height:72vh;
+  height:70vh;
 }
 
 #logo_ct {
@@ -96,7 +96,7 @@
 }*/
 
 #button_ct {
-  height:28vh;
+  height:30vh;
   background-color: black;
 }
 
