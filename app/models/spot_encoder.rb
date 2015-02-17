@@ -5,7 +5,7 @@ class SpotEncoder < GeographicEncoder
 
   def encode!
     result = reverse_lookup(@encodable.latitude, @encodable.longitude)
-    @encodable.main_street = /\d*\s(.*)/.match(result.data["address"]["addressLine"])[1]
+    @encodable.main_street = /\d*(\d*[a-z]*.*)/.match(result.data["address"]["addressLine"])[1]
     @encodable.full_address = result.data["address"]["formattedAddress"]
   end
 end
