@@ -2,49 +2,31 @@ var View = {}
 
 View.ParseRegulations = function(todayRegs) {
   var html = " "
-  if (todayRegs.Suspended === false ) {
-    html += "<h2> Alternative Side Parking in effect </h2>"
-  } else {
-    html += "<h2> Alternative Side Parking not in effect</h2>"
-  }
 
-  html += "</h2>"
-  html += "<table id='regs_table'>"
-  html += "<tr>"
-  html += "<td>" + todayRegs.sideOneName + " Side" + "</td>"
-
-  if (todayRegs.sideTwoName !== undefined) {
-     html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
-  }
-
-  html += "</tr>"
-  html += "<tr>"
-
-  if (todayRegs.sideOneStart.toUpperCase() === '12AM') {
-    html += "<td> No Parking All Day </td>"
-  } else if (todayRegs.sideOneStart === '0') {
-    html += "<td> Parking All Day! </td>"
-  } else {
-    html += "<td>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
-  }
-
-  if (todayRegs.sideTwoStart !== undefined) {
-    if (todayRegs.sideTwoStart.toUpperCase() === '12AM') {
-      html += "<td> No Parking All Day </td>"
-    } else if (todayRegs.sideTwoStart === '0') {
-      html += "<td> Parking All Day! </td>"
-    } else {
-      html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
-    }
-  }
 
   // VALUES TO CREATE GRAPHS
   // html += todayRegs.sideOneCanPark
   // html += todayRegs.sideTwoCanPark
 
+
+
   html += "</tr>"
   html += "</table>"
   return html
+}
+
+
+View.Colorize = function(dayArray) {
+  var html = ""
+
+  for (var i = dayArray.length - 1; i >= 0; i--) {
+    if (dayArray[i] === true) {
+      //color green
+    } else {
+      //color red
+    }
+  };
+
 }
 
 //data
@@ -100,3 +82,39 @@ View.ParseRegulations = function(todayRegs) {
 //   html += "</table>"
 //   return html
 // }
+
+// if (todayRegs.Suspended === false ) {
+//     html += "<h2> Alternative Side Parking in effect </h2>"
+//   } else {
+//     html += "<h2> Alternative Side Parking not in effect</h2>"
+//   }
+
+//   html += "</h2>"
+//   html += "<table id='regs_table'>"
+//   html += "<tr>"
+//   html += "<td>" + todayRegs.sideOneName + " Side" + "</td>"
+
+//   if (todayRegs.sideTwoName !== undefined) {
+//      html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
+//   }
+
+//   html += "</tr>"
+//   html += "<tr>"
+
+//   if (todayRegs.sideOneStart.toUpperCase() === '12AM') {
+//     html += "<td> No Parking All Day </td>"
+//   } else if (todayRegs.sideOneStart === '0') {
+//     html += "<td> Parking All Day! </td>"
+//   } else {
+//     html += "<td>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
+//   }
+
+//   if (todayRegs.sideTwoStart !== undefined) {
+//     if (todayRegs.sideTwoStart.toUpperCase() === '12AM') {
+//       html += "<td> No Parking All Day </td>"
+//     } else if (todayRegs.sideTwoStart === '0') {
+//       html += "<td> Parking All Day! </td>"
+//     } else {
+//       html += "<td>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+//     }
+//   }
