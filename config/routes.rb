@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/' => 'welcomes#index'
   get '/user' => 'welcomes#user'
   get '/user/spot/:id' => 'spot#show'
-
+\
   put '/user/spot/:id/update' => 'spot#update'
 
   post '/spots/create' => 'spots#create'
