@@ -106,7 +106,7 @@
   text-align: center;
 }
 
-#myModal h2 {
+#myModal h2, h3, h4 {
   color:white;
 }
 
@@ -131,7 +131,7 @@ tr {
 }
 
 table tr td {
-  padding: 0.1rem 1.25rem;
+  padding: 0.15rem 1.25rem;
   font-size: 0.875rem;
   color: #222222;
   text-align: center;
