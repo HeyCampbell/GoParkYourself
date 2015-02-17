@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'factory_girl_rails'
-require 'byebug'
 
 describe "GeographicEncoder" do
   let(:point) {[40.708710, -74.010646]}
@@ -8,11 +6,11 @@ describe "GeographicEncoder" do
   # let(:test_encoder) {GeographicEncoder.new(spot)}
   let(:test_encoder) {GeographicEncoder.new("encodable")}
 
-#instances methods
+#instance methods
 
   describe "#initialize" do
     it "should have an encodable object" do
-      expect(test_encoder.encodable.count).to eq(1)
+      expect(test_encoder.encodable).to eq("encodable")
     end
 
     it "should have geocoder configured to use Bing maps API" do
@@ -28,35 +26,10 @@ describe "GeographicEncoder" do
     end
   end
 
-  describe "#reverse_lookup(lat, long)" do
-    it "should return an object when given a point of latitude and longitude" do
-      byebug
-      expect(reverse_lookup(point)).to eq()
-    end
-
-    it "should return an error when presented with coordinates that are not a latitude and longitude" do
-      expect().to eq()
-    end
-
-  end
-
   describe "#encode!" do
-
-    xit "should" do
+    xit "should raise an error if attempt to implement" do
+      expect{GeographicEncoder.new("encodable").encode!}.to raise_error()
     end
-
-    xit "" do
-    end
-  end
-
-  describe "#cross_streets_lookup(mainstreet, sidestreet)" do
-    it "should set latitude and longitude" do
-
-    end
-
-    it "" do
-    end
-
   end
 
 #class methods
