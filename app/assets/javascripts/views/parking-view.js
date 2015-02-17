@@ -1,7 +1,15 @@
 var View = {}
 
 View.ParseRegulations = function(todayRegs) {
-  var html = "<table id='regs_table'>"
+  var html = " "
+  if (todayRegs.Suspended === false ) {
+    html += "<h2> Alternative Side Parking in effect </h2>"
+  }else {
+    html += "<h2> Alternative Side Parking not effect</h2>"
+  }
+
+  html += "</h2>"
+  html += "<table id='regs_table'>"
   html += "<tr>"
   html += "<td>" + todayRegs.sideOneName + " Side" + "</td>"
   html += "<td>" + todayRegs.sideTwoName + " Side" + "</td>"
