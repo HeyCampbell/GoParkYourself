@@ -5,14 +5,33 @@ var Spot = function(json) {
      this.sideOne.Regulations = {
            Monday : [json.regs[0].rules['mon'].start, json.regs[0].rules['mon'].stop],
            MondayBooleanTime: json.regs[0].rules['mon'].boolean_time,
+           MondayCanIPark: json.regs[0].rules['mon'].can_i_park,
+
            Tuesday : [json.regs[0].rules['tue'].start, json.regs[0].rules['tue'].stop],
+           TuesdayBooleanTime: json.regs[0].rules['tue'].boolean_time,
+           TuesdayCanIPark: json.regs[0].rules['tue'].can_i_park,
+
            Wednesday : [json.regs[0].rules['wed'].start, json.regs[0].rules['wed'].stop],
+           WednesdayBooleanTime: json.regs[0].rules['wed'].boolean_time,
+           WednesdayCanIPark: json.regs[0].rules['wed'].can_i_park,
+
            Thursday : [json.regs[0].rules['thu'].start, json.regs[0].rules['thu'].stop],
+           ThursdayBooleanTime: json.regs[0].rules['thu'].boolean_time,
+           ThursdayCanIPark: json.regs[0].rules['thu'].can_i_park,
+
            Friday : [json.regs[0].rules['fri'].start, json.regs[0].rules['fri'].stop],
+           FridayBooleanTime: json.regs[0].rules['fri'].boolean_time,
+           FridayCanIPark: json.regs[0].rules['fri'].can_i_park,
+
            Saturday : [json.regs[0].rules['sat'].start, json.regs[0].rules['sat'].stop],
-           Sunday : [json.regs[0].rules['sun'].start, json.regs[0].rules['sun'].stop]
+           SaturdayBooleanTime: json.regs[0].rules['sat'].boolean_time,
+           SaturdayCanIPark: json.regs[0].rules['sat'].can_i_park,
+
+           Sunday : [json.regs[0].rules['sun'].start, json.regs[0].rules['sun'].stop],
+           SundayBooleanTime: json.regs[0].rules['sun'].boolean_time,
+           SundayCanIPark: json.regs[0].rules['sun'].can_i_park,
      };
-     debugger
+
 
   this.sideTwo = {}
      if (json.regs[1] !== undefined) {
