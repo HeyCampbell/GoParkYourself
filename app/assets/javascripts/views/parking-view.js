@@ -1,13 +1,18 @@
 var View = {}
 
 View.ParseRegulations = function(todayRegs) {
-  var html = " "
+  var sideOneArray = todayRegs.sideOneCanPark;
+  var sideTwoArray = todayRegs.sideTwoCanPark;
+  var html = "<table id='regs_table'>"
+  html += "<thead>"
+  html += "<tr>"
+  // html += "<td class='table_head'>Time</td>"
+  html += "<td class='table_head'>" + todayRegs.sideOneName + " Side</td>"
+  html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side</td>"
+  html += "</tr>"
+  html += "</thead>"
 
-
-  // VALUES TO CREATE GRAPHS
-  // html += todayRegs.sideOneCanPark
-  // html += todayRegs.sideTwoCanPark
-
+  html += View.Colorize(sideOneArray, sideTwoArray);
 
 
   html += "</tr>"
