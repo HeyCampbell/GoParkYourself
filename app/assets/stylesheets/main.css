@@ -89,8 +89,8 @@
 table {
   background-color: rgba(11, 10, 10, 0.5);
   border:none;
-  border-collapse: collapse;
-  border-spacing: 0px;
+  border-collapse: separate;
+  border-spacing: 1px;
 }
 
 .table_head {
@@ -115,10 +115,10 @@ table tr td {
   border:none;
 }
 
-.table_side_one {
-  background-color: rgb(216, 34, 34);
+.can_park {
+  background-color: rgb(78, 186, 78);
 }
 
-.table_side_two {
-  background-color: rgb(25, 103, 25);
+.cant_park {
+  background-color: rgb(255, 0, 0);
 }
