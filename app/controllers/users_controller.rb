@@ -19,6 +19,8 @@ class UsersController < ApplicationController
 
       redirect_to user_url
     end
+
+
   end
 
 end
