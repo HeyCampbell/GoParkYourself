@@ -22,26 +22,26 @@
       </div>
       <% end %>
       <div class="full-width navigation-area">
-      <div class="row" id="user_footer_row">
-         <div class="fixed-bottom">
-            <nav class="top-bar bottom-bar" id="bottom_nav">
-               <button>Already Moved</button>
-               <%if @spot.remind?%>
-               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                  <input type="hidden" name="_method" value="PUT">
-                  <input type="hidden" name="@spot.remind?" value="false">
-                  <input type="submit" value="Kill reminder" class="button">
-               </form>
-               <%else%>
-               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                  <input type="hidden" name="_method" value="PUT">
-                  <input type="hidden" name="@spot.remind?" value="true">
-                  <input class = "button" type="submit" value="Add reminder" data-reveal-id="remindMeModal" id='reminderModal'>
-               </form>
-               <%end%>
-            </nav>
+         <div class="row" id="user_footer_row">
+            <div class="fixed-bottom">
+               <nav class="top-bar bottom-bar" id="bottom_nav">
+                  <button>Already Moved</button>
+                  <%if @spot.remind?%>
+                  <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                     <input type="hidden" name="_method" value="PUT">
+                     <input type="hidden" name="@spot.remind?" value="false">
+                     <input type="submit" value="Kill reminder" class="button">
+                  </form>
+                  <%else%>
+                  <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                     <input type="hidden" name="_method" value="PUT">
+                     <input type="hidden" name="@spot.remind?" value="true">
+                     <input class = "button" type="submit" value="Add reminder" data-reveal-id="remindMeModal" id='reminderModal'>
+                  </form>
+                  <%end%>
+               </nav>
+            </div>
          </div>
-      </div>
       </div>
    </div>
 </div>
