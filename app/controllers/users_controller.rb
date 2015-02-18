@@ -7,7 +7,16 @@ class UsersController < ApplicationController
 
     if user.save
 
-      user.spots.last.update_attributes(remind?:  true, expiration: user.spots.last.park_till)
+      spot = user.spots.last
+      spot.regs
+
+      if spot.park_till[0][:side] == params[:side_of_street]
+        expiration = park_till[0][:i_can_park_until]
+
+      else
+        expiration = park_till[1][:i_can_park_until]
+
+      spot.update_attributes(remind?:  true, expiration: expiration)
 
       redirect_to user_url
     end

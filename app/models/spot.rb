@@ -100,7 +100,7 @@ class Spot < ActiveRecord::Base
   end
 
   def park_till
-    byebug
+
     today = Time.now
     park_till_day = nil
     park_till_time = nil
