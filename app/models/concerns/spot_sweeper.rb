@@ -1,18 +1,18 @@
 module SpotSweeper
 
-  def sweep!
-    format_spots_for_texts(get_hatching_spots).each do |formatted_spot|
+  def self.sweep!
+    format_spots_for_texts(self.get_hatching_spots).each do |formatted_spot|
       Message.send_text_message(formatted_spot)
     end
   end
 
-  def get_active_spots
-    Spot.where(active: true).where(reminder: true)
+  def self.get_active_spots
+    Spot.where(active: true).where(remind?: true)
   end
 
-  def get_hatching_spots
+  def self.get_hatching_spots
     spots_to_be_sent_reminders_now = []
-    get_active_spots.each do |spot|
+    self.get_active_spots.each do |spot|
       if spot.expiration - Time.now < 3600
         spots_to_be_sent_reminders_now < spot
       end
@@ -20,7 +20,7 @@ module SpotSweeper
     spots_to_be_sent_reminders_now
   end
 
-  def format_spots_for_texts(spots)
+  def self.format_spots_for_texts(spots)
     formatted_spots = []
     spots.each do |spot|
       spot = Hash.new
@@ -30,8 +30,4 @@ module SpotSweeper
     end
     formatted_spots
   end
-
-
-
-
 end
