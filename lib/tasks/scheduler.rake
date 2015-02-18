@@ -5,5 +5,5 @@ task :send_reminders => :environment do
 end
 
 task :send_test_message => :environment do
-  Message.send_text_message({number_to_send_to: "", body: ""})
+  Message.send_text_message({number_to_send_to: ENV["A_NUM"], body: "iluvu"})
 end
