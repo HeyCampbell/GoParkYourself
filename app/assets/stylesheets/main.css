@@ -152,17 +152,22 @@ table tr td {
 }
 
 .user-img {
-border-radius: 30px;
+border-radius: 10px;
 }
 
 .profile-card {
-  background-color: gray;
-  background-color: gray;
+  background-color: rgba(149, 17, 110, 0.5);
+  background-color: rgba(149, 17, 110, 0.5);
   width: 95%;
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
+  padding:20px;
+  color: rgb(202, 175, 146);
+}
 
+.profile-card h4 {
+  color: rgb(202, 175, 146);
 }
 
 .last_spot {
@@ -177,3 +182,11 @@ display: inline-flex;
 margin-top: 2%;
 }
 
+.button {
+  background-color: rgba(202, 175, 146, 0.5);
+  border: 2px solid rgba(202, 175, 146, 0.5);
+}
+
+.button:hover {
+  background-color: rgba(188, 115, 59, 0.78);
+}
