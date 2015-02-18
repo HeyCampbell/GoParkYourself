@@ -4,7 +4,10 @@
          <div class="row" id="user_header_row">
             <div class="small-12 columns profile-image">
                <%= image_tag("#{current_user.image}",:class => "user-img right") %>
-               <h4 class="right" id="user_page_name"><%= current_user.name.capitalize %> </h4>
+               <div class="right">
+                  <h4 id="user_page_name"><%= current_user.name.capitalize %> </h4>
+                  <p class="right" id="user_sign_out_link"><%= link_to "Sign out", signout_path, id: "sign_out" %></p>
+               </div>
                <%= image_tag('small_logo.png',:class => "user-img small-3 columns left") %>
             </div>
          </div>
@@ -12,7 +15,7 @@
 
       <% if @spot %>
       <div class="row" id="chart-row">
-         <h4>Your vehicle is at:</h4>
+         <h5>Your vehicle is at:</h5>
          <div id='last_spot_info'>
          </div>
       </div>
