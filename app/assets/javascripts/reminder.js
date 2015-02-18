@@ -20,7 +20,7 @@ $(document).ready(function() {
 function updatePhoneForm(sideOne, sideTwo) {
   var html = ""
   html += "<input type='radio' name='side_of_street' value='" + sideOne + "'>" + " " + sideOne + " Side <br>"
-  if (side !== undefined) {
+  if (sideTwo !== undefined) {
     html += "<input type='radio' name='side_of_street' value='" + sideTwo + "'>" + " " + sideTwo + " Side"
   }
   return html
