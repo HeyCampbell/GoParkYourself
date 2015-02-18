@@ -11,12 +11,8 @@ class SpotsController < ApplicationController
 
   def update
      spot = Spot.find(params[:id])
+     spot.update_attribute(active: false)
 
-     spot.update_attribute(active: false) ? return true : return false
-
-    else
-      return false
-    end
   end
 
 end

@@ -6,12 +6,9 @@ class UsersController < ApplicationController
      #set spot to remind, set expiration based on info passed
 
   if user.save
-    user.spots.last.update(remind?:  true, expiration: )
-# send to user page
-  else
-# kick back, not a valid number
-  end
+    user.spots.last.update(remind?:  true, expiration: user.spots.last.park_till)
 
+    redirect_to user_url
   end
 
 end
