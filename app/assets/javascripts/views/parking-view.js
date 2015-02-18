@@ -27,7 +27,7 @@ View.ParseRegulations = function(todayRegs) {
 
 View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
   var html = '<tr>'
-  var timeArray = ["9pm", "6pm", "3pm", "12pm", "9am", "6am", "3am", "12am"]
+  var timeArray = ["10pm", "7pm", "4pm", "1pm", "10am", "7am", "4am", "1am"]
   var canParkCounter = 0
 
   for (var i = timeArray.length - 1; i >= 0; i--) {
