@@ -1,12 +1,13 @@
 class Spot < ActiveRecord::Base
   SIGNS_TO_REJECT = ["Building Line", "Curb Line", "Property Line"]
-
   belongs_to :user
+
 
   def initialize(attributes = nil, options = {})
     @encoder_class = options[:encoder_class] || SpotEncoder
     super
     set_address_info
+
   end
 
   def user_point
@@ -81,6 +82,59 @@ class Spot < ActiveRecord::Base
   def get_signs_for(section)
     adjusted_distance = GeographicEncoder.get_distance_in_feet(section.point_from, [latitude, longitude]) - section.buffer
     section.signs_near(adjusted_distance)
+  end
+
+  def park_now?
+    current_day = Time.now.strftime('%a')
+    current_index = Time.now.strftime('%H.%M').to_f * 2
+    current_index = current_index.ceil
+    regs.map do |reg|
+      {reg[:side] => reg[:rules][current_day.to_sym.downcase][:can_i_park][current_index]}
+    end
+  end
+
+  def park_till
+    today = Time.now
+    park_till_day = nil
+    park_till_time = nil
+    current_index = Time.now.strftime('%H.%M').to_f * 2
+    current_index = current_index.ceil
+    regs.map do |reg|
+      if reg[:rules][today.strftime('%a').to_sym.downcase][:can_i_park][current_index..-1].any? {|sign| sign==false}
+        park_till_day = today.strftime('%a')
+      else
+        until park_till_day || today > Time.now + (60 * 60 * 24 * 6)
+          today += (60 * 60 * 24)
+          if reg[:rules][today.strftime('%a').to_sym.downcase][:can_i_park].any? {|sign| sign==false}
+            park_till_day = today.strftime('%a')
+          end
+        end
+      end
+      park_time_index = reg[:rules][today.strftime('%a').to_sym.downcase][:can_i_park].find_index(false)
+      park_till_time = time_index_to_english(park_time_index)
+      {reg[:side] => [park_till_day, park_till_time]}
+    end
+  end
+
+  def time_index_to_english(time_index)
+    time = time_index.to_f / 2
+    hour = time.to_s.split('.')[0].to_i
+    minute = time.to_s.split('.')[1].to_i * 6
+    if minute.to_s.length < 2
+      minute = minute.to_s + '0'
+    end
+    if hour == 0
+      hour = 12
+      am_pm = 'AM'
+    elsif hour > 12
+      am_pm = 'PM'
+      hour = hour / 2
+    elsif hour < 12
+      am_pm = 'AM'
+    elsif hour == 12
+      am_pm = 'PM'
+    end
+    "#{hour}:#{minute}#{am_pm}"
   end
 end
 
