@@ -1,31 +1,32 @@
 <div class="row" id="main_row_ct">
    <div class="small-12 columns">
-      <div class="row">
-         <div class="profile-card">
+      <div class="profile-card">
+         <div class="row" id="user_header_row">
             <div class="small-12 columns profile-image">
                <%= image_tag("#{current_user.image}",:class => "user-img right") %>
-               <h4 class="right"><%= current_user.name.capitalize %> </h4>
+               <h4 class="right" id="user_page_name"><%= current_user.name.capitalize %> </h4>
                <%= image_tag('small_logo.png',:class => "user-img small-3 columns left") %>
             </div>
-            <div class="small-12 columns">
-            </div>
-            <% if @spot %>
-               <div id='last_spot_info'>
-               <div class="small-12 columns last_spot">
-               <h4>You're parked at: <span><%= @spot.full_address %>.</span></h4>
+         </div>
 
-                  Display Current User.spot.last.active here
-               </div>
-               </div>
-            <% end %>
-            <div class="row collapse">
-               <ul class="stack-for-small button-group">
-                  <li><a href="#" class="button"> Already Moved <span> </span></a></li>
-                  <li><a href="#" class="button"> Remind Me <span></span></a></li>
-                  <li><a href="#" class="button"> Views <span></span></a></li>
-               </ul>
-            </div>
+
+      <% if @spot %>
+      <div class="row" id="chart-row">
+         <h4>Your vehicle is at:</h4>
+         <div id='last_spot_info'>
          </div>
       </div>
+      <% end %>
+      <div class="full-width navigation-area">
+      <div class="row" id="user_footer_row">
+         <div class="fixed-bottom">
+            <nav class="top-bar bottom-bar" id="bottom_nav">
+               <button>Already Moved</button>
+               <button>Remind Me</button>
+            </nav>
+         </div>
+      </div>
+      </div>
    </div>
+</div>
 </div>
