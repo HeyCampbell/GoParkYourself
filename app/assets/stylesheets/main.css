@@ -105,6 +105,7 @@
   background-color: rgba(0, 0, 0, 0.75);
   color:white;
   text-align: center;
+  height: 100vh;
 }
 
 #myModal h2, h3, h4 {
@@ -116,10 +117,14 @@
 }
 
 table {
-  background-color: rgba(11, 10, 10, 0.5);
-  border:none;
+  background-color: rgba(11,10,10,0.5);
+  border: none;
   border-collapse: separate;
-  border-spacing: 1px;
+  border-spacing: 0rem;
+}
+
+td {
+  border-right:1px solid black;
 }
 
 .table_head {
@@ -132,10 +137,12 @@ tr {
 }
 
 table tr td {
-  padding: 0.15rem 1.25rem;
+  padding: 0.1rem 1.25rem;
   font-size: 0.875rem;
-  color: #222222;
+  color: #222222 ;
+  border: 1px solid rgba(0, 0, 0, 0.19);
   text-align: center;
+  border-right: 1px solid rgba(16, 16, 16, 0.56);
 }
 
 .table_time {
@@ -157,17 +164,22 @@ border-radius: 10px;
 }
 
 .profile-card {
-  background-color: rgba(159, 150, 156, 0.63);
+  background-color: rgba(68, 33, 57, 0.63);
   width: 95%;
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
   padding:20px;
   color: rgb(202, 175, 146);
+  height:100vh;
+}
+
+#user_page_name {
+  font-family: 'Anton', sans-serif;
 }
 
 .profile-card h4 {
-  color: rgb(202, 175, 146);
+  color: rgb(250, 249, 249);
 }
 
 .last_spot {
@@ -183,10 +195,53 @@ margin-top: 2%;
 }
 
 .button {
-  background-color: rgba(202, 175, 146, 0.5);
-  border: 2px solid rgba(202, 175, 146, 0.5);
+  background-color: rgba(16, 13, 13, 0.66);
+  border-radius: 10px;
+  padding-top:0.33rem;
+  padding-bottom:0.33rem;
+  margin-left: 15px;
+  margin: none;
+  font-family: 'Anton', sans-serif;
+  margin-top: 10px;
 }
 
 .button:hover {
-  background-color: rgba(188, 115, 59, 0.78);
+  background-color: rgb(138, 88, 157);
+}
+
+#last_spot_info {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#chart-row {
+  background-color: rgba(16, 13, 13, 0.66);
+  border-radius:10px;
+  text-align: center;
+  height: 70vh;
+}
+
+#user_header_row {
+  height:10vh;
+}
+
+#bottom_nav {
+  height:20vh;
+  background-color: transparent;
+  text-align: center;
+}
+
+#bottom_nav button {
+  background-color: rgba(16, 13, 13, 0.66);
+  border-radius: 10px;
+  padding-top:0.33rem;
+  padding-bottom:0.33rem;
+  margin-left: 15px;
+  margin: none;
+  font-family: 'Anton', sans-serif;
+  margin-top: 10px;
+}
+
+#bottom_nav button:hover {
+  background-color: rgb(138, 88, 157);
 }
