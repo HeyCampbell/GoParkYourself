@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   root to: "welcomes#index"
   get '/' => 'welcomes#index'
   get '/user' => 'welcomes#user'
+  put '/user/:id' => 'users#update'
   get '/user/spot/:id' => 'spot#show'
 
-  put '/user/spot/:id/update' => 'spot#update'
+  put '/user/spot/:id/update' => 'spots#update'
 
   post '/spots/create' => 'spots#create'
 

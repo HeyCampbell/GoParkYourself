@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150218174946) do
     t.string   "email"
     t.string   "first_name"
     t.string   "image"
+    t.string   "phone_number"
   end
 
 end

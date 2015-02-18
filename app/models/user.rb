@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_many :spots
+  # validates :phone_number, :length => {:is => 10}, on: :update
+  # validates :phone_number, :numericality => {:only_integer => true}, on: :update
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -13,4 +16,5 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
 end
