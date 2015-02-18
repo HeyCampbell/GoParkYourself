@@ -34,7 +34,7 @@ module SpotSweeper
 
   def self.clear_inactive_spots!
     self.get_active_spots.each do |spot|
-      if !spot.expiration || (spot.expiration - Time.now < -3600)
+      if spot.expiration && spot.expiration - Time.now < -3600 || spot.created_at < Time.now - 604800
         spot.active = false
       end
     end
