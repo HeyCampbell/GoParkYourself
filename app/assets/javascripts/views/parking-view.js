@@ -45,10 +45,12 @@ View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
         html += "<td class='cant_park'></td>"
       }
 
-      if (sideTwoArray[canParkCounter] === true) {
-        html += "<td class='can_park'></td>"
-      } else {
-        html += "<td class='cant_park'></td>"
+      if (sideTwoArray !== undefined ) {
+        if (sideTwoArray[canParkCounter] === true) {
+          html += "<td class='can_park'></td>"
+        } else {
+          html += "<td class='cant_park'></td>"
+        }
       }
 
       html += "</tr>"
