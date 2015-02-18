@@ -24,8 +24,8 @@ module SpotSweeper
     formatted_spots = []
     spots.each do |spot|
       spot = Hash.new
-      spot[:body] = "Hi there #{spot.user.name}! Please move your vehicle before parking expires at #{spot.expiration}"
-      spot[:number] = "+1#{user.number}"
+      spot[:body] = "Hi there #{spot.user.first_name}! Please move your vehicle before parking expires at #{spot.expiration}"
+      spot[:number] = "+1#{user.phone}"
       formatted_spots << spot
     end
     formatted_spots
