@@ -4,6 +4,7 @@ module SpotSweeper
     format_spots_for_texts(self.get_hatching_spots).each do |formatted_spot|
       Message.send_text_message(formatted_spot)
     end
+    self.clear_inactive_spots!
   end
 
   def self.get_active_spots
@@ -29,5 +30,13 @@ module SpotSweeper
       formatted_spots << spot
     end
     formatted_spots
+  end
+
+  def self.clear_inactive_spots!
+    self.get_active_spots.each do |spot|
+      if !spot.expiration || (spot.expiration - Time.now < -3600)
+        spot.active = false
+      end
+    end
   end
 end
