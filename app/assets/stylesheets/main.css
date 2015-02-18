@@ -33,7 +33,6 @@
 }
 
 #img_banner {
-  background-image: url("intersection.jpeg");
   background-size: 100%;
   background-repeat: none;
   height:70vh;
@@ -102,13 +101,35 @@
 }
 
 #myModal {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.4);
   color:white;
   text-align: center;
   height: 100vh;
 }
 
 #myModal h2, h3, h4 {
+  color:white;
+}
+
+#thanksModal {
+  background-color: rgba(0, 0, 0, 0.8);
+  color:white;
+  text-align: center;
+  height: 100vh;
+}
+
+#thanksModal h2, h3, h4 {
+  color:white;
+}
+
+#remindMeModal {
+  background-color: rgba(0, 0, 0, 0.8);
+  color:white;
+  text-align: center;
+  height: 100vh;
+}
+
+#remindMeModal h2, h3, h4 {
   color:white;
 }
 
@@ -164,22 +185,23 @@ border-radius: 10px;
 }
 
 .profile-card {
-  background-color: rgba(68, 33, 57, 0.63);
+  background-color: rgba(122, 120, 121, 0.24);
   width: 95%;
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
-  padding:20px;
+  padding:15px;
   color: rgb(202, 175, 146);
   height:100vh;
 }
 
 #user_page_name {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Ubuntu Condensed', sans-serif;
 }
 
-.profile-card h4 {
+.profile-card h4, h5 {
   color: rgb(250, 249, 249);
+  font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .last_spot {
@@ -201,7 +223,7 @@ margin-top: 2%;
   padding-bottom:0.33rem;
   margin-left: 15px;
   margin: none;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Ubuntu Condensed', sans-serif;
   margin-top: 10px;
 }
 
@@ -215,7 +237,6 @@ margin-top: 2%;
 }
 
 #chart-row {
-  background-color: rgba(16, 13, 13, 0.66);
   border-radius:10px;
   text-align: center;
   height: 70vh;
@@ -227,7 +248,7 @@ margin-top: 2%;
 
 #bottom_nav {
   height:20vh;
-  background-color: transparent;
+  background-color: rgb(15, 15, 15);
   text-align: center;
 }
 
@@ -238,10 +259,21 @@ margin-top: 2%;
   padding-bottom:0.33rem;
   margin-left: 15px;
   margin: none;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Ubuntu Condensed', sans-serif;
   margin-top: 10px;
 }
 
 #bottom_nav button:hover {
   background-color: rgb(138, 88, 157);
 }
+
+#user_sign_out_link {
+  margin-top: -15px;
+  font-size: 11px;
+  font-style: italic;
+}
+
+#user_sign_out_link a{
+  color: rgb(166, 118, 195);
+}
+
