@@ -1,9 +1,9 @@
 class Spot < ActiveRecord::Base
+
   SIGNS_TO_REJECT = ["Building Line", "Curb Line", "Property Line"]
   belongs_to :user
 
-
-  def initialize(attributes = nil, options = {})
+  def initialize(options = {})
     @encoder_class = options[:encoder_class] || SpotEncoder
     super
     set_address_info
