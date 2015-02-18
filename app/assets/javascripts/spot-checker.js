@@ -2,7 +2,8 @@ $(document).ready(function() {
 
   $('#send-latlng').click(function(event) {
     event.preventDefault();
-    $('#table_ct').html("");
+
+    View.Table().html("");
     //interstitialGif.show();
     var $form = $(event.currentTarget);
     var $url = $form.attr("action");
@@ -19,6 +20,9 @@ $(document).ready(function() {
       console.log(response);
       loadChecker(response);
     });
+    ajaxRequest.fail(function(){
+      loadNotSuccessful()
+    })
   });
 
   //"show map?"
@@ -27,15 +31,18 @@ $(document).ready(function() {
 function loadChecker(response) {
   if (response.regs[0] === undefined || response.regs[0].rules === "error parsing rules" ) {
     loadNotSuccessful();
+  } else {
+    loadSuccessful(response);
   }
-  else {
-    var spot = new Spot(response)
-    console.log(spot)
-    $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
-  }
+}
+
+function loadSuccessful(response) {
+   var spot = new Spot(response)
+   console.log(spot)
+   View.Table().html(View.ParseRegulations(spot.getCurrentDayRegs()))
 }
 
 function loadNotSuccessful() {
   //interstitialGif.hide()
-  $('#table_ct').html("<h2>Sorry this spot has not yet been indexed</h2>")
+  View.Table().html("<h2>Sorry this spot has not yet been indexed</h2>")
 }
