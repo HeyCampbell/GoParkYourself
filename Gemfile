@@ -33,6 +33,8 @@ gem 'geonames_api'
 
 gem 'twilio-ruby', '~> 3.12'
 
+gem 'whenever', :require => false
+
 gem 'omniauth-google-oauth2'
 
 gem 'puma'
