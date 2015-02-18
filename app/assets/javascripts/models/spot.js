@@ -1,7 +1,10 @@
 var Spot = function(json) {
+
+   this.address = json.spot.full_address
    this.sideOne = {}
      this.sideOne.Side = json.regs[0].side;
      this.sideOne.Suspended = json.suspended;
+
      this.sideOne.Regulations = {
          Monday : [json.regs[0].rules['mon'].start, json.regs[0].rules['mon'].stop, json.regs[0].rules['mon'].can_i_park],
          Tuesday : [json.regs[0].rules['tue'].start, json.regs[0].rules['tue'].stop, json.regs[0].rules['tue'].can_i_park],
@@ -58,6 +61,8 @@ Spot.prototype.getCurrentDayRegs = function() {
     }
   }
   bothSides.Suspended = this.sideOne.Suspended;
+  bothSides.Address = this.address;
+
   return bothSides;
 }
 

@@ -1,9 +1,15 @@
 var View = {}
 
+View.Table = function() {
+  return $('#table_ct')
+}
+
 View.ParseRegulations = function(todayRegs) {
   var sideOneArray = todayRegs.sideOneCanPark;
   var sideTwoArray = todayRegs.sideTwoCanPark;
-  var html = "<table id='regs_table'>"
+  var html = "<h4> " + todayRegs.Address + " </h4>"
+  html += View.AltSuspended(todayRegs.Suspended);
+  html += "<table id='regs_table'>"
   html += "<thead>"
   html += "<tr>"
   html += "<td class='table_head'>Time</td>"
@@ -52,6 +58,17 @@ View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
 View.ReturnSpotHtml = function() {
   $spot = $('#table_ct').html();
   return $spot;
+}
+
+View.AltSuspended = function(suspendedStatus) {
+  var html = ''
+     if (suspendedStatus.Suspended === false ) {
+     html += "<h4> Alternative Side Parking in effect </h4>"
+   } else {
+     html += "<h4> Alternative Side Parking not in effect</h4>"
+   }
+
+   return html;
 }
 
 //TO IMPLEMENT

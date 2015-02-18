@@ -6,32 +6,31 @@ class Sign < ActiveRecord::Base
 
   end
 
-  def no_parking_times
-    parking_regs = {mon: self.sign_description,
-        tue: self.sign_description,
-        wed: self.sign_description,
-        thu: self.sign_description,
-        fri: self.sign_description,
-        sat: self.sign_description,
-        sun: self.sign_description}
+  def self.no_parking_times(desc)
+    parking_regs = {mon: desc,
+        tue: desc,
+        wed: desc,
+        thu: desc,
+        fri: desc,
+        sat: desc,
+        sun: desc}
     unaffected_day = []
-    if /NO PARKING/.match(self.sign_description) || /NO STANDING/.match(self.sign_description) || /NO STOPPING/.match(self.sign_description)
-      if /ANYTIME/.match(self.sign_description)
+
+    if /NO PARKING/.match(desc) || /HOUR PARKING/.match(desc) ||/NO STANDING/.match(desc) || /NO STOPPING/.match(desc)
+      if /ANYTIME/.match(desc)
         @times = ["12AM", "12AM"]
       else
-        if /((\d*|\d:\d*)[APM]*)/.match(self.sign_description)
-
-          @times = self.parse_times_from_description(self.sign_description)
-          times_48 = self.get_48_times(@times)
-
+        if /((\d*|\d:\d*)[APM]*)/.match(desc)
+          @times = Sign.parse_times_from_description(desc)
+          times_48 = Sign.get_48_times(@times)
         end
-        if /EXCEPT/.match(self.sign_description)
-          unaffected_day << /\bEXCEPT\s+\K\S+/.match(self.sign_description).to_s[0..2]
-        elsif /THRU/.match(self.sign_description)
+        if /EXCEPT/.match(desc)
+          unaffected_day << /\bEXCEPT\s+\K\S+/.match(desc).to_s[0..2]
+        elsif /THRU/.match(desc)
           week = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
           range = []
           week.each_with_index do |day, index|
-            if /#{day}/.match(self.sign_description)
+            if /#{day}/.match(desc)
               range << index
             end
           end
@@ -44,24 +43,27 @@ class Sign < ActiveRecord::Base
       end
       parking_regs.each do |k,v|
         unless unaffected_day.include?(k.to_s.upcase)
-          # byebug
+
           parking_regs[k] = {:start => @times[0], :stop => @times[1], :can_i_park => set_48_times(@times)}
         else
           parking_regs[k] = {:start => "0", :stop => "0", :can_i_park => set_48_times(@times)}
         end
       end
-    elsif /Curb Line/.match(self.sign_description) || /Building Line/.match(self.sign_description) || /Property Line/.match(self.sign_description)
+    # elsif /HOUR PARKING/.match(desc)
+
+
+    elsif /Curb Line/.match(desc) || /Building Line/.match(desc) || /Property Line/.match(desc)
       parking_regs.each do |k,v|
         parking_regs[k] = {:start => "0", :stop => "0", :can_i_park => set_48_times(@times)}
       end
     else
-      parking_regs = parking_regs.map {|k,v| {k => self.sign_description}}
+      parking_regs = parking_regs.map {|k,v| {k => desc}}
     end
 
     parking_regs
   end
 
-  def parse_times_from_description(desc)
+  def self.parse_times_from_description(desc)
 
     time_range = /((\d*|\d:\d*)[APM]*-(\d*|\d:\d*)[APM]+)/.match(desc).to_s || /((\d*|\d:\d*)[APM]*)/.match(desc).to_s
     am_pm = /[APM]/.match(time_range.to_s)
@@ -73,7 +75,7 @@ class Sign < ActiveRecord::Base
   end
 
 
-  def get_48_times(times)
+  def self.get_48_times(times)
     times = times.map do |t|
       if /12:*\d*P*/.match(t) || /AM*/.match(t)
         buffer = 0
@@ -89,11 +91,11 @@ class Sign < ActiveRecord::Base
     times
   end
 
-  def set_48_times(times)
+  def self.set_48_times(times)
     if times == ["12AM", "12AM"]
       return Array.new(48, false)
     end
-    time_index = get_48_times(times)
+    time_index = Sign.get_48_times(times)
     parking_times = Array.new(48, true)
     parking_times.each_with_index.map do |increment, i|
       if i >= time_index[0] && i <= time_index[1]
