@@ -78,7 +78,7 @@ class Spot < ActiveRecord::Base
       if v[0]
         rules = Sign.no_parking_times(v[0].sign_description)
       else
-        rules = Sign.no_parking_times("NO PARKIN ANYTIME")
+        rules = Sign.no_parking_times("NO PARKING ANYTIME")
       end
        {side: k , rules: rules}
     end
@@ -94,7 +94,7 @@ class Spot < ActiveRecord::Base
     current_index = Time.now.strftime('%H.%M').to_f * 2
     current_index = current_index.ceil
     @regulations.map do |reg|
-      byebug
+      # byebug
       {:side => reg[:side],  :i_can_has_park => reg[:rules][current_day.to_sym.downcase][:can_i_park][current_index]}
     end
   end
