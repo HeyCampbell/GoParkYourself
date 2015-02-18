@@ -26,7 +26,19 @@
          <div class="fixed-bottom">
             <nav class="top-bar bottom-bar" id="bottom_nav">
                <button>Already Moved</button>
-               <button>Remind Me</button>
+               <%if @spot.remind?%>
+               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                  <input type="hidden" name="_method" value="PUT">
+                  <input type="hidden" name="@spot.remind?" value="false">
+                  <input type="submit" value="No reminder">
+               </form>
+               <%else%>
+               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                  <input type="hidden" name="_method" value="PUT">
+                  <input type="hidden" name="@spot.remind?" value="true">
+                  <input class = "button" type="submit" value="Add reminder">
+               </form>
+               <%end%>
             </nav>
          </div>
       </div>

@@ -10,8 +10,9 @@ class SpotsController < ApplicationController
   end
 
   def update
+     p params
      spot = Spot.find(params[:id])
-     spot.update_attribute(active: false)
+     spot.update_attribute(spot)
 
   end
 
