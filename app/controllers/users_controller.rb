@@ -11,12 +11,13 @@ class UsersController < ApplicationController
       spot.regs
 
       if spot.park_till[0][:side] == params[:side_of_street]
-        expiration = park_till[0][:i_can_park_until]
+        expiration = spot.park_till[0][:i_can_park_until]
 
       else
-        expiration = park_till[1][:i_can_park_until]
+        expiration = spot.park_till[1][:i_can_park_until]
 
       spot.update_attributes(remind?:  true, expiration: expiration)
+      end
 
       redirect_to user_url
     end
