@@ -8,20 +8,24 @@ View.ParseRegulations = function(todayRegs) {
   var sideOneArray = todayRegs.sideOneCanPark;
   var sideTwoArray = todayRegs.sideTwoCanPark;
   var html = "<h4> " + todayRegs.Address + " </h4>"
-  html += View.AltSuspended(todayRegs.Suspended);
   html += "<table id='regs_table'>"
   html += "<thead>"
   html += "<tr>"
   html += "<td class='table_head'>Time</td>"
   html += "<td class='table_head'>" + todayRegs.sideOneName + " Side<br>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
-  html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side<br>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+
+  if (todayRegs.sideTwoName !== undefined) {
+    html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side<br>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+  }
+
   html += "</tr>"
   html += "</thead>"
 
   html += View.ColorizeWithTime(sideOneArray, sideTwoArray);
-
   html += "</tr>"
   html += "</table>"
+  html += View.AltSuspended(todayRegs.Suspended);
+
   return html
 }
 
@@ -41,10 +45,12 @@ View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
         html += "<td class='cant_park'></td>"
       }
 
-      if (sideTwoArray[canParkCounter] === true) {
-        html += "<td class='can_park'></td>"
-      } else {
-        html += "<td class='cant_park'></td>"
+      if (sideTwoArray !== undefined ) {
+        if (sideTwoArray[canParkCounter] === true) {
+          html += "<td class='can_park'></td>"
+        } else {
+          html += "<td class='cant_park'></td>"
+        }
       }
 
       html += "</tr>"
@@ -63,9 +69,9 @@ View.ReturnSpotHtml = function() {
 View.AltSuspended = function(suspendedStatus) {
   var html = ''
      if (suspendedStatus.Suspended === false ) {
-     html += "<h4> Alternate Side Parking in effect </h4>"
+     html += "<h5> Alternate Side Parking in effect </h5>"
    } else {
-     html += "<h4> Alternate Side Parking not in effect</h4>"
+     html += "<h5> Alternate Side Parking not in effect</h5>"
    }
 
    return html;
