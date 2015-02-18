@@ -7,7 +7,8 @@ View.Table = function() {
 View.ParseRegulations = function(todayRegs) {
   var sideOneArray = todayRegs.sideOneCanPark;
   var sideTwoArray = todayRegs.sideTwoCanPark;
-  var html = "<h4> " + todayRegs.Address + " </h4>"
+  var html =  "<h5>Your vehicle is at</h5>"
+  html += "<h4> " + todayRegs.Address + " </h4>"
   html += "<table id='regs_table'>"
   html += "<thead>"
   html += "<tr>"
