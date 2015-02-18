@@ -30,12 +30,15 @@ $(document).ready(function() {
 function loadChecker(response) {
   if (response.regs[0] === undefined || response.regs[0].rules === "error parsing rules" ) {
     loadNotSuccessful();
+  } else {
+    loadSuccessful(response);
   }
-  else {
-    var spot = new Spot(response)
-    console.log(spot)
-    $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
-  }
+}
+
+function loadSuccessful(response) {
+   var spot = new Spot(response)
+   console.log(spot)
+   $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
 }
 
 function loadNotSuccessful() {
