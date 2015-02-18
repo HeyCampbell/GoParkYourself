@@ -49,9 +49,6 @@ class Sign < ActiveRecord::Base
           parking_regs[k] = {:start => "0", :stop => "0", :can_i_park => set_48_times(@times)}
         end
       end
-    # elsif /HOUR PARKING/.match(desc)
-
-
     elsif /Curb Line/.match(desc) || /Building Line/.match(desc) || /Property Line/.match(desc)
       parking_regs.each do |k,v|
         parking_regs[k] = {:start => "0", :stop => "0", :can_i_park => set_48_times(@times)}
@@ -59,12 +56,10 @@ class Sign < ActiveRecord::Base
     else
       parking_regs = parking_regs.map {|k,v| {k => desc}}
     end
-
     parking_regs
   end
 
   def self.parse_times_from_description(desc)
-
     time_range = /((\d*|\d:\d*)[APM]*-(\d*|\d:\d*)[APM]+)/.match(desc).to_s || /((\d*|\d:\d*)[APM]*)/.match(desc).to_s
     am_pm = /[APM]/.match(time_range.to_s)
     times = time_range.split('-')
@@ -73,7 +68,6 @@ class Sign < ActiveRecord::Base
     end
     times
   end
-
 
   def self.get_48_times(times)
     times = times.map do |t|
@@ -88,6 +82,7 @@ class Sign < ActiveRecord::Base
       base += buffer
       base *= 2
     end
+    times[1] -= 1
     times
   end
 
