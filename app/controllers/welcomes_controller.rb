@@ -14,7 +14,7 @@ class WelcomesController < ApplicationController
   def user_current_spot
     if current_user.spots.last
       spot = current_user.spots.last
-      spot_info = {spot: spot, suspended: Tweet.suspended?, regs: spot.regs}
+      spot_info = {spot: spot, suspended: Tweet.suspended?, regs: spot.regs, park_right_now: spot.park_now?, move_by: spot.park_till}
       render json: spot_info.to_json
     end
   end

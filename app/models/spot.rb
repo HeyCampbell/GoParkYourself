@@ -1,13 +1,13 @@
 class Spot < ActiveRecord::Base
-
   SIGNS_TO_REJECT = ["Building Line", "Curb Line", "Property Line"]
   belongs_to :user
+  attr :regulations
 
   def initialize(options = {})
     @encoder_class = options[:encoder_class] || SpotEncoder
     super
     set_address_info
-
+    @regulations = "Ashley is right"
   end
 
   def user_point
@@ -74,13 +74,13 @@ class Spot < ActiveRecord::Base
   end
 
   def regs
-    self.sign_picker.map do |k,v|
+    @regulations = self.sign_picker.map do |k,v|
       if v[0]
         rules = Sign.no_parking_times(v[0].sign_description)
       else
         rules = Sign.no_parking_times("NO PARKIN ANYTIME")
       end
-      {side: k , rules: rules}
+       {side: k , rules: rules}
     end
   end
 
@@ -93,8 +93,9 @@ class Spot < ActiveRecord::Base
     current_day = Time.now.strftime('%a')
     current_index = Time.now.strftime('%H.%M').to_f * 2
     current_index = current_index.ceil
-    regs.map do |reg|
-      {reg[:side] => reg[:rules][current_day.to_sym.downcase][:can_i_park][current_index]}
+    @regulations.map do |reg|
+      byebug
+      {:side => reg[:side],  :i_can_has_park => reg[:rules][current_day.to_sym.downcase][:can_i_park][current_index]}
     end
   end
 
@@ -104,7 +105,7 @@ class Spot < ActiveRecord::Base
     park_till_time = nil
     current_index = Time.now.strftime('%H.%M').to_f * 2
     current_index = current_index.ceil
-    regs.map do |reg|
+    @regulations.map do |reg|
       if reg[:rules][today.strftime('%a').to_sym.downcase][:can_i_park][current_index..-1].any? {|sign| sign==false}
         park_till_day = today.strftime('%a')
       else
@@ -117,7 +118,7 @@ class Spot < ActiveRecord::Base
       end
       park_time_index = reg[:rules][today.strftime('%a').to_sym.downcase][:can_i_park].find_index(false)
       park_till_time = time_index_to_english(park_time_index)
-      {reg[:side] => [park_till_day, park_till_time]}
+      {:side => reg[:side], :i_can_park_until => [park_till_time, park_till_day].join(' ')}
     end
   end
 
