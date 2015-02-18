@@ -19,6 +19,9 @@ $(document).ready(function() {
       console.log(response);
       loadChecker(response);
     });
+    ajaxRequest.fail(function(){
+      loadNotSuccessful()
+    })
   });
 
   //"show map?"
