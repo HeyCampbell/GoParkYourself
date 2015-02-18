@@ -63,9 +63,9 @@ View.ReturnSpotHtml = function() {
 View.AltSuspended = function(suspendedStatus) {
   var html = ''
      if (suspendedStatus.Suspended === false ) {
-     html += "<h4> Alternative Side Parking in effect </h4>"
+     html += "<h4> Alternate Side Parking in effect </h4>"
    } else {
-     html += "<h4> Alternative Side Parking not in effect</h4>"
+     html += "<h4> Alternate Side Parking not in effect</h4>"
    }
 
    return html;

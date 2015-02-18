@@ -18,8 +18,8 @@ $(document).ready(function() {
 
 function updatePhoneForm(sideOne, sideTwo) {
   var html = ""
-  html += "<input type='radio' name='side-of-street' value='" + sideOne + "'>" + " " + sideOne + " Side <br>"
-  html += "<input type='radio' name='side-of-street' value='" + sideTwo + "'>" + " " + sideTwo + " Side"
+  html += "<input type='radio' name='side_of_street' value='" + sideOne + "'>" + " " + sideOne + " Side <br>"
+  html += "<input type='radio' name='side_of_street' value='" + sideTwo + "'>" + " " + sideTwo + " Side"
   return html
 }
 
