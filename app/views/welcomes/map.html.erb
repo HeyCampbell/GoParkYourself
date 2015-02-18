@@ -31,6 +31,13 @@
 
 <div id="remindMeModal" class="reveal-modal" data-reveal>
   <h2>Okay no Problem!</h2>
+
+  <form action= "/user/<%= session[:user_id] %>/" method="POST">
+    Telephone: <input type="tel" name="phone_number">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit">
+  </form>
+
   <p>We'll send you a text an hour before you should move.</p>
   <a class="close-reveal-modal">&#215;</a>
 </div>
