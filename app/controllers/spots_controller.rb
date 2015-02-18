@@ -13,6 +13,5 @@ class SpotsController < ApplicationController
      p params
      spot = Spot.find(params[:id])
      spot.update_attribute(spot)
-
   end
 end
