@@ -4,7 +4,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     View.Table().html("");
-    //interstitialGif.show();
+    //interstitialGi.show();
     var $form = $(event.currentTarget);
     var $url = $form.attr("action");
     var $data = {latitude: marker.position.k,
