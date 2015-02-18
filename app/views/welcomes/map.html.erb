@@ -24,13 +24,22 @@
   </div>
   <br>
   <p>Would you like us to remind you?</p>
-  <p><a href="#" data-reveal-id="remindMeModal" class="secondary button">Yes</a></p>
+  <p><a href="#" id='reminderModal' data-reveal-id="remindMeModal" class="secondary button">Yes</a></p>
   <p><a href="#" data-reveal-id="thanksModal" class="secondary button">Nope</a></p>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
 <div id="remindMeModal" class="reveal-modal" data-reveal>
   <h2>Okay no Problem!</h2>
+
+  <form action= "/user/<%= session[:user_id] %>/" method="POST">
+    Telephone: <input type="tel" name="phone_number">
+    Side  <h1 id='side-one-form'></h1>
+    Side  <h1 id='side-two-form'></h1>
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit">
+  </form>
+
   <p>We'll send you a text an hour before you should move.</p>
   <a class="close-reveal-modal">&#215;</a>
 </div>
