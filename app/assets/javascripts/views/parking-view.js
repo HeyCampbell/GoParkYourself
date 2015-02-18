@@ -1,5 +1,9 @@
 var View = {}
 
+View.Table = function() {
+  return $('#table_ct')
+}
+
 View.ParseRegulations = function(todayRegs) {
   var sideOneArray = todayRegs.sideOneCanPark;
   var sideTwoArray = todayRegs.sideTwoCanPark;

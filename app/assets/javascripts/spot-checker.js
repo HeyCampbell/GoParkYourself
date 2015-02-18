@@ -2,7 +2,8 @@ $(document).ready(function() {
 
   $('#send-latlng').click(function(event) {
     event.preventDefault();
-    $('#table_ct').html("");
+
+    View.Table().html("");
     //interstitialGif.show();
     var $form = $(event.currentTarget);
     var $url = $form.attr("action");
@@ -38,10 +39,10 @@ function loadChecker(response) {
 function loadSuccessful(response) {
    var spot = new Spot(response)
    console.log(spot)
-   $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
+   View.Table().html(View.ParseRegulations(spot.getCurrentDayRegs()))
 }
 
 function loadNotSuccessful() {
   //interstitialGif.hide()
-  $('#table_ct').html("<h2>Sorry this spot has not yet been indexed</h2>")
+  View.Table().html("<h2>Sorry this spot has not yet been indexed</h2>")
 }
