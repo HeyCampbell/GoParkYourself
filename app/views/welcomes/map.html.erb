@@ -34,8 +34,10 @@
 
   <form action= "/user/<%= session[:user_id] %>/" method="POST">
     Telephone: <input type="tel" name="phone_number">
-    Side  <h1 id='side-one-form'></h1>
-    Side  <h1 id='side-two-form'></h1>
+    <div id="phone-form-update">
+      <input type="radio" name="side-of-street" value='sideOne'> SideOne
+      <input type="radio" name="side-of-street" value='sideTwo'> SideTwo
+    </div>
     <input type="hidden" name="_method" value="PUT">
     <input type="submit">
   </form>
