@@ -3,10 +3,8 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
      user.update_attributes(phone_number: params[:phone_number].delete(" "))
-     #set spot to remind, set expiration based on info passed
 
     if user.save
-
       spot = user.spots.last
       spot.regs
 
