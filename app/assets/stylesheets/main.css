@@ -2,7 +2,7 @@
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background-image: url("floral_background.png");
+  background-image: url("ash_fault.jpg");
   background-size: 100%;
   background-repeat: none;
  }
@@ -27,8 +27,8 @@
 
 #map_bar {
   padding-top: -10px;
-  background-color: black;
-  color:white;
+  background-color: rgb(5, 5, 5);
+  color:rgb(250, 250, 250);
   height:100vh;
 }
 
@@ -50,7 +50,7 @@
 
 .auth_buttons button {
   background-color: transparent;
-  border:2px solid white;
+  border:2px solid rgb(250, 250, 250);
   border-radius: 10px;
 }
 
@@ -61,7 +61,7 @@
 
 #sign_in {
   background-color: transparent;
-  border:2px solid white;
+  border:2px solid rgb(250, 250, 250);
   border-radius: 10px;
 }
 
@@ -73,7 +73,7 @@
   padding-top:0.33rem;
   padding-bottom:0.33rem;
   background-color: transparent;
-  border:2px solid white;
+  border:2px solid rgb(250, 250, 250);
   border-radius: 10px;
 }
 
@@ -97,40 +97,40 @@
 
 #button_ct {
   height:30vh;
-  background-color: black;
+  background-color: rgb(5, 5, 5);
 }
 
 #myModal {
   background-color: rgba(0, 0, 0, 0.4);
-  color:white;
+  color:rgb(250, 250, 250);
   text-align: center;
   height: 100vh;
 }
 
 #myModal h2, h3, h4 {
-  color:white;
+  color:rgb(250, 250, 250);
 }
 
 #thanksModal {
   background-color: rgba(0, 0, 0, 0.8);
-  color:white;
+  color:rgb(250, 250, 250);
   text-align: center;
   height: 100vh;
 }
 
 #thanksModal h2, h3, h4 {
-  color:white;
+  color:rgb(250, 250, 250);
 }
 
 #remindMeModal {
   background-color: rgba(0, 0, 0, 0.8);
-  color:white;
+  color:rgb(250, 250, 250);
   text-align: center;
   height: 100vh;
 }
 
 #remindMeModal h2, h3, h4 {
-  color:white;
+  color:rgb(250, 250, 250);
 }
 
 #regs_table {
@@ -145,12 +145,12 @@ table {
 }
 
 td {
-  border-right:1px solid black;
+  border-right:1px solid rgb(5, 5, 5);
 }
 
 .table_head {
-  background-color: black;
-  color: white;
+  background-color: rgb(5, 5, 5);
+  color: rgb(250, 250, 250);
 }
 
 tr {
@@ -167,8 +167,8 @@ table tr td {
 }
 
 .table_time {
-  background-color: black;
-  color: white;
+  background-color: rgb(5, 5, 5);
+  color: rgb(250, 250, 250);
   border:none;
 }
 
@@ -184,8 +184,12 @@ table tr td {
 border-radius: 10px;
 }
 
+#logo_on_user_page {
+  min-height: 100px;
+  min-width: 150px;
+}
+
 .profile-card {
-  background-color: rgba(122, 120, 121, 0.24);
   width: 95%;
   margin: auto;
   margin-top: 10px;
@@ -279,5 +283,9 @@ margin-top: 2%;
 
 #move_by_time {
   color: rgb(166, 118, 195);
+}
+
+#name_and_link {
+  margin-right: 5px;
 }
 
