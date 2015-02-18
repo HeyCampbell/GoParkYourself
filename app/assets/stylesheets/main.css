@@ -13,6 +13,7 @@
   margin: 0px;
   padding: 0px;
   z-index:2;
+  background: transparent url("http://media4.giphy.com/media/44VMzCwVi6iEU/giphy.gif") no-repeat center center;
 }
 
 #main_row_ct {
