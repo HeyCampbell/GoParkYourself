@@ -15,5 +15,4 @@ class SpotsController < ApplicationController
      spot.update_attribute(spot)
 
   end
-
 end
