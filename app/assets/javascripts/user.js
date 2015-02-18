@@ -8,8 +8,7 @@ $(document).ready(function() {
     ajaxRequest.done(function(response) {
       var spot = new Spot(response);
       console.log(spot);
-      //below will append the view
-      // $('#table_ct').html(View.ParseRegulations(spot.getCurrentDayRegs()))
+      $('#last_spot_info').html(View.ParseRegulations(spot.getCurrentDayRegs()))
     })
   };
 });
