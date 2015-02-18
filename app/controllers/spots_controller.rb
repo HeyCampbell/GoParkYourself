@@ -10,21 +10,22 @@ class SpotsController < ApplicationController
   end
 
   def update
-     # p params
+     p params
      spot = Spot.find(params[:id])
+     spot.regs
 
-     if params[:remind?] == true
+   if params[:remind?] == "true"
       if spot.park_till[0][:side] == params[:side_of_street]
         expiration = spot.park_till[0][:i_can_park_until]
       else
         expiration = spot.park_till[1][:i_can_park_until]
       end
         spot.update_attributes(remind?:  true, expiration: expiration)
-        Message.send_text_message({number_to_send_to: "+1" + params[:phone_numer].delete(" ").delete(".").delete("-"), body: "Reminder set. Please remember to move your vehicel by #{expiration}. We'll send you a heads up an hour before"})
-      else
-        spot.update_attributes(remind?: false)
-        redirect_to user_url
+        Message.send_text_message({number_to_send_to: "+1" + params[:phone_number].delete(" ").delete(".").delete("-"), body: "Reminder set. Please remember to move your vehicle by #{expiration}. We'll send you a heads up an hour before"})
+    else
+      spot.update_attributes(remind?: false)
     end
+      redirect_to user_url
   end
 
   def destroy

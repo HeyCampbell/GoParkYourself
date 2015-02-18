@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   get '/' => 'welcomes#index'
   get '/user' => 'welcomes#user'
 
-  put '/user/:id' => 'users#update'
+  put '/user/:id' => 'users#update', as: 'user_update'
 
   get '/user/spot/:id' => 'spots#show'
 
-  put '/user/spot/:id/update' => 'spots#update'
+  put '/user/spot/:id/update' => 'spots#update', as: 'spot_update'
 
   post '/spots/create' => 'spots#create'
 
