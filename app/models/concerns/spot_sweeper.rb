@@ -13,7 +13,7 @@ module SpotSweeper
   def self.get_hatching_spots
     spots_to_be_sent_reminders_now = []
     self.get_active_spots.each do |spot|
-      if spot.expiration - Time.now < 3600
+      if spot.expiration && spot.expiration - Time.now < 3600
         spots_to_be_sent_reminders_now < spot
       end
     end
