@@ -13,7 +13,11 @@ View.ParseRegulations = function(todayRegs) {
   html += "<tr>"
   html += "<td class='table_head'>Time</td>"
   html += "<td class='table_head'>" + todayRegs.sideOneName + " Side<br>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
-  html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side<br>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+
+  if (todayRegs.sideTwoName !== undefined) {
+    html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side<br>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+  }
+
   html += "</tr>"
   html += "</thead>"
 
