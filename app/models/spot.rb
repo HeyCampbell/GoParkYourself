@@ -49,7 +49,9 @@ class Spot < ActiveRecord::Base
   def get_signs
     both_side_signs = Hash.new
     self.find_section.each do |section|
+      # byebug
       both_side_signs[section.side_of_street] = self.get_signs_for(section)
+
     end
     both_side_signs
   end
@@ -58,22 +60,25 @@ class Spot < ActiveRecord::Base
     signs = get_signs
     signs.each do |direction, side|
       side.reject! do |sign|
-        /#{SIGNS_TO_REJECT.join('|')}/.match(sign.sign_description)
+        /#{SIGNS_TO_REJECT.join('|')}/.match(sign.sign_description) || !readable?(sign.sign_description)
       end
     end
-
     signs
   end
 
 
+  def readable?(sign_desc)
+    known_signs = ['NO PARKING', 'NO STANDING', 'NO STOPPING', 'HOUR PARKING']
+    known_times = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN", 'ANYTIME', 'EXCEPT', 'THRU']
+    /#{known_signs.join('|')}/.match(sign_desc) && /#{known_times.join('|')}/.match(sign_desc)
+  end
+
   def regs
     self.sign_picker.map do |k,v|
       if v[0]
-        rules = v[0].no_parking_times
-      elsif v.empty?
-        rules = "error parsing rules"
+        rules = Sign.no_parking_times(v[0].sign_description)
       else
-        rules = v
+        rules = Sign.no_parking_times("NO PARKIN ANYTIME")
       end
       {side: k , rules: rules}
     end
