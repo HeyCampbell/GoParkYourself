@@ -25,10 +25,10 @@ class SpotsController < ApplicationController
       end
         spot.update_attributes(remind?:  true, expiration: expiration)
         Message.send_text_message({number_to_send_to: "+1" + params[:phone_number].delete(" ").delete(".").delete("-"), body: "Reminder set. Please remember to move your vehicle by #{expiration}. We'll send you a heads up an hour before"})
-        redirect_to user_url
+        redirect_to user_home_path
     else
       spot.update_attributes(remind?: false)
-      redirect_to user_url
+      redirect_to user_home_path
     end
   end
 

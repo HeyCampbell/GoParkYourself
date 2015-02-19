@@ -26,7 +26,8 @@
 <div id="remindMeModal" class="tiny reveal-modal" data-reveal>
   <h2>Okay no Problem!</h2>
 
-  <form action= "/user/<%= session[:user_id] %>/" method="POST">
+
+  <%= form_tag("/user/#{session[:user_id]}/", method: "POST") do %>
 
     Telephone : <input id="tel" pattern="^\d{3}.*\d{3}.*\d{4}$" type="tel" name="phone_number">
     <div id="phone-form-update">
@@ -35,7 +36,7 @@
     </div>
     <input type="hidden" name="_method" value="PUT">
     <input type="submit" class="button" id="submit_side_button">
-  </form>
+  <%end%>
 
   <p>We'll send you a text an hour before you should move.</p>
   <a class="close-reveal-modal">&#215;</a>
