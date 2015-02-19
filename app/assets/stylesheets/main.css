@@ -199,7 +199,7 @@ border-radius: 10px;
   border-radius: 10px;
   padding:15px;
   color: rgb(202, 175, 146);
-  height:100vh;
+  height:90vh;
 }
 
 #user_page_name {
@@ -255,7 +255,6 @@ margin-top: 2%;
 
 #bottom_nav {
   height:20vh;
-  background-color: rgb(15, 15, 15);
   text-align: center;
 }
 
@@ -268,6 +267,10 @@ margin-top: 2%;
   margin: none;
   font-family: 'Ubuntu Condensed', sans-serif;
   margin-top: 10px;
+}
+
+.top-bar {
+  background
 }
 
 #bottom_nav button:hover {
