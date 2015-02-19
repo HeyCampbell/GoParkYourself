@@ -101,11 +101,13 @@
 }
 
 #myModal {
-  background-color: rgba(0, 0, 0, 0.4);
   color:rgb(250, 250, 250);
   text-align: center;
   height: 100vh;
   overflow: scroll;
+  background-image: url("light_ash_fault.jpg");
+  background-size: 100% 100%;
+  background-repeat: none;
 }
 
 #myModal h2, h3, h4 {
