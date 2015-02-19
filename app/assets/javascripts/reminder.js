@@ -11,7 +11,9 @@ $(document).ready(function() {
       var sideOne = spot.sideOne.Side
       var sideTwo = spot.sideTwo.Side
       var sideOneMove = response.move_by[0].i_can_park_until
-      var sideTwoMove = response.move_by[1].i_can_park_until
+      if (response.move_by[1].i_can_park_until !== undefined) {
+        var sideTwoMove = response.move_by[1].i_can_park_until
+      }
       var sideOneParkNow = response.park_right_now[0].i_can_has_park
       var sideTwoParkNow = response.park_right_now[1].i_can_has_park
 
