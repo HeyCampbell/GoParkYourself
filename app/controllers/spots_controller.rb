@@ -14,7 +14,9 @@ class SpotsController < ApplicationController
      spot = Spot.find(params[:id])
      spot.regs
 
-   if params[:remind?] == "true"
+    if params[:active] == "false"
+      spot.active = false
+    elsif params[:remind?] == "true"
       if spot.park_till[0][:side] == params[:side_of_street]
         expiration = spot.park_till[0][:i_can_park_until]
       else
@@ -25,14 +27,13 @@ class SpotsController < ApplicationController
     else
       spot.update_attributes(remind?: false)
     end
-      redirect_to user_url
+      redirect_to map_url
   end
 
-  def destroy
+  def deactivate
     spot = Spot.find(params[:id])
-
-    spot.destroy
-    redirect_to user_url
+    spot.active = false
+    redirect_to map_url
   end
 
 
