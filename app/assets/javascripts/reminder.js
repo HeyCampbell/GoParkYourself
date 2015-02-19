@@ -31,8 +31,10 @@ function updatePhoneForm(sideOne, sideOneMove, sideOneParkNow, sideTwo, sideTwoM
     html += "<input type='radio' name='side_of_street' value='" + sideOne + "'>" + " " + sideOne + " Side | Park until " + sideOneMove + "<br>"
   }
 
-  if (sideTwoParkNow === true) {
-    html += "<input type='radio' name='side_of_street' value='" + sideTwo + "'>" + " " + sideTwo + " Side | Park until " + sideTwoMove
+  if (sideTwo !== undefined) {
+    if (sideTwoParkNow === true) {
+      html += "<input type='radio' name='side_of_street' value='" + sideTwo + "'>" + " " + sideTwo + " Side | Park until " + sideTwoMove
+    }
   }
   return html
 }
