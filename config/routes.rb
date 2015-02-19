@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: "welcomes#index"
   get '/' => 'welcomes#index'
-  get '/user' => 'welcomes#user'
+  get '/user' => 'welcomes#user', as: 'user_home'
 
   put '/user/:id' => 'users#update', as: 'user_update'
 
