@@ -16,6 +16,7 @@ class SpotsController < ApplicationController
 
     if params[:active] == "false"
       spot.active = false
+      redirect_to map_url
     elsif params[:remind?] == "true"
       if spot.park_till[0][:side] == params[:side_of_street]
         expiration = spot.park_till[0][:i_can_park_until]
@@ -24,10 +25,11 @@ class SpotsController < ApplicationController
       end
         spot.update_attributes(remind?:  true, expiration: expiration)
         Message.send_text_message({number_to_send_to: "+1" + params[:phone_number].delete(" ").delete(".").delete("-"), body: "Reminder set. Please remember to move your vehicle by #{expiration}. We'll send you a heads up an hour before"})
+        redirect_to user_url
     else
       spot.update_attributes(remind?: false)
+      redirect_to user_url
     end
-      redirect_to map_url
   end
 
   def deactivate
