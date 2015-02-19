@@ -13,7 +13,8 @@ class UsersController < ApplicationController
       end
       spot.update(remind?:  true, expiration: expiration)
       Message.send_text_message({number_to_send_to: "+1" + params[:phone_number].delete(" ").delete(".").delete("-"), body: "Reminder set. Please remember to move your vehicle by #{expiration}. We'll send you a heads up an hour before"})
-      redirect_to user_home_path
+      
     end
+    redirect_to user_home_path
   end
 end
