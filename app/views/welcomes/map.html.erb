@@ -28,7 +28,7 @@
 
   <form action= "/user/<%= session[:user_id] %>/" method="POST">
 
-    Telephone : <input id="tel" pattern="^\d{3}.\d{3}.\d{4}$" type="tel" name="phone_number">
+    Telephone : <input id="tel" pattern="^\d{3}.*\d{3}.*\d{4}$" type="tel" name="phone_number">
     <div id="phone-form-update">
       <input type="radio" name="side-of-street" value='sideOne'> SideOne
       <input type="radio" name="side-of-street" value='sideTwo'> SideTwo
