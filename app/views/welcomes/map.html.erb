@@ -27,7 +27,7 @@
   <h2>Okay no Problem!</h2>
 
 
-  <%= form_tag("/user/#{session[:user_id]}/", method: "POST") do %>
+  <%= form_tag("/user/#{session[:user_id]}/", method: "PUT") do %>
 
     Telephone : <input id="tel" pattern="^\d{3}.*\d{3}.*\d{4}$" type="tel" name="phone_number">
     <div id="phone-form-update">
