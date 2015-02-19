@@ -13,10 +13,12 @@ View.ParseRegulations = function(todayRegs) {
   html += "<thead>"
   html += "<tr>"
   html += "<td class='table_head'>Time</td>"
-  html += "<td class='table_head'>" + todayRegs.sideOneName + " Side<br>" + todayRegs.sideOneStart + " to " + todayRegs.sideOneEnd + "</td>"
+  html += "<td class='table_head'>" + todayRegs.sideOneName + " Side<br> No Parking <br>" + View.TitleParser(todayRegs.sideOneStart, todayRegs.sideOneEnd);
+
+
 
   if (todayRegs.sideTwoName !== undefined) {
-    html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side<br>" + todayRegs.sideTwoStart + " to " + todayRegs.sideTwoEnd + "</td>"
+    html += "<td class='table_head'>" + todayRegs.sideTwoName + " Side<br> No Parking <br>" + View.TitleParser(todayRegs.sideTwoStart, todayRegs.sideTwoEnd)
   }
 
   html += "</tr>"
@@ -28,6 +30,16 @@ View.ParseRegulations = function(todayRegs) {
   html += View.AltSuspended(todayRegs.Suspended);
 
   return html
+}
+
+View.TitleParser = function(sideStart, sideEnd) {
+  var html = ''
+  if (sideStart == '12AM') {
+    html += 'Never. Ever.  </td>'
+  } else {
+    html += sideStart + " to " + sideEnd + "</td>"
+  }
+  return html;
 }
 
 View.ColorizeWithTime = function(sideOneArray, sideTwoArray) {
