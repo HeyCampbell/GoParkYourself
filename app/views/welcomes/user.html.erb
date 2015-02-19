@@ -21,34 +21,40 @@
          </div>
       </div>
       <% end %>
-      <div class="full-width navigation-area">
 
-      <div class="row" id="user_footer_row">
-         <div class="fixed-bottom">
-            <nav class="top-bar bottom-bar" id="bottom_nav">
-               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="active" value="false">
-                <input type="submit" value= "Already moved" class="button">
-              </form >
-               <%if @spot.remind?%>
-               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                  <input type="hidden" name="_method" value="PUT">
-                  <input type="hidden" name="@spot.remind?" value="false">
-                  <input type="submit" value="Kill reminder" class="button">
-               </form>
-               <%else%>
-               <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                  <input type="hidden" name="_method" value="PUT">
-                  <input type="hidden" name="@spot.remind?" value="true">
-                  <input class = "button" type="submit" value="Add reminder" data-reveal-id="remindMeModal" id='reminderModal'>
-               </form>
-               <%end%>
-            </nav>
-         </div>
-      </div>
-   </div>
 </div>
+
+<div class="row" id="user_footer_row">
+            <nav id="bottom_nav">
+              <ul class="button-group even-2">
+                <li>
+                   <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="active" value="false">
+                    <input type="submit" value= "Already moved" class="button">
+                  </form >
+                </li>
+               <%if @spot.remind?%>
+                <li>
+                   <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                      <input type="hidden" name="_method" value="PUT">
+                      <input type="hidden" name="@spot.remind?" value="false">
+                      <input type="submit" value="Kill reminder" class="button">
+                   </form>
+                </li>
+               <%else%>
+                <li>
+                   <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
+                      <input type="hidden" name="_method" value="PUT">
+                      <input type="hidden" name="@spot.remind?" value="true">
+                      <input class = "button" type="submit" value="Add reminder" data-reveal-id="remindMeModal" id='reminderModal'>
+                   </form>
+                </li>
+               <%end%>
+             </ul>
+            </nav>
+      </div>
+
 </div>
 
       <div id="remindMeModal" class="reveal-modal" data-reveal>
@@ -57,11 +63,11 @@
         <%= form_tag("/user/spot/#{@spot.id}/update", method: "PUT") do %>
           Telephone: <input type="tel" pattern="^\d{3}.*\d{3}.*\d{4}$" name="phone_number">
           <div id="phone-form-update">
-            <input type="radio" name="side-of-street" value='sideOne'> SideOne
-            <input type="radio" name="side-of-street" value='sideTwo'> SideTwo
+            <input type="checkbox" name="side-of-street" value='sideOne'> SideOne
+            <input type="checkbox" name="side-of-street" value='sideTwo'> SideTwo
           </div>
           <input type="hidden" name="remind?" value="true">
-          <input type="submit">
+          <input type="submit" class="button" id="submit_side_button">
         <%end%>
 
         <p>We'll send you a text an hour before you should move.</p>

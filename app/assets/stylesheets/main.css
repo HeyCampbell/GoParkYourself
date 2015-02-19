@@ -154,6 +154,7 @@ td {
 .table_head {
   background-color: rgb(5, 5, 5);
   color: rgb(250, 250, 250);
+  font-weight:200;
 }
 
 tr {
@@ -190,6 +191,7 @@ border-radius: 10px;
 #logo_on_user_page {
   min-height: 100px;
   min-width: 100px;
+  padding-right:0px;
 }
 
 .profile-card {
@@ -199,7 +201,7 @@ border-radius: 10px;
   border-radius: 10px;
   padding:15px;
   color: rgb(202, 175, 146);
-  height:100vh;
+  height:90vh;
 }
 
 #user_page_name {
@@ -255,7 +257,6 @@ margin-top: 2%;
 
 #bottom_nav {
   height:20vh;
-  background-color: rgb(15, 15, 15);
   text-align: center;
 }
 
@@ -268,6 +269,10 @@ margin-top: 2%;
   margin: none;
   font-family: 'Ubuntu Condensed', sans-serif;
   margin-top: 10px;
+}
+
+.top-bar {
+  background
 }
 
 #bottom_nav button:hover {
@@ -292,3 +297,8 @@ margin-top: 2%;
   margin-right: 5px;
 }
 
+#submit_side_button {
+  background-color: transparent;
+  border:2px solid rgb(250, 250, 250);
+  border-radius: 10px;
+}
