@@ -2,9 +2,9 @@ $(document).ready(function() {
 
   $('#send-latlng').click(function(event) {
     event.preventDefault();
+    $('#purple-ajax-loader').show();
 
     View.Table().html("");
-    //interstitialGi.show();
     var $form = $(event.currentTarget);
     var $url = $form.attr("action");
     var $data = {latitude: marker.position.k,
@@ -17,6 +17,8 @@ $(document).ready(function() {
       data: $data
     });
     ajaxRequest.done(function(response) {
+      $("#purple-ajax-loader").hide();
+      $("#reminder-hider").show();
       console.log(response);
       loadChecker(response);
     });
