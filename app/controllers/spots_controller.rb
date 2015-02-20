@@ -16,7 +16,9 @@ class SpotsController < ApplicationController
 
     if params[:active] == "false"
       spot.active = false
+      spot.save
       redirect_to map_url
+      
     elsif params[:remind?] == "true"
       if spot.park_till[0][:side] == params[:side_of_street]
         expiration = spot.park_till[0][:i_can_park_until]
@@ -28,6 +30,7 @@ class SpotsController < ApplicationController
         redirect_to user_home_path
     else
       spot.update_attributes(remind?: false)
+      spot.save
       redirect_to user_home_path
     end
   end
