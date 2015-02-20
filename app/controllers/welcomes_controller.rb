@@ -4,7 +4,7 @@ class WelcomesController < ApplicationController
   end
 
   def user
-    if current_user.spots.last
+    if current_user.spots.last.active
       @spot = current_user.spots.last
     else
       redirect_to action: :map
