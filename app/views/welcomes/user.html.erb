@@ -9,38 +9,8 @@
         <% end %>
       </div>
 
-<div class="row" id="user_footer_row">
-            <nav id="bottom_nav">
-              <ul class="button-group even-2">
-                <li>
-                   <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                    <input type="hidden" name="_method" value="PUT">
-                    <input type="hidden" name="active" value="false">
-                    <input type="submit" value= "Already moved" class="button">
-                  </form >
-                </li>
-               <%if @spot.remind?%>
-                <li>
-                   <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                      <input type="hidden" name="_method" value="PUT">
-                      <input type="hidden" name="@spot.remind?" value="false">
-                      <input type="submit" value="Kill reminder" class="button">
-                   </form>
-                </li>
-               <%else%>
-                <li>
-                   <form action= "/user/spot/<%=@spot.id%>/update" method="POST">
-                      <input type="hidden" name="_method" value="PUT">
-                      <input type="hidden" name="@spot.remind?" value="true">
-                      <input class = "button" type="submit" value="Add reminder" data-reveal-id="remindMeModal" id='reminderModal'>
-                   </form>
-                </li>
-               <%end%>
-             </ul>
-            </nav>
-      </div>
-
-</div>
+      <%= render 'user_footer_row' %>
+   </div>
 
       <div id="remindMeModal" class="reveal-modal" data-reveal>
         <h2>Okay no Problem!</h2>
