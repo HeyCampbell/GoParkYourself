@@ -1,16 +1,8 @@
 <div class="row" id="map_ct">
   <div id="map-canvas" class="small-12 columns"></div>
-  <div class="row" id="map_bar">
-    <div id="map_bar_buttons" class="small-12 small-centered columns auth_buttons">
-      <ul class="button-group radius">
-        <form id="send-latlng" action='spots/create' method="POST">
-          <input type="submit" value="Go Park Yourself" class="button" id="parked_button" data-reveal-id="myModal">
-        </form>
-      </ul>
-    </div>
-  </div>
+  <%= render 'map/map_bar' %>
 </div>
 
-<%= render 'myModal' %>
+<%= render 'map/myModal' %>
 
-<%= render 'remindMeModal' %>
+<%= render 'map/remindMeModal' %>
