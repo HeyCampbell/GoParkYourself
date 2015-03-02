@@ -2,15 +2,15 @@
    <div class="small-12 columns">
 
       <div class="profile-card">
-        <%= render 'user_header_row' %>
+        <%= render 'user/user_header_row' %>
 
         <% if @spot %>
-          <%= render 'chart_row' %>
+          <%= render 'user/chart_row' %>
         <% end %>
       </div>
 
-      <%= render 'user_footer_row' %>
+      <%= render 'user/user_footer_row' %>
    </div>
 
-  <%= render 'updateSpotModal' %>
+  <%= render 'user/updateSpotModal' %>
 </div>
