@@ -13,24 +13,7 @@
 
 <%= render 'myModal' %>
 
-<div id="remindMeModal" class="tiny reveal-modal" data-reveal>
-  <h2>Okay no Problem!</h2>
-
-
-  <%= form_tag("/user/#{current_user.id}", method: "PUT") do %>
-
-    Telephone : <input id="tel" pattern="^\d{3}.*\d{3}.*\d{4}$" type="tel" name="phone_number">
-    <div id="phone-form-update">
-      <input type="checkbox" name="side-of-street" value='sideOne'> SideOne
-      <input type="checkbox" name="side-of-street" value='sideTwo'> SideTwo
-    </div>
-    <input type="hidden" name="_method" value="PUT">
-    <input type="submit" class="button" id="submit_side_button">
-  <%end%>
-
-  <p>We'll send you a text an hour before you should move.</p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
+<%= render 'remindMeModal' %>
 
 
 <div id="thanksModal" class="reveal-modal" data-reveal>
