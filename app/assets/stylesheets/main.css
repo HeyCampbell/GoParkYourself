@@ -156,6 +156,15 @@
     line-height: 2.3rem;
   }
 }
+@media (min-height: 900px) {
+  #regs_table td {
+    font-size: 2em;
+    line-height: 3.3rem;
+  }
+  #table_ct h5 {
+    font-size: 1.5em;
+  }
+}
 
 table {
   background-color: rgba(11,10,10,0.5);
