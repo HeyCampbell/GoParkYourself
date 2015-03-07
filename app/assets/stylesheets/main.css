@@ -146,6 +146,16 @@
 #regs_table {
   margin: 0 auto;
 }
+@media (min-height: 600px) and (min-width: 800px){
+  #regs_table {
+    margin: 0 auto;
+    width:70%;
+  }
+  #regs_table td {
+    font-size: 1.4em;
+    line-height: 2.3rem;
+  }
+}
 
 table {
   background-color: rgba(11,10,10,0.5);
