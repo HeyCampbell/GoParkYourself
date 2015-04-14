@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+  def create
+    # user = User.from_omniauth(env["omniauth.auth"])
+    # session[:user_id] = user.id
+    # redirect_to root_path
+  end
+
   def update
     user = User.find(params[:id])
     user.update(phone_number: params[:phone_number].delete(" "))
