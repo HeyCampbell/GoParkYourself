@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+  class ApplicationController < ActionController::Base
   protect_from_forgery
   # protect_from_forgery except: :user_update, :spot_update
   helper_method :current_user

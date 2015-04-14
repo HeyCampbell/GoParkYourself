@@ -6,9 +6,16 @@
   </div>
   <div id="button_ct">
     <div class="row">
+      <% if !current_user%>
       <div id="login_with_google" class="small-8 small-centered columns auth_buttons">
-        <%= button_to "Login with Google", "/auth/google_oauth2", id: "sign_in", class: "button" %>
+        <%= button_to "Login with Google", "/auth/google_oauth2", class: "sign_in", class: "button" %>
       </div>
+      <% elsif current_user %>
+     <%= link_to "Go to Map", "/map", class: 'sign_in', class: "button" %>
+       <% if current_user.spots.last && current_user.spots.last.active%>
+       <%= link_to "View Saved Spot", "/user", class: 'sign_in', class: "button" %>
+       <% end %>
+      <% end %>
     </div>
   </div>
 </div>

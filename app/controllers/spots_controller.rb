@@ -18,7 +18,7 @@ class SpotsController < ApplicationController
       spot.active = false
       spot.save
       redirect_to map_url
-      
+
     elsif params[:remind?] == "true"
       if spot.park_till[0][:side] == params[:side_of_street]
         expiration = spot.park_till[0][:i_can_park_until]
