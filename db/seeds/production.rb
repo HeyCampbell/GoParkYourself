@@ -14,7 +14,7 @@ end
 CSV.foreach("manhattan_signs_csv.csv", headers: true, header_converters: :symbol) do |row|
 
   if StreetSection.exists?(status_order: row[1])
-    Sign.create(status_order: row[1], sign_sequence: row[2], distance: row[3], arrow: row[4], sign_description: row[5])
+    Sign.find_or_create_by(status_order: row[1], sign_sequence: row[2], distance: row[3], arrow: row[4], sign_description: row[5])
   end
 end
 
